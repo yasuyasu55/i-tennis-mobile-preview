@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I-Tennis Mobile</title>
+<!-- PWA:START -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#07522d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="I-Tennis">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<!-- PWA:END -->
+<style>
+body{margin:0;background:#f7fbf8;color:#24332B;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic",sans-serif}
+header{background:#07522d;color:white;padding:14px 16px}
+h1{margin:0;font-size:21px}
+header p{margin:4px 0 0;font-size:12px;color:#cde4d4}
+
+main{padding:12px;max-width:720px;margin:auto}
+
+.calendar{background:white;border:1px solid #cde4d4;border-radius:14px;overflow:hidden;margin-bottom:12px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;background:#6750A4;color:white;padding:10px;font-weight:800}
+.cal-head button{background:white;color:#6750A4;border:0;border-radius:8px;padding:8px 14px;font-weight:800;font-size:16px}
+
+.week,.days{display:grid;grid-template-columns:repeat(7,1fr)}
+.week div{text-align:center;padding:7px 0;font-size:12px;font-weight:800;background:#f5f8f5}
+.week .sun{color:#d93025}
+.week .sat{color:#1a73e8}
+
+.day{min-height:62px;border-right:1px solid #edf3ef;border-bottom:1px solid #edf3ef;padding:5px 4px;font-size:12px}
+.day.has{background:#f4fbf6}
+.day.today{background:#fff3bf}
+.day.selected{outline:2px solid #08763d;outline-offset:-2px;background:#dff3e6}
+.day.sunday .num{color:#d93025}
+.day.saturday .num{color:#1a73e8}
+.day.holiday .num{color:#d93025}
+.num{font-weight:800;font-size:14px}
+.holiday-tag{display:block;font-size:9px;color:#d93025;font-weight:700}
+.mark{display:block;margin-top:2px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#07522d;font-weight:700}
+
+.dayPanel{background:white;border:1px solid #cde4d4;border-radius:14px;padding:14px;margin-bottom:16px}
+.dayPanel .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dayPanel .head .title{font-weight:800;color:#07522d;font-size:16px}
+.addBtn{border:0;background:#08763d;color:white;border-radius:10px;padding:10px 14px;font-weight:800;font-size:14px}
+
+.card{background:#f7fbf8;border:1px solid #cde4d4;border-radius:12px;padding:12px;margin-bottom:8px}
+.card .time{font-weight:800;color:#07522d}
+.card .title{font-weight:700;margin:2px 0}
+.card .meta{color:#6b7a70;font-size:13px}
+.empty{text-align:center;color:#6b7a70;padding:24px}
+
+.modal-bg{display:none;position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:99;padding:18px;align-items:center;justify-content:center}
+.modal-bg.active{display:flex}
+.modal{background:white;border-radius:16px;width:100%;max-width:430px;padding:16px;max-height:90vh;overflow:auto}
+.modal h2{margin:0 0 12px;color:#07522d}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:12px;font-weight:800;color:#6b7a70;margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;border:1px solid #cde4d4;border-radius:10px;padding:10px;font-size:16px;box-sizing:border-box}
+.field textarea{min-height:70px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.actions button{border:0;border-radius:10px;padding:11px;font-weight:800}
+.save{background:#08763d;color:white}
+.cancel{background:#e9efe9;color:#244}
+.delete{background:#b3261e;color:white}
+
+.navtabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px 0;max-width:720px;margin:auto;box-sizing:border-box}
+.navtabs button{border:1px solid #cde4d4;background:#eaf7ef;color:#07522d;border-radius:999px;padding:11px;font-weight:800;font-size:14px}
+.navtabs button.active{background:#08763d;color:white;border-color:#08763d}
+
+.screen{display:none}
+.screen.active{display:block}
+
+.research-card{background:white;border:1px solid #cde4d4;border-radius:14px;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.research-card .label{font-weight:800;color:#24332B;font-size:15px}
+.research-badge{background:#eef1ee;color:#6b7a70;font-size:12px;font-weight:800;border-radius:999px;padding:5px 12px;white-space:nowrap}
+
+.research-group-title{font-weight:800;color:#07522d;font-size:15px;margin:4px 2px 8px}
+.tcard{background:white;border:1px solid #cde4d4;border-radius:14px;padding:14px;margin-bottom:10px}
+.tcard-title{font-weight:800;font-size:16px;color:#24332B;margin-bottom:8px;word-break:break-word}
+.tcard-row{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:3px 0;color:#24332B}
+.tcard-label{color:#6b7a70;white-space:nowrap}
+.tcard-row span:last-child{text-align:right;word-break:break-word}
+.tcard-status{font-weight:800;color:#07522d}
+.tcard-link{display:inline-block;margin-top:8px;color:#08763d;font-weight:800;font-size:13px;text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎾 I-Tennis Mobile</h1>
+  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.3.0</p>
+  <p id="updated">読み込み中...</p>
+</header>
+
+<nav class="navtabs">
+  <button id="navCalendar" class="active" onclick="showScreen('calendar')">📅 カレンダー</button>
+  <button id="navResearch" onclick="showScreen('research')">🔍 リサーチ</button>
+</nav>
+
+<main>
+  <section id="screenCalendar" class="screen active">
+    <div class="calendar">
+      <div class="cal-head">
+        <button onclick="moveMonth(-1)">◀</button>
+        <div id="calTitle"></div>
+        <button onclick="moveMonth(1)">▶</button>
+      </div>
+      <div class="week">
+        <div class="sun">日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div class="sat">土</div>
+      </div>
+      <div id="calendarDays" class="days"></div>
+    </div>
+
+    <div class="dayPanel">
+      <div class="head">
+        <div class="title" id="dayTitle"></div>
+        <button class="addBtn" onclick="openAddModal()">＋追加</button>
+      </div>
+      <div id="dayList"></div>
+    </div>
+  </section>
+
+  <section id="screenResearch" class="screen">
+    <div class="research-group-title">🏆 大会情報</div>
+    <div id="tournamentArea"></div>
+
+    <div class="research-card">
+      <span class="label">🙋 個人参加</span>
+      <span class="research-badge">準備中</span>
+    </div>
+    <div class="research-card">
+      <span class="label">🎾 コート空き</span>
+      <span class="research-badge">準備中</span>
+    </div>
+  </section>
+</main>
+
+<div id="modalBg" class="modal-bg">
+  <div class="modal">
+    <h2 id="modalTitle">予定追加</h2>
+    <input type="hidden" id="fId">
+    <div class="field"><label>日付</label><input id="fDate" type="date"></div>
+    <div class="field"><label>時間</label><input id="fTime" type="time"></div>
+    <div class="field">
+      <label>種類</label>
+      <select id="fKind">
+        <option>🎾 練習</option>
+        <option>🏆 大会</option>
+        <option>🍽 食事</option>
+        <option>📦 仕事</option>
+        <option>📝 その他</option>
+      </select>
+    </div>
+    <div class="field"><label>場所</label><input id="fPlace"></div>
+    <div class="field"><label>メモ</label><textarea id="fMemo"></textarea></div>
+    <div class="actions">
+      <button class="cancel" onclick="closeModal()">キャンセル</button>
+      <button class="save" onclick="saveActivity()">保存</button>
+    </div>
+    <div class="actions" id="deleteArea" style="display:none;grid-template-columns:1fr;margin-top:8px">
+      <button class="delete" onclick="deleteActivity()">この予定を削除</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   ローカル保存のみのシンプル版です。
+   新しめのJS構文（||= や ?. など）は使わず、
+   古いブラウザ・アプリ内ブラウザでも動くように書いています。
+============================================================ */
+
+var STORAGE_KEY = 'i_tennis_mobile_activities_v3';
+var OLD_KEYS = ['i_tennis_mobile_activities_v2', 'i_tennis_mobile_activities_v1'];
+
+var activities = [];
+var current = new Date();
+var selectedDateKey = null;
+
+function uuid(){
+  if (window.crypto && crypto.randomUUID) { return crypto.randomUUID(); }
+  var s = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+  return s.replace(/[xy]/g, function(c){
+    var r = Math.random() * 16 | 0;
+    var v = (c === 'x') ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+function nowIso(){ return new Date().toISOString(); }
+
+function parseDate(s){
+  if (!s) { return null; }
+  var t = String(s).replace(/[年月.-]/g, '/').replace(/日/g, '');
+  var m = t.match(/(20\d{2})\/(\d{1,2})\/(\d{1,2})/);
+  if (!m) { return null; }
+  return new Date(parseInt(m[1],10), parseInt(m[2],10)-1, parseInt(m[3],10));
+}
+function toSlashDate(v){
+  if (!v) { return ''; }
+  if (v.indexOf('-') !== -1) { var a = v.split('-'); return a[0]+'/'+a[1]+'/'+a[2]; }
+  return v;
+}
+function toInputDate(v){
+  var d = parseDate(v);
+  if (!d) { return ''; }
+  function pad(n){ return (n<10?'0':'')+n; }
+  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+}
+function dateKey(d){
+  function pad(n){ return (n<10?'0':'')+n; }
+  return d.getFullYear()+'/'+pad(d.getMonth()+1)+'/'+pad(d.getDate());
+}
+function esc(v){
+  return String(v || '').replace(/[&<>"']/g, function(c){
+    var map = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+    return map[c];
+  });
+}
+function sortRows(rows){
+  var copy = rows.slice();
+  copy.sort(function(a, b){
+    var da = parseDate(a.date); var db = parseDate(b.date);
+    var ta = da ? da.getTime() : 9000000000000;
+    var tb = db ? db.getTime() : 9000000000000;
+    if (ta !== tb) { return ta - tb; }
+    return String(a.time || '').localeCompare(String(b.time || ''));
+  });
+  return copy;
+}
+
+/* ---------- 祝日判定 ---------- */
+function nthWeekday(year, month, jsWeekday, n){
+  var first = new Date(year, month-1, 1).getDay();
+  var add = (jsWeekday - first + 7) % 7;
+  return 1 + add + 7*(n-1);
+}
+function holidayName(year, month, day){
+  var fixed = {
+    '1-1':'元日', '2-11':'建国記念の日', '2-23':'天皇誕生日', '4-29':'昭和の日',
+    '5-3':'憲法記念日', '5-4':'みどりの日', '5-5':'こどもの日', '8-11':'山の日',
+    '11-3':'文化の日', '11-23':'勤労感謝の日'
+  };
+  var key = month + '-' + day;
+  if (fixed[key]) { return fixed[key]; }
+  if (month === 1 && day === nthWeekday(year,1,1,2)) { return '成人の日'; }
+  if (month === 7 && day === nthWeekday(year,7,1,3)) { return '海の日'; }
+  if (month === 9 && day === nthWeekday(year,9,1,3)) { return '敬老の日'; }
+  if (month === 10 && day === nthWeekday(year,10,1,2)) { return 'スポーツの日'; }
+  if (month === 3){
+    var v1 = Math.floor(20.8431 + 0.242194*(year-1980) - Math.floor((year-1980)/4));
+    if (day === v1) { return '春分の日'; }
+  }
+  if (month === 9){
+    var v2 = Math.floor(23.2488 + 0.242194*(year-1980) - Math.floor((year-1980)/4));
+    if (day === v2) { return '秋分の日'; }
+  }
+  var special = {'2020-7-23':'海の日','2020-7-24':'スポーツの日','2020-8-10':'山の日','2021-7-22':'海の日','2021-7-23':'スポーツの日','2021-8-8':'山の日','2021-8-9':'振替休日'};
+  var skey = year + '-' + month + '-' + day;
+  if (special[skey]) { return special[skey]; }
+  var d = new Date(year, month-1, day);
+  if (d.getDay() === 1){
+    var y = new Date(year, month-1, day-1);
+    if (y.getDay() === 0 && holidayName(y.getFullYear(), y.getMonth()+1, y.getDate())) { return '振替休日'; }
+  }
+  return '';
+}
+
+/* ---------- 保存 ---------- */
+function migrateOldStorageIfNeeded(){
+  if (localStorage.getItem(STORAGE_KEY)) { return; }
+  for (var i = 0; i < OLD_KEYS.length; i++){
+    var old = localStorage.getItem(OLD_KEYS[i]);
+    if (old){
+      try{
+        var rows = JSON.parse(old) || [];
+        var migrated = [];
+        for (var j = 0; j < rows.length; j++){
+          var r = rows[j];
+          migrated.push({
+            id: r.id || uuid(),
+            date: r.date, time: r.time, kind: r.kind, place: r.place, memo: r.memo
+          });
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+      }catch(e){}
+      return;
+    }
+  }
+}
+function loadLocal(){
+  migrateOldStorageIfNeeded();
+  var s = localStorage.getItem(STORAGE_KEY);
+  if (s){
+    try{ activities = JSON.parse(s) || []; }catch(e){ activities = []; }
+  } else {
+    activities = [];
+  }
+}
+function saveLocal(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(activities));
+  document.getElementById('updated').textContent = '更新: ' + new Date().toLocaleString('ja-JP') + '（このスマホ内に保存）';
+}
+
+/* ---------- カレンダー描画 ---------- */
+function renderCalendar(){
+  var y = current.getFullYear(), m = current.getMonth();
+  document.getElementById('calTitle').textContent = y + '年' + (m+1) + '月';
+
+  var first = new Date(y, m, 1);
+  var last = new Date(y, m+1, 0);
+  var cells = [];
+  for (var i = 0; i < first.getDay(); i++){ cells.push(null); }
+  for (var d = 1; d <= last.getDate(); d++){ cells.push(new Date(y, m, d)); }
+
+  var map = {};
+  for (var k = 0; k < activities.length; k++){
+    var r = activities[k];
+    var dd = parseDate(r.date);
+    if (dd && dd.getFullYear() === y && dd.getMonth() === m){
+      var key = dateKey(dd);
+      if (!map[key]) { map[key] = []; }
+      map[key].push((r.kind || '予定') + ' ' + (r.memo || r.place || ''));
+    }
+  }
+
+  var today = dateKey(new Date());
+  var html = '';
+  for (var c = 0; c < cells.length; c++){
+    var dt = cells[c];
+    if (!dt){ html += '<div class="day"></div>'; continue; }
+    var kk = dateKey(dt);
+    var ev = map[kk] || [];
+    var hName = holidayName(dt.getFullYear(), dt.getMonth()+1, dt.getDate());
+    var cls = ['day'];
+    if (ev.length) { cls.push('has'); }
+    if (kk === today) { cls.push('today'); }
+    if (kk === selectedDateKey) { cls.push('selected'); }
+    if (dt.getDay() === 0) { cls.push('sunday'); }
+    if (dt.getDay() === 6) { cls.push('saturday'); }
+    if (hName) { cls.push('holiday'); }
+    html += '<div class="' + cls.join(' ') + '" onclick="selectDay(\'' + kk + '\')">';
+    html += '<div class="num">' + dt.getDate() + '</div>';
+    if (hName) { html += '<span class="holiday-tag">' + esc(hName.slice(0,4)) + '</span>'; }
+    for (var e = 0; e < ev.length && e < 2; e++){ html += '<span class="mark">' + esc(ev[e]) + '</span>'; }
+    html += '</div>';
+  }
+  document.getElementById('calendarDays').innerHTML = html;
+}
+
+function renderDayPanel(){
+  document.getElementById('dayTitle').textContent = selectedDateKey ? selectedDateKey + ' の予定' : '日付を選んでください';
+  var rows = [];
+  for (var i = 0; i < activities.length; i++){
+    if (activities[i].date === selectedDateKey) { rows.push(activities[i]); }
+  }
+  rows = sortRows(rows);
+  var html = '';
+  if (rows.length === 0){
+    html = '<div class="empty">この日の予定はありません</div>';
+  } else {
+    for (var j = 0; j < rows.length; j++){
+      var r = rows[j];
+      html += '<div class="card" onclick="openEditModal(\'' + r.id + '\')">';
+      html += '<div class="time">' + esc(r.time) + '</div>';
+      html += '<div class="title">' + esc(r.memo || r.place || r.kind) + '</div>';
+      html += '<div class="meta">' + esc(r.kind) + ' ' + esc(r.place) + '</div>';
+      html += '</div>';
+    }
+  }
+  document.getElementById('dayList').innerHTML = html;
+}
+
+function selectDay(k){
+  selectedDateKey = k;
+  renderCalendar();
+  renderDayPanel();
+}
+function moveMonth(x){
+  current = new Date(current.getFullYear(), current.getMonth() + x, 1);
+  renderCalendar();
+  renderDayPanel();
+}
+function renderAll(){
+  renderCalendar();
+  renderDayPanel();
+}
+
+/* ---------- 追加・修正・削除 ---------- */
+function openAddModal(){
+  document.getElementById('modalTitle').textContent = '予定追加';
+  document.getElementById('fId').value = '';
+  document.getElementById('fDate').value = selectedDateKey ? toInputDate(selectedDateKey) : '';
+  document.getElementById('fTime').value = '';
+  document.getElementById('fKind').value = '🎾 練習';
+  document.getElementById('fPlace').value = '';
+  document.getElementById('fMemo').value = '';
+  document.getElementById('deleteArea').style.display = 'none';
+  document.getElementById('modalBg').className = 'modal-bg active';
+}
+function openEditModal(id){
+  var target = null;
+  for (var i = 0; i < activities.length; i++){
+    if (activities[i].id === id) { target = activities[i]; break; }
+  }
+  if (!target) { return; }
+  document.getElementById('modalTitle').textContent = '予定編集';
+  document.getElementById('fId').value = target.id;
+  document.getElementById('fDate').value = toInputDate(target.date);
+  document.getElementById('fTime').value = target.time || '';
+  document.getElementById('fKind').value = target.kind || '🎾 練習';
+  document.getElementById('fPlace').value = target.place || '';
+  document.getElementById('fMemo').value = target.memo || '';
+  document.getElementById('deleteArea').style.display = 'grid';
+  document.getElementById('modalBg').className = 'modal-bg active';
+}
+function closeModal(){
+  document.getElementById('modalBg').className = 'modal-bg';
+}
+function saveActivity(){
+  var id = document.getElementById('fId').value;
+  var row = {
+    id: id || uuid(),
+    date: toSlashDate(document.getElementById('fDate').value),
+    time: document.getElementById('fTime').value,
+    kind: document.getElementById('fKind').value,
+    place: document.getElementById('fPlace').value,
+    memo: document.getElementById('fMemo').value
+  };
+  if (!row.date){ alert('日付を入力してください'); return; }
+
+  var found = false;
+  for (var i = 0; i < activities.length; i++){
+    if (activities[i].id === row.id){ activities[i] = row; found = true; break; }
+  }
+  if (!found){ activities.push(row); }
+
+  saveLocal();
+  selectedDateKey = row.date;
+  var d = parseDate(row.date);
+  if (d){ current = new Date(d.getFullYear(), d.getMonth(), 1); }
+  closeModal();
+  renderAll();
+}
+function deleteActivity(){
+  var id = document.getElementById('fId').value;
+  if (!confirm('この予定を削除しますか？')) { return; }
+  var next = [];
+  for (var i = 0; i < activities.length; i++){
+    if (activities[i].id !== id){ next.push(activities[i]); }
+  }
+  activities = next;
+  saveLocal();
+  closeModal();
+  renderAll();
+}
+
+document.getElementById('modalBg').addEventListener('click', function(e){
+  if (e.target.id === 'modalBg') { closeModal(); }
+});
+
+/* ---------- 大会情報（表示の土台のみ。通信・登録は行わない） ----------
+   データ形式（将来SupabaseやPC版から受け取る想定）:
+   { id, title, eventDate, deadlineDate, area, category, status, sourceUrl }
+   状態は 'empty'（データなし） / 'data'（一覧表示） / 'error'（読み込み失敗） の3つ。
+------------------------------------------------------------------ */
+function formatDateJP(v){
+  if (!v) { return '未登録'; }
+  var s = String(v).replace(/[.]/g, '/').replace(/-/g, '/');
+  var m = s.match(/(\d{4})\/(\d{1,2})\/(\d{1,2})/);
+  if (!m) { return '未登録'; }
+  return parseInt(m[1],10) + '年' + parseInt(m[2],10) + '月' + parseInt(m[3],10) + '日';
+}
+function isSafeHttpUrl(u){
+  return (typeof u === 'string') && /^https?:\/\//i.test(u);
+}
+function tournamentCardHtml(t){
+  t = t || {};
+  var html = '<div class="tcard">';
+  html += '<div class="tcard-title">' + esc(t.title) + '</div>';
+  html += '<div class="tcard-row"><span class="tcard-label">開催日</span><span>' + esc(formatDateJP(t.eventDate)) + '</span></div>';
+  html += '<div class="tcard-row"><span class="tcard-label">申込締切日</span><span>' + esc(formatDateJP(t.deadlineDate)) + '</span></div>';
+  html += '<div class="tcard-row"><span class="tcard-label">地域</span><span>' + esc(t.area) + '</span></div>';
+  html += '<div class="tcard-row"><span class="tcard-label">種目</span><span>' + esc(t.category) + '</span></div>';
+  html += '<div class="tcard-row"><span class="tcard-label">状態</span><span class="tcard-status">' + esc(t.status) + '</span></div>';
+  if (isSafeHttpUrl(t.sourceUrl)){
+    html += '<a class="tcard-link" href="' + esc(t.sourceUrl) + '" target="_blank" rel="noopener noreferrer">公式ページを開く</a>';
+  }
+  html += '</div>';
+  return html;
+}
+// 独立関数：データ配列を受け取ってカードHTMLの文字列を返すだけ（DOM操作やイベント登録は行わない）
+function renderTournamentCards(list){
+  if (!list || list.length === 0){ return ''; }
+  var html = '';
+  for (var i = 0; i < list.length; i++){ html += tournamentCardHtml(list[i]); }
+  return html;
+}
+function showTournamentState(state, list){
+  var el = document.getElementById('tournamentArea');
+  if (!el){ return; }
+  if (state === 'data' && list && list.length > 0){
+    el.innerHTML = renderTournamentCards(list);
+  } else if (state === 'error'){
+    el.innerHTML = '<div class="empty">大会情報を読み込めませんでした</div>';
+  } else {
+    el.innerHTML = '<div class="empty">現在、表示できる大会情報はありません</div>';
+  }
+}
+
+/* ---------- 画面切替（カレンダー／リサーチ） ---------- */
+function showScreen(name){
+  var screens = { calendar: 'screenCalendar', research: 'screenResearch' };
+  var navs = { calendar: 'navCalendar', research: 'navResearch' };
+  for (var key in screens){
+    if (Object.prototype.hasOwnProperty.call(screens, key)){
+      document.getElementById(screens[key]).className = (key === name) ? 'screen active' : 'screen';
+      document.getElementById(navs[key]).className = (key === name) ? 'active' : '';
+    }
+  }
+}
+
+/* ---------- 起動 ---------- */
+function init(){
+  loadLocal();
+  selectedDateKey = dateKey(new Date());
+  saveLocal();
+  renderAll();
+  showScreen('calendar');
+  showTournamentState('empty', []);
+}
+init();
+
+/* PWA:START
+   Service Worker登録（オフラインでアプリ画面を開くため）。
+   - http/https かつ安全なコンテキスト(https または localhost)でのみ登録する。
+     file:// や http://(localhost以外) では登録せず、通常のHTMLとして動作する。
+   - 登録に失敗してもカレンダー・予定管理などアプリ本体の動作には影響しない。
+*/
+(function registerServiceWorker(){
+  try {
+    if (!('serviceWorker' in navigator)) { return; }
+    if (location.protocol !== 'https:' && location.protocol !== 'http:') { return; }
+    if (!window.isSecureContext) { return; }
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('service-worker.js').catch(function(err){
+        console.warn('Service Worker registration failed. The app keeps working without offline support.', err);
+      });
+    });
+  } catch (e) {
+    /* 登録処理の例外でアプリ本体を止めない */
+  }
+})();
+/* PWA:END */
+</script>
+</body>
+</html>
