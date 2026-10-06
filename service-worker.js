@@ -3,14 +3,15 @@
  *
  * 方針:
  *  - キャッシュするのは「アプリを開くために必要なファイル」（SHELL_FILES）だけ。
- *  - 外部サイト・API応答・動的データはキャッシュしない（そもそも介入しない）。
- *    ※現時点でアプリ本体はそのような通信を行っていない。
+ *  - 外部サイト・API応答はキャッシュしない（そもそも介入しない）。アプリは外部サイトへ通信しない。
+ *  - 例外として、同じ場所の大会データ(data/tournaments.json)だけは、ネットワーク優先で取得する（下の DATA-NETWORK-FIRST）。
  *  - localStorage（予定データ）には一切触れない。Service Workerからは参照もできない。
- *  - 更新するときは APP_VERSION を上げる。旧バージョンのアプリ用キャッシュだけを削除する。
+ *  - アプリ本体を更新するときは APP_VERSION を上げる。旧バージョンのアプリ用キャッシュだけを削除する。
+ *    大会データの更新だけでは、APP_VERSION は変えない（データはネットワーク優先で取得するため）。
  */
 'use strict';
 
-var APP_VERSION = '0.5.0';
+var APP_VERSION = '0.7.2';
 var CACHE_PREFIX = 'i-tennis-mobile-shell-';
 var CACHE_NAME = CACHE_PREFIX + 'v' + APP_VERSION;
 
@@ -68,6 +69,96 @@ self.addEventListener('activate', function (event) {
   );
 });
 
+/* DATA-NETWORK-FIRST:START
+ * 大会データ(data/tournaments.json)は、ネットワーク優先で取得する。
+ *   ・取得に成功し、JSONとして妥当（tournaments が配列）なら、キャッシュを更新して、その応答を返す。
+ *   ・失敗（接続できない・タイムアウト・HTTPエラー・JSONとして不正）したときは、前回キャッシュしたデータを返す。
+ *     返す応答には X-Served-From-Cache: fallback を付け、画面で「保存済みのデータを表示している」と伝えられるようにする。
+ *   ・キャッシュも無ければ 503 を返す（画面は「読み込めませんでした」を表示する。予定データには影響しない）。
+ * 対象は、同じ場所の data/tournaments.json だけ。外部サイトには介入しない。localStorage（予定データ）には触れない。
+ */
+var DATA_PATH = './data/tournaments.json';
+var DATA_TIMEOUT_MS = 8000;
+
+function isDataUrl(urlString) {
+  var u = new URL(urlString);
+  u.search = '';
+  u.hash = '';
+  return u.href === scopeUrl(DATA_PATH);
+}
+
+function fetchDataWithTimeout(url) {
+  return new Promise(function (resolve, reject) {
+    var finished = false;
+    var timer = setTimeout(function () {
+      if (!finished) { finished = true; reject(new Error('timeout')); }
+    }, DATA_TIMEOUT_MS);
+    fetch(url, { cache: 'no-store' }).then(function (res) {
+      if (finished) { return; }
+      finished = true;
+      clearTimeout(timer);
+      resolve(res);
+    }, function (err) {
+      if (finished) { return; }
+      finished = true;
+      clearTimeout(timer);
+      reject(err);
+    });
+  });
+}
+
+function isValidDataResponse(res) {
+  return res.clone().json().then(function (j) {
+    return !!(j && Array.isArray(j.tournaments));
+  }).catch(function () { return false; });
+}
+
+function findCachedData() {
+  var url = scopeUrl(DATA_PATH);
+  return caches.open(CACHE_NAME).then(function (cache) {
+    return cache.match(url);
+  }).then(function (hit) {
+    if (hit) { return hit; }
+    // 現行のキャッシュに無いときは、このアプリの旧バージョンのキャッシュから探す
+    return caches.keys().then(function (keys) {
+      var names = keys.filter(function (k) { return k.indexOf(CACHE_PREFIX) === 0; }).sort().reverse();
+      return names.reduce(function (p, name) {
+        return p.then(function (found) {
+          if (found) { return found; }
+          return caches.open(name).then(function (c) { return c.match(url); });
+        });
+      }, Promise.resolve(null));
+    });
+  });
+}
+
+function markServedFromCache(res) {
+  var headers = new Headers(res.headers);
+  headers.set('X-Served-From-Cache', 'fallback');
+  return res.blob().then(function (blob) {
+    return new Response(blob, { status: 200, statusText: 'OK', headers: headers });
+  });
+}
+
+function handleData(request) {
+  return fetchDataWithTimeout(request.url).then(function (res) {
+    if (!res.ok) { throw new Error('http ' + res.status); }
+    return isValidDataResponse(res).then(function (valid) {
+      if (!valid) { throw new Error('invalid data'); }
+      var copy = res.clone();
+      return caches.open(CACHE_NAME).then(function (cache) {
+        return cache.put(scopeUrl(DATA_PATH), copy);
+      }).catch(function () { /* 保存に失敗しても、取得できた応答は返す */ }).then(function () { return res; });
+    });
+  }).catch(function () {
+    return findCachedData().then(function (hit) {
+      if (hit) { return markServedFromCache(hit); }
+      return new Response('', { status: 503, statusText: 'Service Unavailable' });
+    });
+  });
+}
+/* DATA-NETWORK-FIRST:END */
+
 function offlineFallbackResponse() {
   return new Response(
     '<!doctype html><html lang="ja"><head><meta charset="utf-8">' +
@@ -112,6 +203,13 @@ self.addEventListener('fetch', function (event) {
     event.respondWith(handleNavigation(request));
     return;
   }
+
+  /* DATA-NETWORK-FIRST:START */
+  if (isDataUrl(request.url)) {
+    event.respondWith(handleData(request));
+    return;
+  }
+  /* DATA-NETWORK-FIRST:END */
 
   if (isShellUrl(request.url)) {
     event.respondWith(handleShellAsset(request));

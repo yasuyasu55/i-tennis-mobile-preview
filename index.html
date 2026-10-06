@@ -102,6 +102,19 @@ main{padding:12px;max-width:720px;margin:auto}
 .t-text{width:100%}
 .t-date{flex:1;min-width:130px}
 .t-btn{font-size:14px;font-weight:800;border:1px solid #08763d;color:#08763d;background:white;border-radius:10px;padding:9px 14px}
+.t-footer{margin-top:18px;padding-top:14px;border-top:1px solid #e1ece5;display:flex;flex-direction:column;gap:10px}
+.t-btn-sub{align-self:flex-end;font-size:13px;font-weight:700;padding:7px 12px;border-color:#9bb8a5;color:#3d6b50}
+.t-btn-search{display:block;width:100%;box-sizing:border-box;min-height:56px;font-size:19px;font-weight:900;letter-spacing:.06em;color:#fff;background:#08763d;border:0;border-radius:14px;padding:14px 16px;box-shadow:0 3px 0 #05522a,0 7px 16px rgba(8,118,61,.38);-webkit-tap-highlight-color:transparent;cursor:pointer}
+.t-btn-search:active{transform:translateY(2px);box-shadow:0 1px 0 #05522a,0 3px 8px rgba(8,118,61,.3)}
+.t-btn-search:focus-visible{outline:3px solid #f2b705;outline-offset:2px}
+.t-dirty{font-size:13px;font-weight:700;color:#7a4b00;background:#fff4d6;border:1px solid #f0d28a;border-radius:10px;padding:8px 11px;line-height:1.55}
+.t-dirty[hidden]{display:none}
+.t-found{font-size:17px;font-weight:900;color:#07522d;background:#e7f6ec;border:1px solid #b9e0c6;border-radius:12px;padding:10px 14px;margin:2px 0 8px}
+.t-chk.disabled{opacity:.45}
+.t-reason{font-size:12px;font-weight:800;color:#07522d;background:#e7f6ec;border-radius:8px;padding:5px 9px;margin:0 0 8px;line-height:1.5}
+.t-fnote{font-size:11px;color:#6b7a70;margin-top:5px;line-height:1.55}
+#tSummary{scroll-margin-top:8px}
+#tSearch{scroll-margin-bottom:18px}
 .t-cover{background:#f4f7f5;border:1px solid #dbe8df;border-radius:12px;padding:9px 12px;margin-bottom:10px;font-size:12px;color:#55635a;line-height:1.65}
 .t-cover b{color:#24332B}
 .t-st-ok{color:#0d5c33;font-weight:800}
@@ -130,6 +143,8 @@ main{padding:12px;max-width:720px;margin:auto}
 .t-raw{color:#6b7a70}
 .t-sub{display:block;font-size:11px;color:#6b7a70}
 .t-warn{font-size:12px;color:#7a5b00;margin-top:6px;line-height:1.5;word-break:break-word}
+.t-dl.closed{color:#a33;font-weight:800}
+.t-dl.open{color:#0d5c33;font-weight:800}
 .t-details{margin-top:8px;font-size:12px;color:#55635a}
 .t-details summary{cursor:pointer;font-weight:700}
 .t-details ul{margin:6px 0 0;padding-left:18px;line-height:1.6;word-break:break-word}
@@ -146,7 +161,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.5.0</p>
+  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.7.2</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -626,7 +641,7 @@ init();
 /* PWA:END */
 
 /* TOURNAMENT-DATA:START
-   大会検索（Ver.0.5.0 初期実用版）。同梱の共通JSON(data/tournaments.json)を読み込んで、絞り込み・並べ替え・表示を行う。
+   大会検索（初期実用版）。同梱の共通JSON(data/tournaments.json)を読み込んで、絞り込み・並べ替え・表示を行う。
    - 実行時に外部サイトへは通信しない。読み込むのは同じ場所の data/tournaments.json だけ。
    - 表示する文字列は必ず esc() を通し、URLは isSafeHttpUrl() で確認する（リンクは http/https のみ）。
    - 読み込みに失敗しても、カレンダー・予定データには影響しない（この処理は予定データに触れない。新しい保存キーも作らない）。
@@ -636,6 +651,7 @@ init();
 var TOURNAMENT_DATA_URL = 'data/tournaments.json';
 var tournamentDataCache = null;
 var tournamentLoadFailed = false;
+var tournamentFromCache = false;   // 通信できず、Service Workerが保存済みのデータを返した場合 true
 
 var T_GROUPS = ['一般', 'ベテラン', 'ジュニア', '学生', '実業団・団体', '不明'];
 var T_TYPES = ['シングルス', 'ダブルス', 'ミックス', '団体戦', '種目不明'];
@@ -647,17 +663,20 @@ var T_AUDIENCE_GROUP = {
 };
 
 function tDefaultState(){
+  // 標準条件: 本日以降／検索区分・対象者・種目はすべて（未選択）／ジュニア・学生系は除外（「ジュニアも表示」OFF）／終了済み・日付未取得は非表示
   return {
     period: 'from_today', start: '', end: '',
     areas: {},
-    groups: { '一般': true, 'ベテラン': true, 'ジュニア': false, '学生': false, '実業団・団体': false, '不明': true },
+    groups: { '一般': false, 'ベテラン': false, 'ジュニア': false, '学生': false, '実業団・団体': false, '不明': false },
+    junior: false,
     types: {},
     keyword: '',
     showFinished: false,
     showUndated: false
   };
 }
-var tState = tDefaultState();
+var tState = tDefaultState();   // 適用済みの検索条件（検索結果はこの条件で決まる。条件欄の操作だけでは変わらない）
+var tSearched = false;           // 利用者が「この条件で検索」などで検索を実行したか（実行後は「○件見つかりました」を表示）
 
 /* ---------- 日付の補助 ---------- */
 function tParseIsoDate(s){
@@ -742,9 +761,11 @@ function tBuildView(t, index, today){
   // 日付未取得の中での並び順だけに使う（開催日の判定には使わない）: ヒントの年が今年より前なら後ろへ
   var hintYear = /(\d{4})/.exec(tText(t.date_hint));
   var pastHint = (group === 'undated' && resolved.length === 0 && hintYear && parseInt(hintYear[1], 10) < today.getFullYear()) ? 1 : 0;
-  var types = tArr(t.event_types);
-  if (types.length === 0) { types = ['種目不明']; }
-  var hay = [t.title, t.venue, t.event_area, t.source_name, t.eligibility_text, t.eligibility_status, aud.join(' '), tArr(t.event_types).join(' '), t.date_text, t.date_hint, t.deadline_text];
+  // 検索の「種目」には、大会の主種目（primary_event_types）を使う。団体戦を構成する試合形式（component_match_types）は使わない。
+  // 主種目が無い古い形式のデータは、検出した種目（event_types）で代用する
+  var primary = (t.primary_event_types instanceof Array) ? t.primary_event_types : tArr(t.event_types);
+  var types = primary.length ? primary.slice() : ['種目不明'];
+  var hay = [t.title, t.venue, t.event_area, t.source_name, t.eligibility_text, t.eligibility_status, aud.join(' '), primary.join(' '), t.date_text, t.date_hint, t.deadline_text];
   return {
     t: t, index: index, group: group, sortKey: sortKey, dateState: dateState, ranges: resolved, groups: groups, types: types, pastHint: pastHint,
     hay: tNorm(hay.map(tText).join(' '))
@@ -755,6 +776,36 @@ function tBuildView(t, index, today){
 function tAnyTrue(map){
   for (var k in map) { if (map.hasOwnProperty(k) && map[k]) { return true; } }
   return false;
+}
+function tIsJuniorGroup(g){ return g === 'ジュニア' || g === '学生'; }
+// 対象者の検索条件。未選択なら「すべて」。「ジュニアも表示」がOFFのときは、ジュニア・学生系を（選択されていても）除外する
+function tAudienceAllowed(){
+  var sel = [], i, g;
+  for (i = 0; i < T_GROUPS.length; i++) {
+    g = T_GROUPS[i];
+    if (tState.groups[g] && (tState.junior || !tIsJuniorGroup(g))) { sel.push(g); }
+  }
+  var allowed = sel.length ? sel : T_GROUPS.slice();
+  if (!tState.junior) {
+    var out = [];
+    for (i = 0; i < allowed.length; i++) { if (!tIsJuniorGroup(allowed[i])) { out.push(allowed[i]); } }
+    allowed = out;
+  }
+  return allowed;
+}
+// 大会の対象者が、検索条件に合うか。「ジュニアも表示」がOFFのときは、ジュニア・学生系の大会を除外する
+// （一般・ベテラン・対象者不明の併記がある大会は、従来どおり表示する。団体限定などの併記だけでは、除外を免れない）
+function tAudienceOk(vm){
+  var allowed = tAudienceAllowed(), hit = false, hasJr = false, hasMain = false;
+  for (var j = 0; j < vm.groups.length; j++) {
+    var g = vm.groups[j];
+    if (allowed.indexOf(g) !== -1) { hit = true; }
+    if (tIsJuniorGroup(g)) { hasJr = true; }
+    if (g === '一般' || g === 'ベテラン' || g === '不明') { hasMain = true; }
+  }
+  if (!hit) { return false; }
+  if (!tState.junior && hasJr && !hasMain) { return false; }
+  return true;
 }
 function tEffectiveRange(){
   var s = tParseIsoDate(tState.start), e = tParseIsoDate(tState.end);
@@ -772,19 +823,54 @@ function tOverlaps(vm, range){
   return false;
 }
 // 戻り値: 'ok'、または表示しない理由（area / type / keyword / date-undated / date-finished / period / audience）
+// 選択されている項目（同一項目内の複数選択は OR。項目どうしは AND。未選択＝すべて）
+function tSelected(map){
+  var out = [];
+  for (var k in map) { if (map.hasOwnProperty(k) && map[k]) { out.push(k); } }
+  return out;
+}
+function tAreaOk(vm){ var sel = tSelected(tState.areas); return sel.length === 0 || sel.indexOf(tText(vm.t.event_area)) !== -1; }
+function tTypeMatched(vm){
+  var sel = tSelected(tState.types), out = [];
+  for (var i = 0; i < vm.types.length; i++) { if (sel.indexOf(vm.types[i]) !== -1) { out.push(vm.types[i]); } }
+  return out;
+}
+function tTypeOk(vm){ return tSelected(tState.types).length === 0 || tTypeMatched(vm).length > 0; }
+// 対象者として明示的に選択された区分（「ジュニアも表示」がOFFのときのジュニア・学生は無効）。大会の対象者のうち、それに一致したもの
+function tGroupSelectedEffective(){
+  var sel = [];
+  for (var i = 0; i < T_GROUPS.length; i++) { if (tState.groups[T_GROUPS[i]] && (tState.junior || !tIsJuniorGroup(T_GROUPS[i]))) { sel.push(T_GROUPS[i]); } }
+  return sel;
+}
+function tGroupMatched(vm){
+  var sel = tGroupSelectedEffective(), out = [];
+  if (!sel.length) { return out; }
+  for (var i = 0; i < vm.groups.length; i++) { if (sel.indexOf(vm.groups[i]) !== -1) { out.push(vm.groups[i]); } }
+  return out;
+}
+function tTerms(){
+  var terms = tNorm(tState.keyword).split(/\s+/), out = [];
+  for (var q = 0; q < terms.length; q++) { if (terms[q]) { out.push(terms[q]); } }
+  return out;
+}
+// 検索結果のカードに出す一致理由。実際に判定へ使った（選択・入力された）条件だけを、判定と同じ関数で求める
+function tMatchReason(vm){
+  var parts = [];
+  if (tSelected(tState.areas).length) { parts.push(tText(vm.t.event_area)); }
+  parts = parts.concat(tGroupMatched(vm));
+  parts = parts.concat(tTypeMatched(vm));
+  var raw = tText(tState.keyword).replace(/^\s+|\s+$/g, '').split(/\s+/), kw = '';
+  for (var i = 0; i < raw.length; i++) { if (raw[i]) { kw += '「' + raw[i] + '」'; } }
+  if (kw) { parts.push('キーワード' + kw); }
+  return parts.length ? '該当理由：' + parts.join('・') : '';
+}
 function tReason(vm, range, terms){
   var t = vm.t;
-  if (tAnyTrue(tState.areas) && !tState.areas[tText(t.event_area)]) { return 'area'; }
-  if (tAnyTrue(tState.types)) {
-    var tm = false;
-    for (var i = 0; i < vm.types.length; i++) { if (tState.types[vm.types[i]]) { tm = true; break; } }
-    if (!tm) { return 'type'; }
-  }
+  if (!tAreaOk(vm)) { return 'area'; }
+  if (!tTypeOk(vm)) { return 'type'; }
   for (var k = 0; k < terms.length; k++) { if (vm.hay.indexOf(terms[k]) === -1) { return 'keyword'; } }
   // 対象者 → 日付の種類（終了済み・日付未取得）→ 期間 の順に判定する。非表示の件数は、この順で最初に当てはまる理由で重複なく数える
-  var am = false;
-  for (var j = 0; j < vm.groups.length; j++) { if (tState.groups[vm.groups[j]]) { am = true; break; } }
-  if (!am) { return 'audience'; }
+  if (!tAudienceOk(vm)) { return 'audience'; }
   if (vm.group === 'undated') {
     if (!tState.showUndated) { return 'date-undated'; }
   } else if (vm.group === 'finished') {
@@ -809,10 +895,21 @@ function tFormatDeadline(t){
     var s = tFormatRange({ start: d, end: d });
     if (t.deadline_time) { s += ' ' + tText(t.deadline_time); }
     var raw = tText(t.deadline_text);
-    return esc(s) + (raw ? '<span class="t-sub">原文: ' + esc(raw) + '</span>' : '');
+    return esc(s) + (raw ? '<span class="t-sub">原文: ' + esc(raw) + '</span>' : '') + tDeadlineStatus(d, t.deadline_time);
   }
   if (tText(t.deadline_text)) { return '<span class="t-raw">原文: ' + esc(t.deadline_text) + '</span>'; }
   return '未取得';
+}
+// 申込締切の状態（閲覧時の現在日時で判定。固定の日付ではない）
+function tDeadlineStatus(d, time){
+  var now = new Date();
+  var end = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59);
+  var m = /^(\d{1,2}):(\d{2})$/.exec(tText(time));
+  if (m) { end = new Date(d.getFullYear(), d.getMonth(), d.getDate(), parseInt(m[1], 10), parseInt(m[2], 10), 0); }
+  if (now.getTime() > end.getTime()) { return '<span class="t-sub t-dl closed">申込締切は終了しています</span>'; }
+  var today = tTodayStart();
+  var days = Math.round((d.getTime() - today.getTime()) / 86400000);
+  return '<span class="t-sub t-dl open">' + (days <= 0 ? '本日が申込締切です' : '締切まであと' + days + '日') + '</span>';
 }
 function tFieldLabel(f){ return f === 'audience' ? '対象者' : (f === 'event_type' ? '種目' : (f === 'eligibility' ? '参加資格' : f)); }
 function tRenderCard(vm){
@@ -832,6 +929,7 @@ function tRenderCard(vm){
   for (var a = 0; a < aud.length; a++) { html += '<span class="t-badge aud">対象: ' + esc(aud[a]) + '</span>'; }
   html += '<span class="t-badge ' + eligCls + '">' + (status === '参加資格要確認' ? '⚠ ' : '') + esc(status) + '</span>';
   html += '</div>';
+  if (tSearched) { var why = tMatchReason(vm); if (why) { html += '<div class="t-reason" data-reason="1">' + esc(why) + '</div>'; } }   // 検索条件に使った項目だけの一致理由
 
   // 開催日
   var lines = [];
@@ -851,16 +949,19 @@ function tRenderCard(vm){
   if (reserve.length) { dateHtml += '<span class="t-sub">予備日: ' + esc(reserve.join('、')) + '</span>'; }
   html += tRow('開催日', dateHtml);
   html += tRow('申込締切', tFormatDeadline(t));
+  if (t.hasOwnProperty('fee_text')) { html += tRow('参加費', tText(t.fee_text) ? esc(t.fee_text) : '未取得'); }
   html += tRow('検索区分', esc(tText(t.event_area) || '未取得'));
   html += tRow('会場', esc(tText(t.venue) || '未取得'));
-  html += tRow('種目', esc(tArr(t.event_types).join('・') || '未取得'));
+  var primaryTypes = (t.primary_event_types instanceof Array) ? t.primary_event_types : tArr(t.event_types);
+  var compTypes = tArr(t.component_match_types);
+  html += tRow('種目', esc(primaryTypes.join('・') || '未取得') + (compTypes.length ? '<span class="t-sub">団体戦の構成: ' + esc(compTypes.join('・')) + '（種目の検索には使いません）</span>' : ''));
   html += tRow('対象者', esc(aud.join('・')));
   var eligHtml = esc(status);
   if (tText(t.eligibility_text)) { eligHtml += '<span class="t-sub">原文: ' + esc(t.eligibility_text) + '</span>'; }
   html += tRow('参加資格', eligHtml);
   html += tRow('公式情報', isSafeHttpUrl(t.official_url) ? tLinkHtml(t.official_url, '公式ページを開く') : '未取得');
   html += tRow('要項', isSafeHttpUrl(t.guideline_url) ? tLinkHtml(t.guideline_url, '要項を開く') : '未取得');
-  var entryHtml = isSafeHttpUrl(t.entry_url) ? tLinkHtml(t.entry_url, '申込ページを開く') : '未取得';
+  var entryHtml = isSafeHttpUrl(t.entry_url) ? tLinkHtml(t.entry_url, '申込ページを開く') : (tText(t.entry_text) ? '' : '未取得');
   if (tText(t.entry_text)) { entryHtml += '<span class="t-sub">' + esc(t.entry_text) + '</span>'; }
   html += tRow('申込', entryHtml);
   var snap = tText(t.source_snapshot_date);
@@ -911,12 +1012,15 @@ function tPanelHtml(data){
   html += '<select id="tPeriod" class="t-select"><option value="from_today">本日以降</option><option value="30">今日から30日</option><option value="90">今日から90日</option><option value="180">今日から180日</option><option value="all">全期間</option><option value="custom">期間を指定</option></select></div>';
   html += '<div class="t-row2" style="margin-top:6px"><input type="date" id="tStart" class="t-date" aria-label="開始日"><span>〜</span><input type="date" id="tEnd" class="t-date" aria-label="終了日"></div></div>';
   html += '<div class="t-fgroup"><div class="t-flabel">検索区分（情報元・未選択＝すべて）</div>' + tChecks('area', tAreaValues(data)) + '</div>';
-  html += '<div class="t-fgroup"><div class="t-flabel">対象者</div>' + tChecks('group', T_GROUPS);
-  html += '<div class="t-checks" style="margin-top:6px"><label class="t-chk"><input type="checkbox" id="tJunior"> ジュニアも表示（ジュニア・学生系）</label></div></div>';
+  html += '<div class="t-fgroup"><div class="t-flabel">対象者（未選択＝すべて）</div>' + tChecks('group', T_GROUPS);
+  html += '<div class="t-checks" style="margin-top:6px"><label class="t-chk"><input type="checkbox" id="tJunior"> ジュニアも表示（ジュニア・学生系）</label></div>';
+  html += '<div class="t-fnote">OFFのあいだは、ジュニア・学生系は検索結果から除かれます（上の「ジュニア」「学生」は選べません）。</div></div>';
   html += '<div class="t-fgroup"><div class="t-flabel">種目（未選択＝すべて）</div>' + tChecks('type', T_TYPES) + '</div>';
-  html += '<div class="t-fgroup"><div class="t-flabel">キーワード</div><input type="search" id="tKeyword" class="t-text" placeholder="大会名・会場など" autocomplete="off"></div>';
+  html += '<div class="t-fgroup"><div class="t-flabel">キーワード（Enterでも検索できます）</div><input type="search" id="tKeyword" class="t-text" placeholder="大会名・会場など" autocomplete="off" enterkeyhint="search"></div>';
   html += '<div class="t-fgroup"><div class="t-checks"><label class="t-chk"><input type="checkbox" id="tFinished"> 終了済みも表示</label><label class="t-chk"><input type="checkbox" id="tUndated"> 日付未取得も表示</label></div></div>';
-  html += '<div class="t-fgroup"><button type="button" class="t-btn" id="tReset">条件をリセット</button></div>';
+  html += '<div class="t-footer"><div class="t-dirty" id="tDirty" role="status" hidden>条件を変更しました。下の「この条件で検索」を押すと、検索結果に反映されます。</div>';
+  html += '<button type="button" class="t-btn t-btn-sub" id="tReset">条件をリセット</button>';
+  html += '<button type="button" class="t-btn-search" id="tSearch">この条件で検索</button></div>';
   return html + '</div></details>';
 }
 function tCoverageHtml(data){
@@ -926,13 +1030,26 @@ function tCoverageHtml(data){
   for (var i = 0; i < src.length; i++) {
     var s = src[i] || {};
     var cls = s.coverage === 'supported' ? 't-st-ok' : (s.coverage === 'partial' ? 't-st-part' : 't-st-none');
-    html += esc(tText(s.name)) + '：<span class="' + cls + '">' + esc(tText(s.coverage_label)) + '</span>（' + esc(String(s.record_count)) + '件）<br>';
+    html += esc(tText(s.name)) + '：<span class="' + cls + '">' + esc(tText(s.coverage_label)) + '</span>（' + esc(String(s.record_count)) + '件）';
+    var us = (data.update && data.update.sources) ? data.update.sources[s.id] : null;
+    if (us && us.status === 'stale') {
+      var ad = tParseIsoDate(us.data_as_of);
+      html += '<span class="t-st-none">（直近の更新に失敗。表示は' + (ad ? esc(tFormatRange({ start: ad, end: ad })) : '前回') + 'に取得したデータ）</span>';
+    }
+    html += '<br>';
     var d = tParseIsoDate(s.snapshot_date);
-    if (d) { snaps.push(tText(s.name) + ' ' + tFormatRange({ start: d, end: d })); }
+    if (d) {
+      var snapLabel = tText(s.name) + ' ' + tFormatRange({ start: d, end: d });
+      var pd = tParseIsoDate(s.pdf_confirmed_on);
+      if (pd) { snapLabel += '（要項PDF確認 ' + tFormatRange({ start: pd, end: pd }) + '）'; }
+      snaps.push(snapLabel);
+    }
   }
   var o = data.other_areas || {};
   html += esc(tText(o.label) || 'その他エリア') + '：<span class="t-st-none">' + esc(tText(o.coverage_label) || '未対応') + '</span><br>';
-  if (snaps.length) { html += '資料時点（保存HTMLの受領日）: ' + esc(snaps.join(' ／ ')); }
+  if (snaps.length) { html += '資料時点（保存HTMLの受領日）: ' + esc(snaps.join(' ／ ')) + '<br>'; }
+  html += '「対応済み」は、保存した公式ページを取り込み済みという意味で、公式サイトの最新状態を常時取得しているわけではありません。';
+  if (tournamentFromCache) { html += '<br><span class="t-st-none">通信できないため、端末に保存済みの大会データを表示しています（前回取得できたデータです）。</span>'; }
   return html;
 }
 
@@ -945,13 +1062,22 @@ function tSyncPanel(){
   document.getElementById('tKeyword').value = tState.keyword;
   document.getElementById('tFinished').checked = !!tState.showFinished;
   document.getElementById('tUndated').checked = !!tState.showUndated;
-  document.getElementById('tJunior').checked = !!tState.groups['ジュニア'];
+  document.getElementById('tJunior').checked = !!tState.junior;
+  tSyncBoxes(function(kind, v){ return (kind === 'area') ? !!tState.areas[v] : (kind === 'group' ? !!tState.groups[v] : !!tState.types[v]); });
+  tMarkDirty();
+}
+// チェックボックスの見た目を揃える。「ジュニアも表示」がOFFのあいだは、ジュニア・学生のチェックを外して無効にする
+function tSyncBoxes(isOn){
+  var el = document.getElementById('tFilters');
+  var jr = document.getElementById('tJunior').checked;
   var boxes = el.querySelectorAll('input.tChk');
   for (var i = 0; i < boxes.length; i++) {
     var b = boxes[i], kind = b.getAttribute('data-kind'), v = b.value;
-    var on = (kind === 'area') ? !!tState.areas[v] : (kind === 'group' ? !!tState.groups[v] : !!tState.types[v]);
+    var lock = (kind === 'group' && tIsJuniorGroup(v) && !jr);
+    var on = lock ? false : (isOn ? isOn(kind, v) : b.checked);
+    b.disabled = lock;
     b.checked = on;
-    b.parentNode.className = 't-chk' + (on ? ' on' : '');
+    b.parentNode.className = 't-chk' + (on ? ' on' : '') + (lock ? ' disabled' : '');
   }
 }
 function tApplyPreset(p){
@@ -961,45 +1087,108 @@ function tApplyPreset(p){
   else if (p === '30' || p === '90' || p === '180') { tState.start = tIso(today); tState.end = tIso(tAddDays(today, parseInt(p, 10))); }
   else if (p === 'all') { tState.start = ''; tState.end = ''; }
 }
+// 条件欄（下書き）の内容を、検索条件として読み取る（この時点では適用しない）
+function tReadPanel(){
+  var st = tDefaultState();
+  st.period = document.getElementById('tPeriod').value;
+  st.start = document.getElementById('tStart').value;
+  st.end = document.getElementById('tEnd').value;
+  st.keyword = document.getElementById('tKeyword').value;
+  st.showFinished = document.getElementById('tFinished').checked;
+  st.showUndated = document.getElementById('tUndated').checked;
+  st.junior = document.getElementById('tJunior').checked;
+  var boxes = document.getElementById('tFilters').querySelectorAll('input.tChk');
+  for (var i = 0; i < boxes.length; i++) {
+    var b = boxes[i], kind = b.getAttribute('data-kind');
+    if (kind === 'area') { st.areas[b.value] = b.checked; }
+    else if (kind === 'group') { st.groups[b.value] = b.checked && !b.disabled; }
+    else { st.types[b.value] = b.checked; }
+  }
+  return st;
+}
+// 条件の同一性の判定用（期間のプリセットの開始日・終了日は、日付が変わっても同じ条件として扱う）
+function tSig(st){
+  var sel = function(map){ var o = []; for (var k in map) { if (map.hasOwnProperty(k) && map[k]) { o.push(k); } } return o.sort().join(','); };
+  var g = [];
+  for (var i = 0; i < T_GROUPS.length; i++) { if (st.groups[T_GROUPS[i]] && (st.junior || !tIsJuniorGroup(T_GROUPS[i]))) { g.push(T_GROUPS[i]); } }
+  return [st.period, st.period === 'custom' ? st.start + '~' + st.end : '', sel(st.areas), g.join(','), st.junior ? 1 : 0, sel(st.types), st.keyword, st.showFinished ? 1 : 0, st.showUndated ? 1 : 0].join('|');
+}
+// 条件欄を変更したが、まだ検索していない場合に、その旨を表示する（検索結果は変えない）
+function tMarkDirty(){
+  var d = document.getElementById('tDirty');
+  if (!d || !document.getElementById('tPeriod')) { return; }
+  d.hidden = (tSig(tReadPanel()) === tSig(tState));
+}
+// 検索の実行（「この条件で検索」・Enter・「条件をリセット」）: 条件を適用 → 結果を更新 → 条件欄を閉じる → 検索結果の先頭へスクロール
+function tRunSearch(){
+  if (!document.getElementById('tFilters')) { return; }
+  tState = tReadPanel();
+  if (tState.period !== 'custom') { tApplyPreset(tState.period); }
+  tSearched = true;
+  tSyncPanel();
+  tRenderResults();
+  document.getElementById('tFilters').open = false;
+  var ae = document.activeElement;
+  if (ae && ae !== document.body && ae.blur && ae.id !== 'tSearch' && ae.id !== 'tReset') { ae.blur(); }
+  tScrollToResults();
+}
+function tScrollToResults(){
+  var target = document.getElementById('tFound') || document.getElementById('tSummary');
+  if (!target) { return; }
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  try { target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
+  catch (e) { window.scrollTo(0, target.getBoundingClientRect().top + (window.pageYOffset || 0) - 8); }
+}
 function tBindPanel(){
   var el = document.getElementById('tFilters');
   if (!el) { return; }
-  document.getElementById('tPeriod').addEventListener('change', function(){ tApplyPreset(this.value); tSyncPanel(); tRenderResults(); });
-  var onDate = function(){ tState.start = document.getElementById('tStart').value; tState.end = document.getElementById('tEnd').value; tState.period = 'custom'; document.getElementById('tPeriod').value = 'custom'; tRenderResults(); };
+  // 条件欄の操作は、検索結果を変えない（変更を下書きとして保持し、「未反映」の表示を出すだけ）
+  document.getElementById('tPeriod').addEventListener('change', function(){
+    var v = this.value, today = tTodayStart(), s = document.getElementById('tStart'), e = document.getElementById('tEnd');
+    if (v === 'from_today') { s.value = tIso(today); e.value = ''; }
+    else if (v === '30' || v === '90' || v === '180') { s.value = tIso(today); e.value = tIso(tAddDays(today, parseInt(v, 10))); }
+    else if (v === 'all') { s.value = ''; e.value = ''; }
+    tMarkDirty();
+  });
+  var onDate = function(){ document.getElementById('tPeriod').value = 'custom'; tMarkDirty(); };
   document.getElementById('tStart').addEventListener('change', onDate);
   document.getElementById('tEnd').addEventListener('change', onDate);
-  document.getElementById('tKeyword').addEventListener('input', function(){ tState.keyword = this.value; tRenderResults(); });
-  document.getElementById('tFinished').addEventListener('change', function(){ tState.showFinished = this.checked; tRenderResults(); });
-  document.getElementById('tUndated').addEventListener('change', function(){ tState.showUndated = this.checked; tRenderResults(); });
-  document.getElementById('tJunior').addEventListener('change', function(){ tState.groups['ジュニア'] = this.checked; tState.groups['学生'] = this.checked; tSyncPanel(); tRenderResults(); });
-  document.getElementById('tReset').addEventListener('click', function(){ tState = tDefaultState(); tApplyPreset('from_today'); tSyncPanel(); tRenderResults(); });
+  document.getElementById('tKeyword').addEventListener('input', tMarkDirty);
+  document.getElementById('tKeyword').addEventListener('keydown', function(ev){
+    // Enterで検索（日本語入力の変換確定のEnterでは検索しない）
+    if ((ev.key === 'Enter' || ev.keyCode === 13) && !ev.isComposing && ev.keyCode !== 229) { ev.preventDefault(); tRunSearch(); }
+  });
+  document.getElementById('tFinished').addEventListener('change', tMarkDirty);
+  document.getElementById('tUndated').addEventListener('change', tMarkDirty);
+  document.getElementById('tJunior').addEventListener('change', function(){ tSyncBoxes(null); tMarkDirty(); });
   var boxes = el.querySelectorAll('input.tChk');
   for (var i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener('change', function(){
-      var kind = this.getAttribute('data-kind');
-      if (kind === 'area') { tState.areas[this.value] = this.checked; }
-      else if (kind === 'group') { tState.groups[this.value] = this.checked; }
-      else { tState.types[this.value] = this.checked; }
-      tSyncPanel(); tRenderResults();
-    });
+    boxes[i].addEventListener('change', function(){ tSyncBoxes(null); tMarkDirty(); });
   }
+  document.getElementById('tSearch').addEventListener('click', tRunSearch);
+  document.getElementById('tReset').addEventListener('click', function(){
+    tState = tDefaultState(); tApplyPreset('from_today');   // 標準条件へ戻して、検索を実行する
+    tSyncPanel();
+    tRunSearch();
+  });
 }
 
 /* ---------- 結果の描画 ---------- */
 function tConditionText(){
+  // 実際に適用している条件を、項目ごとに表示する（未選択の項目は「すべて」）
   var parts = [];
   var pl = { from_today: '本日以降', '30': '今日から30日', '90': '今日から90日', '180': '今日から180日', all: '全期間' };
-  parts.push('期間 ' + (tState.period === 'custom' ? ((tState.start || '指定なし') + '〜' + (tState.end || '指定なし')) : pl[tState.period]));
+  parts.push('期間：' + (tState.period === 'custom' ? ((tState.start || '指定なし') + '〜' + (tState.end || '指定なし')) : pl[tState.period]));
   var sel = [], k;
   for (k in tState.areas) { if (tState.areas.hasOwnProperty(k) && tState.areas[k]) { sel.push(k); } }
-  parts.push('検索区分 ' + (sel.length ? sel.join('・') : 'すべて'));
+  parts.push('検索区分：' + (sel.length ? sel.join('・') : 'すべて'));
   var gs = [];
-  for (var i = 0; i < T_GROUPS.length; i++) { if (tState.groups[T_GROUPS[i]]) { gs.push(T_GROUPS[i]); } }
-  parts.push('対象者 ' + (gs.length ? gs.join('・') : '指定なし'));
+  for (var i = 0; i < T_GROUPS.length; i++) { if (tState.groups[T_GROUPS[i]] && (tState.junior || !tIsJuniorGroup(T_GROUPS[i]))) { gs.push(T_GROUPS[i]); } }
+  parts.push('対象者：' + (gs.length ? gs.join('・') : (tState.junior ? 'すべて' : 'すべて（ジュニア・学生系を除く）')));
   var ts = [];
   for (k in tState.types) { if (tState.types.hasOwnProperty(k) && tState.types[k]) { ts.push(k); } }
-  if (ts.length) { parts.push('種目 ' + ts.join('・')); }
-  if (tText(tState.keyword).replace(/\s+/g, '')) { parts.push('キーワード「' + tText(tState.keyword) + '」'); }
+  parts.push('種目：' + (ts.length ? ts.join('・') : 'すべて'));
+  if (tText(tState.keyword).replace(/\s+/g, '')) { parts.push('キーワード：「' + tText(tState.keyword) + '」'); }
   parts.push(tState.showFinished ? '終了済みも表示' : '終了済みは非表示');
   parts.push(tState.showUndated ? '日付未取得も表示' : '日付未取得は非表示');
   return parts.join(' ／ ');
@@ -1054,7 +1243,8 @@ function tRenderResults(){
   shown.finished.sort(function(a, b){ return (a.sortKey - b.sortKey) || (a.index - b.index); });
   shown.undated.sort(function(a, b){ return (a.pastHint - b.pastHint) || (a.index - b.index); });
 
-  sumEl.innerHTML = '<div class="t-summary">' + shownCount + '件を表示（全' + views.length + '件中）</div><div class="t-hint" id="tConditions">表示条件: ' + esc(tConditionText()) + '</div>';
+  var foundHtml = tSearched ? '<div class="t-found" id="tFound" role="status" aria-live="polite">' + shownCount + '件見つかりました</div>' : '';
+  sumEl.innerHTML = foundHtml + '<div class="t-summary">' + shownCount + '件を表示（全' + views.length + '件中）</div><div class="t-hint" id="tConditions">表示条件：' + esc(tConditionText()) + '</div>';
   var hints = [];
   var ha = hidden.audience;
   var junior = ha['ジュニア'] + ha['学生'];
@@ -1062,7 +1252,7 @@ function tRenderResults(){
   if (ha['実業団・団体']) { hints.push('実業団・団体 ' + ha['実業団・団体'] + '件'); }
   if (ha['一般'] + ha['ベテラン'] + ha['不明']) { hints.push('その他の対象者 ' + (ha['一般'] + ha['ベテラン'] + ha['不明']) + '件'); }
   var hiddenHtml = '';
-  if (hints.length) { hiddenHtml += '対象者の条件で非表示: ' + esc(hints.join(' ／ ')) + '（検索条件の「対象者」で表示できます）<br>'; }
+  if (hints.length) { hiddenHtml += '対象者の条件で非表示: ' + esc(hints.join(' ／ ')) + '（検索条件の「対象者」「ジュニアも表示」で表示できます）<br>'; }
   if (hidden.finished) { hiddenHtml += '終了済み ' + hidden.finished + '件は非表示（「終了済みも表示」で表示できます）<br>'; }
   if (hidden.undated) { hiddenHtml += '日付未取得 ' + hidden.undated + '件は非表示（「日付未取得も表示」で表示できます）<br>'; }
   if (rangeBad) { hiddenHtml += '開始日が終了日より後になっています。期間を見直してください。<br>'; }
@@ -1118,6 +1308,7 @@ function loadTournamentData(){
   fetch(TOURNAMENT_DATA_URL, { cache: 'no-cache' })
     .then(function(res){
       if (!res.ok) { throw new Error('HTTP ' + res.status); }
+      tournamentFromCache = (res.headers.get('X-Served-From-Cache') === 'fallback');
       return res.json();
     })
     .then(function(data){
