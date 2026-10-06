@@ -10,7 +10,7 @@
  */
 'use strict';
 
-var APP_VERSION = '0.3.0-icon1';
+var APP_VERSION = '0.4.0';
 var CACHE_PREFIX = 'i-tennis-mobile-shell-';
 var CACHE_NAME = CACHE_PREFIX + 'v' + APP_VERSION;
 
@@ -21,7 +21,8 @@ var SHELL_FILES = [
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/apple-touch-icon-180.png'
+  './icons/apple-touch-icon-180.png',
+  './data/tournaments-aichi-2026.json'
 ];
 
 function scopeUrl(relative) {
