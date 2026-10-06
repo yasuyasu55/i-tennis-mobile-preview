@@ -1,5 +1,5 @@
 {
- "schema_version": 2,
+ "schema_version": 3,
  "sources": [
   {
    "id": "aichi_tennis_association",
@@ -69,6 +69,42 @@
     }
    ],
    "parser": "TTA-MOBILE-012（新規）"
+  },
+  {
+   "id": "toyokawa_tennis_association",
+   "name": "豊川",
+   "area": "豊川",
+   "event_area": "豊川",
+   "coverage": "supported",
+   "coverage_label": "対応済み",
+   "coverage_note": "2026年度の大会8件（トップページの一覧）。要項PDFの本文は、日程が先の2件だけ確認（他の6件は未確認）。「対応済み」は取り込み済みという意味で、公式サイトの最新状態を常時取得しているわけではありません",
+   "snapshot_date": "2026-10-06",
+   "snapshot_note": "保存HTMLの受領日（要項PDFの確認日: 2026-10-06）",
+   "record_count": 8,
+   "files": [
+    {
+     "file": "toyokawa_top.html",
+     "sha256": "c214bba8f1ba545354eda62485d2890354309404d240c047fefb2c1dbd6b6eb9"
+    },
+    {
+     "file": "toyokawa_senior_doubles_youkou.pdf",
+     "sha256": "28fce15ac09b4821e5b2bd8554073e245653b1d8a4d0ef60c30668147d936c8e"
+    },
+    {
+     "file": "toyokawa_beginners_doubles_youkou.pdf",
+     "sha256": "cd5b33ea0a16cfd8bf954800a3e23a8190d2e045d04811b130715b8112d3e981"
+    },
+    {
+     "file": "toyokawa_senior_doubles_youkou.txt",
+     "sha256": "56bb5de40c58fda6b523c9b84af65b0334b3c435ead7316a9b3b07299d2d040c"
+    },
+    {
+     "file": "toyokawa_beginners_doubles_youkou.txt",
+     "sha256": "5a1531d3a2ceb9dbc82b16b4238835cc15aecf4ad126bed2d8c577a8e40aef58"
+    }
+   ],
+   "parser": "TTA-MOBILE-013-A1（新規）",
+   "pdf_confirmed_on": "2026-10-06"
   }
  ],
  "other_areas": {
@@ -78,20 +114,23 @@
   "coverage_note": "この版では、上記以外の地域の大会情報は取得していません（検索結果0件は「大会がない」ではなく「未対応」の可能性があります）"
  },
  "summary": {
-  "total": 52,
+  "total": 60,
   "by_source": {
    "愛知県協会": 25,
    "豊橋": 20,
-   "蒲郡": 7
+   "蒲郡": 7,
+   "豊川": 8
   },
   "by_parse_status": {
-   "success": 27,
-   "partial": 25
+   "success": 29,
+   "partial": 31
   }
  },
  "tournaments": [
   {
-   "id": "aichi-2026-01",
+   "id": "aichi-2026-2f561970",
+   "fiscal_year": 2026,
+   "event_key": "2026|第95回dunlop東海中日ジュニアテニス選手権大会愛知県予選兼ユニクロ全日本ジュニアテニス選手権2026愛知県予選",
    "title": "第95回DUNLOP東海中日ジュニアテニス選手権大会愛知県予選兼ユニクロ全日本ジュニアテニス選手権2026愛知県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -159,10 +198,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-02",
+   "id": "aichi-2026-60d862bf",
+   "fiscal_year": 2026,
+   "event_key": "2026|第80回(2026年)国スポ大会愛知県予選(成年種別)",
    "title": "第80回(2026年)国スポ大会愛知県予選(成年種別)",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -216,10 +259,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-03",
+   "id": "aichi-2026-dee3b848",
+   "fiscal_year": 2026,
+   "event_key": "2026|ねんりんピック埼玉2026県予選",
    "title": "ねんりんピック埼玉2026県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -277,10 +324,14 @@
     "「予」の表記を含むため、意味を確定せず正規化していません（原文のみ保持）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-04",
+   "id": "aichi-2026-39868076",
+   "fiscal_year": 2026,
+   "event_key": "2026|2026第101回全日本テニス選手権大会愛知県予選兼第49回愛知県テニス選手権大会・一般の部",
    "title": "2026第101回全日本テニス選手権大会愛知県予選兼第49回愛知県テニス選手権大会・一般の部",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -334,10 +385,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-05",
+   "id": "aichi-2026-9dd8b147",
+   "fiscal_year": 2026,
+   "event_key": "2026|2026u15全国選抜ジュニアテニス選手権大会(第45回中牟田杯)愛知県予選",
    "title": "2026 U15全国選抜ジュニアテニス選手権大会(第45回中牟田杯)愛知県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -391,10 +446,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-06",
+   "id": "aichi-2026-9fa77182",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋オープンベテランテニストーナメント(7月)名城",
    "title": "名古屋オープンベテランテニストーナメント(7月)名城",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -448,10 +507,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-07",
+   "id": "aichi-2026-0db7c0a8",
+   "fiscal_year": 2026,
+   "event_key": "2026|2026年度ダンロップataジュニアテニスサマーサーキット(a4グレード)",
    "title": "2026年度　ダンロップATAジュニアテニス　サマーサーキット（A4グレード）",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -535,10 +598,14 @@
    "notes": [
     "曜日の検算: 原文の「28(水)」は2026年7月28日の曜日（火）と一致しません。日付の数字は原文どおり保持しています。要項で確認してください。"
    ],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-08",
+   "id": "aichi-2026-4e3e1d33",
+   "fiscal_year": 2026,
+   "event_key": "2026|第1回japanu10tennistournament愛知県予選",
    "title": "第1回Japan U10 Tennis Tournament愛知県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -592,10 +659,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-09",
+   "id": "aichi-2026-d034dc54",
+   "fiscal_year": 2026,
+   "event_key": "2026|【東海大会】2026rsk全国選抜ジュニアテニス大会東海予選",
    "title": "【東海大会】2026 RSK全国選抜ジュニアテニス大会東海予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -649,10 +720,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-10",
+   "id": "aichi-2026-1f7bbc4d",
+   "fiscal_year": 2026,
+   "event_key": "2026|第32回愛知スポレクフェスティバル",
    "title": "第32回愛知スポレクフェスティバル",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -717,10 +792,14 @@
     "「予」の表記を含むため、意味を確定せず正規化していません（原文のみ保持）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-11",
+   "id": "aichi-2026-e5ae8264",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋オープンベテランテニストーナメント(9月)名城",
    "title": "名古屋オープンベテランテニストーナメント(9月)名城",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -774,10 +853,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-12",
+   "id": "aichi-2026-00d82b12",
+   "fiscal_year": 2026,
+   "event_key": "2026|【東海大会】jocジュニアオリンピックカップ2026全日本ジュニア選抜室内テニス選手権大会東海予選",
    "title": "【東海大会】JOCジュニアオリンピックカップ2026全日本ジュニア選抜室内テニス選手権大会東海予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -831,10 +914,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-13",
+   "id": "aichi-2026-7cb7db86",
+   "fiscal_year": 2026,
+   "event_key": "2026|【東海大会】2026東海小学生県別対抗テニス",
    "title": "【東海大会】2026東海小学生県別対抗テニス",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -905,10 +992,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-14",
+   "id": "aichi-2026-49b21ea4",
+   "fiscal_year": 2026,
+   "event_key": "2026|第80回東海毎日ジュニアテニス選手権大会兼2027dunlop全国選抜ジュニア(u14/u12)愛知県予選",
    "title": "第80回東海毎日ジュニアテニス選手権大会兼2027 DUNLOP全国選抜ジュニア（U14/U12）愛知県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -976,10 +1069,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-15",
+   "id": "aichi-2026-ee7c51ba",
+   "fiscal_year": 2026,
+   "event_key": "2026|【東海大会】第14回東海ジュニアトーナメント大会",
    "title": "【東海大会】第14回東海ジュニアトーナメント大会",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1033,10 +1130,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-16",
+   "id": "aichi-2026-e2a9246f",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋オープンベテランテニストーナメント(1月)",
    "title": "名古屋オープンベテランテニストーナメント(1月)",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1090,10 +1191,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-17",
+   "id": "aichi-2026-e1220178",
+   "fiscal_year": 2026,
+   "event_key": "2026|mufgジュニアテニストーナメント2027愛知県予選",
    "title": "MUFGジュニアテニストーナメント2027愛知県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1154,10 +1259,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-18",
+   "id": "aichi-2026-9351f55b",
+   "fiscal_year": 2026,
+   "event_key": "2026|愛知県ジュニア新人大会",
    "title": "愛知県ジュニア新人大会",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1225,10 +1334,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-19",
+   "id": "aichi-2026-e77453b4",
+   "fiscal_year": 2026,
+   "event_key": "2026|第5回実業団・大学・高校対抗テニス大会",
    "title": "第5回実業団・大学・高校対抗テニス大会",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1315,10 +1428,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-20",
+   "id": "aichi-2026-540cf2ff",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋オープンベテランテニストーナメント(2月)名城",
    "title": "名古屋オープンベテランテニストーナメント(2月)名城",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1372,10 +1491,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-21",
+   "id": "aichi-2026-010f3c0f",
+   "fiscal_year": 2026,
+   "event_key": "2026|第54回ダンロップ杯愛知県教職員テニス大会",
    "title": "第54回ダンロップ杯愛知県教職員テニス大会",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1434,10 +1557,14 @@
     "会場未定"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-22",
+   "id": "aichi-2026-8e919914",
+   "fiscal_year": 2026,
+   "event_key": "2026|第53回(2027年)ダンロップテニストーナメント愛知県予選",
    "title": "第53回(2027年)ダンロップテニストーナメント愛知県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1498,10 +1625,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-23",
+   "id": "aichi-2026-f87139e0",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋オープンベテランテニストーナメント(3月)",
    "title": "名古屋オープンベテランテニストーナメント(3月)",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1555,10 +1686,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-24",
+   "id": "aichi-2026-c9345d1e",
+   "fiscal_year": 2026,
+   "event_key": "2026|第66回全国実業団対抗テニス大会(ビジネスパル)県予選",
    "title": "第66回全国実業団対抗テニス大会(ビジネスパル)県予選",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1629,10 +1764,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "aichi-2026-25",
+   "id": "aichi-2026-09cc0aca",
+   "fiscal_year": 2026,
+   "event_key": "2026|第45回第一生命全国小学生テニス選手権愛知県大会兼2027第10回愛知県小学生テニス大会",
    "title": "第45回第一生命全国小学生テニス選手権愛知県大会兼2027第10回愛知県小学生テニス大会",
    "source_id": "aichi_tennis_association",
    "source_name": "愛知県テニス協会",
@@ -1686,10 +1827,14 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-01"
+   "source_snapshot_date": "2026-10-01",
+   "primary_event_types": null,
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4396",
+   "fiscal_year": null,
+   "event_key": "post:4396",
    "title": "2026-10_お楽しみダブルス大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -1746,10 +1891,16 @@
     "開催日・会場・申込締切は一覧ページに記載がなく未取得（要項PDFの本文は解析していません）。投稿の表示日は開催日として使っていません"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4394",
+   "fiscal_year": null,
+   "event_key": "post:4394",
    "title": "2026_豊橋オープン選手権大会（ダブルス_壮年）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -1808,10 +1959,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4385",
+   "fiscal_year": null,
+   "event_key": "post:4385",
    "title": "2026-10_お楽しみシングルス大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -1870,10 +2027,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4383",
+   "fiscal_year": null,
+   "event_key": "post:4383",
    "title": "2026_豊橋オープン選手権大会（ダブルス_一般）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -1932,10 +2095,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4327",
+   "fiscal_year": null,
+   "event_key": "post:4327",
    "title": "2026_レディースダブルステニス大会 大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -1994,10 +2163,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4299",
+   "fiscal_year": null,
+   "event_key": "post:4299",
    "title": "2026_豊橋チーム対抗戦（壮年）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2064,10 +2239,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4228",
+   "fiscal_year": null,
+   "event_key": "post:4228",
    "title": "2026-06_ナイターダブルステニストーナメント大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2126,10 +2307,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4201",
+   "fiscal_year": null,
+   "event_key": "post:4201",
    "title": "2026_豊橋ジュニア春季大会（シングルス）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2188,10 +2375,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4175",
+   "fiscal_year": null,
+   "event_key": "post:4175",
    "title": "2026-05_ファミリーダブルス大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2250,10 +2443,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4108",
+   "fiscal_year": null,
+   "event_key": "post:4108",
    "title": "2026_豊橋オープン選手権大会（シングルス_壮年）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2312,10 +2511,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4080",
+   "fiscal_year": null,
+   "event_key": "post:4080",
    "title": "2026-05_お楽しみダブルス大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2374,10 +2579,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4065",
+   "fiscal_year": null,
+   "event_key": "post:4065",
    "title": "2026_協会長杯豊橋ダブルストーナメント",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2436,10 +2647,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-3999",
+   "fiscal_year": null,
+   "event_key": "post:3999",
    "title": "2026_豊橋団体戦大会要項（年齢別）",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2498,10 +2715,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-3995",
+   "fiscal_year": null,
+   "event_key": "post:3995",
    "title": "2026_豊橋団体戦大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2560,10 +2783,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-3903",
+   "fiscal_year": null,
+   "event_key": "post:3903",
    "title": "2025_豊橋ジュニア選手権大会（シングルス）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2622,10 +2851,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-3875",
+   "fiscal_year": null,
+   "event_key": "post:3875",
    "title": "2025-11_お楽しみ団体戦要項/ドロー",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2684,10 +2919,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-4072",
+   "fiscal_year": null,
+   "event_key": "post:4072",
    "title": "2026_豊橋オープン選手権大会（シングルス_一般）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2746,10 +2987,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-3869",
+   "fiscal_year": null,
+   "event_key": "post:3869",
    "title": "2025_豊橋ダブルストーナメント（ミックス）大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2808,10 +3055,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-3807",
+   "fiscal_year": null,
+   "event_key": "post:3807",
    "title": "2025-11_お楽しみ団体戦大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2870,10 +3123,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": []
   },
   {
    "id": "toyohashi-3745",
+   "fiscal_year": null,
+   "event_key": "post:3745",
    "title": "2025-10_お楽しみダブルステニストーナメント大会要項",
    "source_id": "toyohashi_tennis_association",
    "source_name": "豊橋テニス協会",
@@ -2932,10 +3191,16 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-02"
+   "source_snapshot_date": "2026-10-02",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "gamagori-2026-01",
+   "id": "gamagori-2026-0a455938",
+   "fiscal_year": 2026,
+   "event_key": "2026|イエローカップ大会",
    "title": "イエローカップ大会",
    "source_id": "gamagori_tennis_association",
    "source_name": "蒲郡テニス協会",
@@ -2971,7 +3236,7 @@
     "ダブルス"
    ],
    "audience_types": [
-    "不明"
+    "一般"
    ],
    "eligibility_status": "協会登録必要",
    "eligibility_text": "協会員ペア",
@@ -2984,10 +3249,10 @@
    "classification_basis": [
     {
      "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+     "value": "一般",
+     "matched": "協会員",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（協会登録必要）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
      "field": "event_type",
@@ -3006,10 +3271,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05"
+   "source_snapshot_date": "2026-10-05",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "gamagori-2026-02",
+   "id": "gamagori-2026-4d16d778",
+   "fiscal_year": 2026,
+   "event_key": "2026|協会杯ダブルス大会",
    "title": "協会杯ダブルス大会",
    "source_id": "gamagori_tennis_association",
    "source_name": "蒲郡テニス協会",
@@ -3045,7 +3316,7 @@
     "ダブルス"
    ],
    "audience_types": [
-    "不明"
+    "一般"
    ],
    "eligibility_status": "協会登録必要",
    "eligibility_text": "協会員ペア",
@@ -3058,10 +3329,10 @@
    "classification_basis": [
     {
      "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+     "value": "一般",
+     "matched": "協会員",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（協会登録必要）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
      "field": "event_type",
@@ -3080,10 +3351,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05"
+   "source_snapshot_date": "2026-10-05",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "gamagori-2026-03",
+   "id": "gamagori-2026-02360546",
+   "fiscal_year": 2026,
+   "event_key": "2026|第37回蒲郡オープンダブルス選手権大会",
    "title": "第37回蒲郡オープンダブルス選手権大会",
    "source_id": "gamagori_tennis_association",
    "source_name": "蒲郡テニス協会",
@@ -3119,7 +3396,7 @@
     "ダブルス"
    ],
    "audience_types": [
-    "不明"
+    "一般"
    ],
    "eligibility_status": "オープン参加（詳細条件は要項確認）",
    "eligibility_text": "オープン参加",
@@ -3132,10 +3409,10 @@
    "classification_basis": [
     {
      "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+     "value": "一般",
+     "matched": "オープン参加",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（オープン参加（詳細条件は要項確認））、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
      "field": "event_type",
@@ -3154,10 +3431,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05"
+   "source_snapshot_date": "2026-10-05",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "gamagori-2026-04",
+   "id": "gamagori-2026-883839a9",
+   "fiscal_year": 2026,
+   "event_key": "2026|市民大会ダブルス",
    "title": "市民大会ダブルス",
    "source_id": "gamagori_tennis_association",
    "source_name": "蒲郡テニス協会",
@@ -3193,11 +3476,11 @@
     "ダブルス"
    ],
    "audience_types": [
-    "不明"
+    "一般"
    ],
-   "eligibility_status": "市内在住・在勤・在学",
+   "eligibility_status": "地域条件あり",
    "eligibility_text": "市内在住在勤在学者",
-   "eligibility_note": null,
+   "eligibility_note": "地域条件: 市内在住・在勤・在学（一覧表の原文: 市内在住在勤在学者）。詳細は要項で確認してください。",
    "official_url": "https://gamagori-tennis.com/tournament/",
    "guideline_url": "https://gamagori-tennis.com/tournament/youkou/r08_shimin.pdf",
    "entry_url": null,
@@ -3206,10 +3489,10 @@
    "classification_basis": [
     {
      "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+     "value": "一般",
+     "matched": "市内在住在勤在学者",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（地域条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
      "field": "event_type",
@@ -3220,7 +3503,7 @@
     },
     {
      "field": "eligibility",
-     "value": "市内在住・在勤・在学",
+     "value": "地域条件あり",
      "matched": "市内在住在勤在学者",
      "source": "一覧表の参加資格欄",
      "rule": "公式の一覧表に明記"
@@ -3228,10 +3511,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05"
+   "source_snapshot_date": "2026-10-05",
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "gamagori-2026-05",
+   "id": "gamagori-2026-7090ef84",
+   "fiscal_year": 2026,
+   "event_key": "2026|市民大会シングルス",
    "title": "市民大会シングルス",
    "source_id": "gamagori_tennis_association",
    "source_name": "蒲郡テニス協会",
@@ -3267,11 +3556,11 @@
     "シングルス"
    ],
    "audience_types": [
-    "不明"
+    "一般"
    ],
-   "eligibility_status": "市内在住・在勤・在学",
+   "eligibility_status": "地域条件あり",
    "eligibility_text": "市内在住在勤在学者",
-   "eligibility_note": null,
+   "eligibility_note": "地域条件: 市内在住・在勤・在学（一覧表の原文: 市内在住在勤在学者）。詳細は要項で確認してください。",
    "official_url": "https://gamagori-tennis.com/tournament/",
    "guideline_url": "https://gamagori-tennis.com/tournament/youkou/r08_shimin_s.pdf",
    "entry_url": "https://gamagori-tennis.com/entry/",
@@ -3280,10 +3569,10 @@
    "classification_basis": [
     {
      "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+     "value": "一般",
+     "matched": "市内在住在勤在学者",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（地域条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
      "field": "event_type",
@@ -3294,7 +3583,7 @@
     },
     {
      "field": "eligibility",
-     "value": "市内在住・在勤・在学",
+     "value": "地域条件あり",
      "matched": "市内在住在勤在学者",
      "source": "一覧表の参加資格欄",
      "rule": "公式の一覧表に明記"
@@ -3302,10 +3591,16 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05"
+   "source_snapshot_date": "2026-10-05",
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "gamagori-2026-06",
+   "id": "gamagori-2026-9da3fc88",
+   "fiscal_year": 2026,
+   "event_key": "2026|市長杯ミックスダブルス大会",
    "title": "市長杯ミックスダブルス大会",
    "source_id": "gamagori_tennis_association",
    "source_name": "蒲郡テニス協会",
@@ -3341,7 +3636,7 @@
     "ミックス"
    ],
    "audience_types": [
-    "不明"
+    "一般"
    ],
    "eligibility_status": "協会登録必要",
    "eligibility_text": "協会員ペア",
@@ -3354,10 +3649,10 @@
    "classification_basis": [
     {
      "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+     "value": "一般",
+     "matched": "協会員",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（協会登録必要）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
      "field": "event_type",
@@ -3378,10 +3673,16 @@
     "開催要項は未公開（一覧表に「―」）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-05"
+   "source_snapshot_date": "2026-10-05",
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": []
   },
   {
-   "id": "gamagori-2026-07",
+   "id": "gamagori-2026-5490a862",
+   "fiscal_year": 2026,
+   "event_key": "2026|クラブ対抗団体戦",
    "title": "クラブ対抗団体戦",
    "source_id": "gamagori_tennis_association",
    "source_name": "蒲郡テニス協会",
@@ -3462,7 +3763,823 @@
     "開催要項は未公開（一覧表に「―」）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-05"
+   "source_snapshot_date": "2026-10-05",
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [
+    "ミックス"
+   ]
+  },
+  {
+   "id": "toyokawa-2026-d3dc4d5c",
+   "fiscal_year": 2026,
+   "event_key": "2026|第23回シニアダブルス大会",
+   "title": "第23回 シニアダブルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/11/8(日)",
+   "periods": [
+    {
+     "raw": "2026/11/8(日)",
+     "normalized": "2026-11-08",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日11/15(日)",
+   "reserve_periods": [
+    {
+     "raw": "予備日11/15(日)",
+     "normalized": "2026-11-15",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算／申込期間・申込締切: 要項の開催日に明記された年（2026年）を使用。曜日で検算",
+   "deadline_text": "10月25日(日) 17:00 まで",
+   "deadline_date": "2026-10-25",
+   "deadline_time": "17:00",
+   "venue": "オーエスジードリームコート豊川(豊川公園庭球場)",
+   "event_types": [
+    "ダブルス",
+    "ミックス"
+   ],
+   "audience_types": [
+    "ベテラン"
+   ],
+   "eligibility_status": "年齢条件あり",
+   "eligibility_text": "男子50歳以上、女子45歳以上(ペアの両名とも) ／ 年齢は2026年12月31日時点とする",
+   "eligibility_note": "要項の資格欄に明記（ペアの両名とも）。見出しの［オープン］は、参加費に非会員の区分があることと合わせて、協会員以外も参加できることを示しますが、年齢条件を満たす必要があります。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_12d202f1fd894f6e9f5e3626e3dbb2b9.pdf",
+   "entry_url": null,
+   "entry_text": "申込先: 豊川テニス協会大会事務局(パシフィックテニスクラブ内) 〒442-0844 豊川市小田渕町2-13-1 TEL 0533-84-8812／申込方法: 所定の申込用紙に参加料を添えてお申し込みください(現金書留可)。現金書留の場合、電話で定員確認してから郵送願います／申込期間: 2026年10月4日(日)〜10月25日(日) 17:00まで",
+   "parse_status": "success",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "シニア",
+     "source": "タイトル",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［オープン］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "男子，女子",
+     "source": "要項PDFの種目欄",
+     "rule": "ダブルス大会の男子・女子の種目（大会名にもダブルスと明記）"
+    },
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "要項PDFの種目欄",
+     "rule": "「ミックス」の種目"
+    },
+    {
+     "field": "eligibility",
+     "value": "年齢条件あり",
+     "matched": "男子50歳以上、女子45歳以上(ペアの両名とも)",
+     "source": "要項PDFの資格欄",
+     "rule": "要項に明記（全角英数字・記号は半角に正規化して保持）"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "サイトの見出しに、リンクの無い表示があります: 《ドロー》",
+    "要項PDFの確認日: 2026-10-06（提供された要項PDFの文字情報を読み取り。大会名・開催日が保存HTMLの見出しと一致）",
+    "申込期間: 2026-10-04〜2026-10-25 17:00（年は要項の開催日の年。曜日で検算一致）"
+   ],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": "非会員 ¥4000/組 ／ 会員 ¥3500/組",
+   "related_links": [],
+   "primary_event_types": [
+    "ダブルス",
+    "ミックス"
+   ],
+   "component_match_types": []
+  },
+  {
+   "id": "toyokawa-2026-3ebbcccc",
+   "fiscal_year": 2026,
+   "event_key": "2026|第25回ビギナーズダブルス大会",
+   "title": "第25回 ビギナーズダブルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/11/8(日)",
+   "periods": [
+    {
+     "raw": "2026/11/8(日)",
+     "normalized": "2026-11-08",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日11/15(日)",
+   "reserve_periods": [
+    {
+     "raw": "予備日11/15(日)",
+     "normalized": "2026-11-15",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算／申込期間・申込締切: 要項の開催日に明記された年（2026年）を使用。曜日で検算",
+   "deadline_text": "10月25日(日) 17:00 まで",
+   "deadline_date": "2026-10-25",
+   "deadline_time": "17:00",
+   "venue": "オーエスジードリームコート豊川(豊川公園庭球場)",
+   "event_types": [
+    "ダブルス",
+    "ミックス"
+   ],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "オープン ／ 各地テニス協会主催のダブルス大会において3R未経験者 ／ ※本ビギナー大会を除く ／ ※本ビギナー大会優勝者はペアを変えても出場不可",
+   "eligibility_note": "要項の資格欄に明記（レベル条件）。［オープン］の表記があっても、誰でも無条件に参加できるわけではありません。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_3844670cce67439baf7184b7d54b2f7d.pdf",
+   "entry_url": null,
+   "entry_text": "申込先: 豊川テニス協会大会事務局(パシフィックテニスクラブ内) 〒442-0844 豊川市小田渕町2-13-1 TEL 0533-84-8812／申込方法: 所定の申込用紙に参加料を添えてお申し込みください(現金書留可)。現金書留の場合、電話で定員確認してから郵送願います／申込期間: 2026年10月4日(日)〜10月25日(日) 17:00まで",
+   "parse_status": "success",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "オープン",
+     "source": "要項PDFの資格欄",
+     "rule": "参加資格が明記されており（その他の条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［オープン］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "男子，女子",
+     "source": "要項PDFの種目欄",
+     "rule": "ダブルス大会の男子・女子の種目（大会名にもダブルスと明記）"
+    },
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "要項PDFの種目欄",
+     "rule": "「ミックス」の種目"
+    },
+    {
+     "field": "eligibility",
+     "value": "その他の条件あり",
+     "matched": "オープン",
+     "source": "要項PDFの資格欄",
+     "rule": "要項に明記（全角英数字・記号は半角に正規化して保持）"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "サイトの見出しに、リンクの無い表示があります: 《ドロー》",
+    "要項PDFの確認日: 2026-10-06（提供された要項PDFの文字情報を読み取り。大会名・開催日が保存HTMLの見出しと一致）",
+    "申込期間: 2026-10-04〜2026-10-25 17:00（年は要項の開催日の年。曜日で検算一致）"
+   ],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": "非会員 ¥4000/組 ／ 会員 ¥3500/組 ／ 高校生以下 ¥3000/組",
+   "related_links": [],
+   "primary_event_types": [
+    "ダブルス",
+    "ミックス"
+   ],
+   "component_match_types": []
+  },
+  {
+   "id": "toyokawa-2026-2b669226",
+   "fiscal_year": 2026,
+   "event_key": "2026|第16回bc級ダブルス大会",
+   "title": "第16回 BC級ダブルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/9/20(日)",
+   "periods": [
+    {
+     "raw": "2026/9/20(日)",
+     "normalized": "2026-09-20",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日9/27(日)",
+   "reserve_periods": [
+    {
+     "raw": "予備日9/27(日)",
+     "normalized": "2026-09-27",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "見出しに［オープン］とありますが、参加資格は要項（PDF）での確認が必要です（このPDFは未確認）。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_4482fbe5d86f47cc8671fff298655035.pdf",
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［オープン］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    }
+   ],
+   "warnings": [
+    "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
+   ],
+   "notes": [],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": null,
+   "related_links": [
+    {
+     "label": "リザルト",
+     "url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_d6a0e995bdf342ca82481b3472929466.pdf"
+    }
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
+  },
+  {
+   "id": "toyokawa-2026-71de1081",
+   "fiscal_year": 2026,
+   "event_key": "2026|第48回小中学生シングルス大会",
+   "title": "第48回 小中学生シングルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/8/2(日)",
+   "periods": [
+    {
+     "raw": "2026/8/2(日)",
+     "normalized": "2026-08-02",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日8/9(日)",
+   "reserve_periods": [
+    {
+     "raw": "予備日8/9(日)",
+     "normalized": "2026-08-09",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "audience_types": [
+    "小学生",
+    "中学生"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "見出しに［オープン］とありますが、参加資格は要項（PDF）での確認が必要です（このPDFは未確認）。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_81737911a3d141cfbb86212623b82568.pdf",
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "中学生",
+     "matched": "中学生",
+     "source": "タイトル",
+     "rule": "「中学生」"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "audience",
+     "value": "小学生",
+     "matched": "小中学生",
+     "source": "タイトル",
+     "rule": "「小中学生」は小学生と中学生を含む（既存の分類ルールは変更せず、この記録にだけ追加）"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［オープン］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    }
+   ],
+   "warnings": [
+    "サイトの見出しに「大会中止」の表記があります（開催されない可能性）",
+    "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
+   ],
+   "notes": [
+    "サイトの見出しに「大会中止」の表記があります",
+    "サイトの見出しに、リンクの無い表示があります: 《ドロー》"
+   ],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": null,
+   "related_links": [],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
+  },
+  {
+   "id": "toyokawa-2026-7881905b",
+   "fiscal_year": 2026,
+   "event_key": "2026|第18回高校生新人戦シングルス大会",
+   "title": "第18回 高校生新人戦シングルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/8/1(土)",
+   "periods": [
+    {
+     "raw": "2026/8/1(土)",
+     "normalized": "2026-08-01",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日8/8(土)",
+   "reserve_periods": [
+    {
+     "raw": "予備日8/8(土)",
+     "normalized": "2026-08-08",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "audience_types": [
+    "高校生"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "見出しに［オープン］とありますが、参加資格は要項（PDF）での確認が必要です（このPDFは未確認）。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_7013a6c424194c4686f0e5960dec5287.pdf",
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "高校生",
+     "matched": "高校生",
+     "source": "タイトル",
+     "rule": "「高校生」または「高校」"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［オープン］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    }
+   ],
+   "warnings": [
+    "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
+   ],
+   "notes": [],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": null,
+   "related_links": [
+    {
+     "label": "ドロー",
+     "url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_0793226380eb4fbca9b98d43e78b799c.pdf"
+    }
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
+  },
+  {
+   "id": "toyokawa-2026-5efc10ef",
+   "fiscal_year": 2026,
+   "event_key": "2026|第28回市民テニスダブルス大会",
+   "title": "第28回 市民テニス ダブルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/6/21(日)",
+   "periods": [
+    {
+     "raw": "2026/6/21(日)",
+     "normalized": "2026-06-21",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日7/12(日)",
+   "reserve_periods": [
+    {
+     "raw": "予備日7/12(日)",
+     "normalized": "2026-07-12",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "見出しに［豊川市民］とあり、市民を対象とする大会の可能性があります（参加資格は要項PDFで確認が必要。このPDFは未確認）。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_5b679e25ea574347975601428af7c4b2.pdf",
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［豊川市民］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    }
+   ],
+   "warnings": [
+    "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
+   ],
+   "notes": [],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": null,
+   "related_links": [
+    {
+     "label": "ドロー",
+     "url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_36c6e619cdc143a4b109e7dd1db6ddbc.pdf"
+    }
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": []
+  },
+  {
+   "id": "toyokawa-2026-77ee226e",
+   "fiscal_year": 2026,
+   "event_key": "2026|第2回協会長杯団体ダブルス大会",
+   "title": "第２回 協会長杯団体ダブルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/5/10(日)，2026/5/17(日)",
+   "periods": [
+    {
+     "raw": "2026/5/10(日)",
+     "normalized": "2026-05-10",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "2026/5/17(日)",
+     "normalized": "2026-05-17",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日5/31(日)",
+   "reserve_periods": [
+    {
+     "raw": "予備日5/31(日)",
+     "normalized": "2026-05-31",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス",
+    "団体戦"
+   ],
+   "audience_types": [
+    "団体限定"
+   ],
+   "eligibility_status": "協会登録必要",
+   "eligibility_text": "協会員限定",
+   "eligibility_note": "サイトの見出しに［協会員限定］とあります（要項PDFは未確認）。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_6d296b9683374f8b8a2a092fa604ddd1.pdf",
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "団体限定",
+     "matched": "団体",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語（団体／対抗／チーム）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "event_type",
+     "value": "団体戦",
+     "matched": "団体",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［協会員限定］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    },
+    {
+     "field": "eligibility",
+     "value": "協会登録必要",
+     "matched": "［協会員限定］",
+     "source": "保存HTMLの見出し",
+     "rule": "公式サイトの見出しに明記"
+    }
+   ],
+   "warnings": [
+    "サイトの見出しに「大会中止」の表記があります（開催されない可能性）",
+    "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
+   ],
+   "notes": [
+    "サイトの見出しに「大会中止」の表記があります",
+    "サイトの見出しに、リンクの無い表示があります: 《大会中止》"
+   ],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": null,
+   "related_links": [],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [
+    "ダブルス"
+   ]
+  },
+  {
+   "id": "toyokawa-2026-f611bb54",
+   "fiscal_year": 2026,
+   "event_key": "2026|第49回オープンシングルス大会",
+   "title": "第49回 オープンシングルス大会",
+   "source_id": "toyokawa_tennis_association",
+   "source_name": "豊川テニス協会",
+   "source_area": "豊川",
+   "event_area": "豊川",
+   "date_text": "2026/4/19(日)",
+   "periods": [
+    {
+     "raw": "2026/4/19(日)",
+     "normalized": "2026-04-19",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予備日4/26(日)",
+   "reserve_periods": [
+    {
+     "raw": "予備日4/26(日)",
+     "normalized": "2026-04-26",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "見出しの日付に西暦年が明記されている。曜日で検算／予備日には年の表記が無いため、同じ見出しの開催日と同じ年を使用。曜日で検算",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "見出しに［オープン］とありますが、参加資格は要項（PDF）での確認が必要です（このPDFは未確認）。",
+   "official_url": "https://toyokawatennis.wixsite.com/index",
+   "guideline_url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_c8ec8f094cb24fdbbb2ad289d9218108.pdf",
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "eligibility",
+     "value": "サイトの区分表示",
+     "matched": "［オープン］",
+     "source": "保存HTMLの見出し",
+     "rule": "サイトの見出しの区分表示。参加資格の確定には使わない（要項で確認）"
+    }
+   ],
+   "warnings": [
+    "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
+   ],
+   "notes": [],
+   "source_snapshot_date": "2026-10-06",
+   "fee_text": null,
+   "related_links": [
+    {
+     "label": "ドロー",
+     "url": "https://abcd7f9e-d1ff-49f1-854d-9b55cff99812.filesusr.com/ugd/209030_cea566ed79674cb7bda91bc30c7316a4.pdf"
+    }
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": []
   }
  ]
 }
