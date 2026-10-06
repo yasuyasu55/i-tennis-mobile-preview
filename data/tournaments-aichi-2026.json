@@ -1,0 +1,1006 @@
+{
+ "schema_version": 1,
+ "source": {
+  "id": "aichi_tennis_association",
+  "name": "愛知県テニス協会",
+  "page_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+  "heading": "2026年度愛知県テニス協会競技日程",
+  "fiscal_year": 2026
+ },
+ "snapshot": {
+  "file": "aichi_tennis_schedule_2026.html",
+  "html_sha256": "ceaad5f09bccba55c55d4d3709445137d7a699fa31d12a15b66951b3fc2e4098",
+  "provided_on": "2026-10-01",
+  "as_of_note": "資料時点: 2026年10月1日に受領した保存HTML（ページ内に更新日の記載なし）",
+  "parser": "TTA-MOBILE-006-R1 愛知県テニス協会パーサー（無改変）",
+  "network_access": "なし（保存HTMLのみを解析）"
+ },
+ "summary": {
+  "total": 25,
+  "success": 22,
+  "partial": 3,
+  "failed": 0,
+  "weekday_mismatches": 1
+ },
+ "tournaments": [
+  {
+   "id": "aichi-2026-01",
+   "title": "第95回DUNLOP東海中日ジュニアテニス選手権大会愛知県予選兼ユニクロ全日本ジュニアテニス選手権2026愛知県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "4月 1(水)〜4(土) / 6/6(土)〜7(日) / 13(土)〜14(日)",
+   "periods": [
+    {
+     "raw": "1(水)〜4(土)",
+     "normalized": "2026-04-01/2026-04-04",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "6/6(土)〜7(日)",
+     "normalized": "2026-06-06/2026-06-07",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "13(土)〜14(日)",
+     "normalized": "2026-06-13/2026-06-14",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "口論義運動公園、名古屋GTC",
+   "guideline_url": "https://docs.google.com/document/d/1JuwnzOWNHoMffGjpTCX-M7omr-PaFFHPNFplgwThweQ/edit?usp=sharing",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://docs.google.com/document/d/1JuwnzOWNHoMffGjpTCX-M7omr-PaFFHPNFplgwThweQ/edit?usp=sharing",
+     "link_type": "guideline"
+    },
+    {
+     "label": "大会ページ",
+     "url": "https://jta.tournamentsoftware.com/tournament/48876999-B37D-4130-B13F-F5ABB4DE960D",
+     "link_type": "tournament_page"
+    },
+    {
+     "label": "要項(東海テニス協会)",
+     "url": "http://www7a.biglobe.ne.jp/~toukai-tennis/",
+     "link_type": "guideline_external"
+    },
+    {
+     "label": "エントリー方法",
+     "url": "https://drive.google.com/open?id=1AoUfQ_fwneS_VYVxufB3GwgKCznGrJH8Hti1R8KTW74",
+     "link_type": "entry"
+    },
+    {
+     "label": "エントリーform",
+     "url": "https://docs.google.com/forms/d/e/1FAIpQLSdeEyKK4_qtxnXNgnqiQStGupEeM29MNxPyT5zL1EedBORUxA/viewform?usp=publish-editor",
+     "link_type": "entry"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-02",
+   "title": "第80回(2026年)国スポ大会愛知県予選(成年種別)",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "4月 11(土)〜12(日)",
+   "periods": [
+    {
+     "raw": "11(土)〜12(日)",
+     "normalized": "2026-04-11/2026-04-12",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "口論義運動公園",
+   "guideline_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/Kokutai.pdf",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/Kokutai.pdf",
+     "link_type": "guideline"
+    },
+    {
+     "label": "結果",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/Kokutai.pdf",
+     "link_type": "result"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-03",
+   "title": "ねんりんピック埼玉2026県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "5月 9(土)予10(日)",
+   "periods": [
+    {
+     "raw": "9(土)予10(日)",
+     "normalized": null,
+     "year": null,
+     "weekday_check": "not_available",
+     "warnings": [
+      "「予」の表記を含むため、意味を確定せず正規化していません（原文のみ保持）"
+     ]
+    }
+   ],
+   "year_basis": "年度を導出できた区間なし",
+   "venue_text": "一宮市テニス場",
+   "guideline_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/nenrin.pdf",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/nenrin.pdf",
+     "link_type": "guideline"
+    },
+    {
+     "label": "参加申込書(Excel)",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/2026nenrin-mousikomi.xlsx",
+     "link_type": "application_form"
+    },
+    {
+     "label": "結果",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/nenrin.pdf",
+     "link_type": "result"
+    }
+   ],
+   "parse_status": "partial",
+   "warnings": [
+    "「予」の表記を含むため、意味を確定せず正規化していません（原文のみ保持）"
+   ],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-04",
+   "title": "2026第101回全日本テニス選手権大会愛知県予選兼第49回愛知県テニス選手権大会・一般の部",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "5月 29(金)〜31(日)",
+   "periods": [
+    {
+     "raw": "29(金)〜31(日)",
+     "normalized": "2026-05-29/2026-05-31",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "口論義運動公園",
+   "guideline_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/AllJapan.pdf",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/AllJapan.pdf",
+     "link_type": "guideline"
+    },
+    {
+     "label": "男子結果",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/AllJapan_m.pdf",
+     "link_type": "result"
+    },
+    {
+     "label": "女子結果",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/AllJapan_f.pdf",
+     "link_type": "result"
+    },
+    {
+     "label": "大会ページ",
+     "url": "https://jta.tournamentsoftware.com/tournament/387BD201-2A4F-4E18-BE05-23CF20BBC70E",
+     "link_type": "tournament_page"
+    },
+    {
+     "label": "欠場届",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/AllJapan2.pdf",
+     "link_type": "withdrawal"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-05",
+   "title": "2026 U15全国選抜ジュニアテニス選手権大会(第45回中牟田杯)愛知県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "6月 27(土)〜28(日)",
+   "periods": [
+    {
+     "raw": "27(土)〜28(日)",
+     "normalized": "2026-06-27/2026-06-28",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "名古屋GTC",
+   "guideline_url": "https://drive.google.com/open?id=1HsFoEG1wA6EZOjemKUI-Q5Vfax7CHYFb8O4VjgLwOIo",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://drive.google.com/open?id=1HsFoEG1wA6EZOjemKUI-Q5Vfax7CHYFb8O4VjgLwOIo",
+     "link_type": "guideline"
+    },
+    {
+     "label": "大会ページ",
+     "url": "https://jta.tournamentsoftware.com/tournament/248372EC-09F3-4866-A8F0-4ECC12D714B4",
+     "link_type": "tournament_page"
+    },
+    {
+     "label": "要項(東海テニス協会)",
+     "url": "http://www7a.biglobe.ne.jp/~toukai-tennis/",
+     "link_type": "guideline_external"
+    },
+    {
+     "label": "エントリー方法",
+     "url": "https://drive.google.com/open?id=15XACJk_5of2RxwHKusfo6inxIZiQbGJu-XJGsocUxsA",
+     "link_type": "entry"
+    },
+    {
+     "label": "エントリーform",
+     "url": "https://drive.google.com/open?id=1vqDm1OY6Y4BLEuq3HiRu6-Qn_qAT4mcIojS2dmloJwk",
+     "link_type": "entry"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-06",
+   "title": "名古屋オープンベテランテニストーナメント(7月)名城",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "7月 18(土)〜23(木)",
+   "periods": [
+    {
+     "raw": "18(土)〜23(木)",
+     "normalized": "2026-07-18/2026-07-23",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "名古屋市名城庭球場",
+   "guideline_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/jopnov7.pdf",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/jopnov7.pdf",
+     "link_type": "guideline"
+    },
+    {
+     "label": "結果",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/jopnov7.pdf",
+     "link_type": "result"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-07",
+   "title": "2026年度　ダンロップATAジュニアテニス　サマーサーキット（A4グレード）",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "7月 25(土)〜26(日)、28(水) / 8/1(土)〜2(日)、4(火) / 18(火)〜20(木)",
+   "periods": [
+    {
+     "raw": "25(土)〜26(日)",
+     "normalized": "2026-07-25/2026-07-26",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "28(水)",
+     "normalized": "2026-07-28",
+     "year": 2026,
+     "weekday_check": "mismatch",
+     "warnings": []
+    },
+    {
+     "raw": "8/1(土)〜2(日)",
+     "normalized": "2026-08-01/2026-08-02",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "4(火)",
+     "normalized": "2026-08-04",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "18(火)〜20(木)",
+     "normalized": "2026-08-18/2026-08-20",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "志段味SL、小幡緑地",
+   "guideline_url": "https://drive.google.com/open?id=1A613gJoFwAku9ZfmnNsHYEJQ7Bd4ukip5ksEsontX8c",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://drive.google.com/open?id=1A613gJoFwAku9ZfmnNsHYEJQ7Bd4ukip5ksEsontX8c",
+     "link_type": "guideline"
+    },
+    {
+     "label": "ドロー(外部サイト)",
+     "url": "https://www.tennis-j.com/%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%88%E3%83%BC%E3%83%8A%E3%83%A1%E3%83%B3%E3%83%88/",
+     "link_type": "draw"
+    },
+    {
+     "label": "エントリーform",
+     "url": "https://docs.google.com/forms/d/e/1FAIpQLScpQ1_YlSKG73jKXemfthWHDUZVkhzO-jep2REjyVRhXWzcRA/viewform?usp=dialog",
+     "link_type": "entry"
+    },
+    {
+     "label": "エントリーリスト",
+     "url": "https://docs.google.com/spreadsheets/d/1qvNKGbhbSrVpkWzgxHMPsw72OaOkjqP-QLuA09c_EXs/edit?usp=sharing",
+     "link_type": "entry"
+    },
+    {
+     "label": "アクセプタンスリスト（外部HP）",
+     "url": "https://www.tennis-j.com/%e3%82%b9%e3%82%af%e3%83%bc%e3%83%ab%e3%83%bb%e3%83%88%e3%83%bc%e3%83%8a%e3%83%a1%e3%83%b3%e3%83%88/",
+     "link_type": "other"
+    },
+    {
+     "label": "再募集エントリーフォーム",
+     "url": "https://docs.google.com/forms/d/e/1FAIpQLSf9d4LZu0hGnXKx-1wX3LFGmWJQ9sGxoCdjzROXLGNm5FVs3A/viewform?usp=header",
+     "link_type": "entry"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": [
+    "曜日の検算: 原文の「28(水)」は2026年7月28日の曜日（火）と一致しません。日付の数字は原文どおり保持しています。要項で確認してください。"
+   ]
+  },
+  {
+   "id": "aichi-2026-08",
+   "title": "第1回Japan U10 Tennis Tournament愛知県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "8月 23(日)〜25(火)",
+   "periods": [
+    {
+     "raw": "23(日)〜25(火)",
+     "normalized": "2026-08-23/2026-08-25",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "いちい信金スポーツセンター",
+   "guideline_url": "https://drive.google.com/open?id=1iT78DP4Yv0Dk_Zyk5CTRHhPauPjsDAJmV-tigygB93c",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://drive.google.com/open?id=1iT78DP4Yv0Dk_Zyk5CTRHhPauPjsDAJmV-tigygB93c",
+     "link_type": "guideline"
+    },
+    {
+     "label": "大会ページ",
+     "url": "https://jta.tournamentsoftware.com/tournament/FB801FC6-81C5-44DD-9C41-7536FA0E751B",
+     "link_type": "tournament_page"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-09",
+   "title": "【東海大会】2026 RSK全国選抜ジュニアテニス大会東海予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "9月 5(土)〜6(日)",
+   "periods": [
+    {
+     "raw": "5(土)〜6(日)",
+     "normalized": "2026-09-05/2026-09-06",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "名古屋GTC",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項(東海テニス協会)",
+     "url": "http://www7a.biglobe.ne.jp/~toukai-tennis/tournaments/2026.html",
+     "link_type": "guideline_external"
+    },
+    {
+     "label": "エントリー方法",
+     "url": "https://drive.google.com/open?id=1wdbuqw624aS_18axGs66Zoy_DMa5_32h76D2zuUvLm4",
+     "link_type": "entry"
+    },
+    {
+     "label": "エントリーform",
+     "url": "https://drive.google.com/open?id=18PULF9lunCqnySUkv_K1IwZxdn3iRBYoOZaFLCa_zC0",
+     "link_type": "entry"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-10",
+   "title": "第32回愛知スポレクフェスティバル",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "9月 12(土)、予19(土)",
+   "periods": [
+    {
+     "raw": "12(土)",
+     "normalized": "2026-09-12",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "予19(土)",
+     "normalized": null,
+     "year": null,
+     "weekday_check": "not_available",
+     "warnings": [
+      "「予」の表記を含むため、意味を確定せず正規化していません（原文のみ保持）"
+     ]
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "豊田市柳川瀬公園",
+   "guideline_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/sporec.pdf",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/sporec.pdf",
+     "link_type": "guideline"
+    },
+    {
+     "label": "結果",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/sporec.pdf",
+     "link_type": "result"
+    }
+   ],
+   "parse_status": "partial",
+   "warnings": [
+    "「予」の表記を含むため、意味を確定せず正規化していません（原文のみ保持）"
+   ],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-11",
+   "title": "名古屋オープンベテランテニストーナメント(9月)名城",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "9月 12(土)〜17(木)",
+   "periods": [
+    {
+     "raw": "12(土)〜17(木)",
+     "normalized": "2026-09-12/2026-09-17",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "名古屋市名城庭球場",
+   "guideline_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/jopnov9.pdf",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/details/2026/jopnov9.pdf",
+     "link_type": "guideline"
+    },
+    {
+     "label": "結果",
+     "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/results/2026/jopnov9.pdf",
+     "link_type": "result"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-12",
+   "title": "【東海大会】JOCジュニアオリンピックカップ2026全日本ジュニア選抜室内テニス選手権大会東海予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "9月 26(土)〜27(日)",
+   "periods": [
+    {
+     "raw": "26(土)〜27(日)",
+     "normalized": "2026-09-26/2026-09-27",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "長良川TP",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項(東海テニス協会)",
+     "url": "http://www7a.biglobe.ne.jp/~toukai-tennis/tournaments/2026.html",
+     "link_type": "guideline_external"
+    },
+    {
+     "label": "エントリー方法",
+     "url": "https://drive.google.com/open?id=1Kl5XpFvAmTByMX9-qVYK4sN8_mjufflOkepnzin_F2I",
+     "link_type": "entry"
+    },
+    {
+     "label": "エントリーform",
+     "url": "https://docs.google.com/forms/d/e/1FAIpQLSc-zoQz48h3IWismWOyt9_ks_5SMjIPu2a0o9dLrwz6mPJPMA/viewform?usp=header",
+     "link_type": "entry"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-13",
+   "title": "【東海大会】2026東海小学生県別対抗テニス",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "11月 8(日)",
+   "periods": [
+    {
+     "raw": "8(日)",
+     "normalized": "2026-11-08",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "長良川TP",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-14",
+   "title": "第80回東海毎日ジュニアテニス選手権大会兼2027 DUNLOP全国選抜ジュニア（U14/U12）愛知県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "12月 5(土)〜6(日) / 12(土)〜13(日) / 19(土)",
+   "periods": [
+    {
+     "raw": "5(土)〜6(日)",
+     "normalized": "2026-12-05/2026-12-06",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "12(土)〜13(日)",
+     "normalized": "2026-12-12/2026-12-13",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "19(土)",
+     "normalized": "2026-12-19",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "志段味SL、名古屋GTC",
+   "guideline_url": "https://drive.google.com/open?id=1ru6CjIUP5QeD4jbZPqVAenAJTI07LH9JJptPvEijouc",
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [
+    {
+     "label": "要項",
+     "url": "https://drive.google.com/open?id=1ru6CjIUP5QeD4jbZPqVAenAJTI07LH9JJptPvEijouc",
+     "link_type": "guideline"
+    },
+    {
+     "label": "大会ページ",
+     "url": "https://jta.tournamentsoftware.com/tournament/50F76ED8-37BC-4263-B011-89E513A1849D",
+     "link_type": "tournament_page"
+    }
+   ],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-15",
+   "title": "【東海大会】第14回東海ジュニアトーナメント大会",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "12月 25(金)〜28(月)",
+   "periods": [
+    {
+     "raw": "25(金)〜28(月)",
+     "normalized": "2026-12-25/2026-12-28",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "浜松新電力テニスコート",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-16",
+   "title": "名古屋オープンベテランテニストーナメント(1月)",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "1月 15(金)〜19(火)",
+   "periods": [
+    {
+     "raw": "15(金)〜19(火)",
+     "normalized": "2027-01-15/2027-01-19",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "口論義運動公園",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-17",
+   "title": "MUFGジュニアテニストーナメント2027愛知県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "1月 16(土)〜17(日) / 23(土)",
+   "periods": [
+    {
+     "raw": "16(土)〜17(日)",
+     "normalized": "2027-01-16/2027-01-17",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "23(土)",
+     "normalized": "2027-01-23",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "東山公園TC",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-18",
+   "title": "愛知県ジュニア新人大会",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "1月 30(土)〜31(日) / 2/6(土)〜7(日) / 13(土)〜14(日)",
+   "periods": [
+    {
+     "raw": "30(土)〜31(日)",
+     "normalized": "2027-01-30/2027-01-31",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "2/6(土)〜7(日)",
+     "normalized": "2027-02-06/2027-02-07",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "13(土)〜14(日)",
+     "normalized": "2027-02-13/2027-02-14",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "口論義運動公園、名古屋GTC",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-19",
+   "title": "第5回実業団・大学・高校対抗テニス大会",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "1月 31(日)",
+   "periods": [
+    {
+     "raw": "31(日)",
+     "normalized": "2027-01-31",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "東山公園TC",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-20",
+   "title": "名古屋オープンベテランテニストーナメント(2月)名城",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "2月 6(土)〜11(木)",
+   "periods": [
+    {
+     "raw": "6(土)〜11(木)",
+     "normalized": "2027-02-06/2027-02-11",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "名古屋市名城庭球場",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-21",
+   "title": "第54回ダンロップ杯愛知県教職員テニス大会",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "2月 未定",
+   "periods": [
+    {
+     "raw": "未定",
+     "normalized": null,
+     "year": null,
+     "weekday_check": "not_available",
+     "warnings": [
+      "日付形式を解釈できないため原文のみ保持します"
+     ]
+    }
+   ],
+   "year_basis": "年度を導出できた区間なし",
+   "venue_text": "未定",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "partial",
+   "warnings": [
+    "日付形式を解釈できないため原文のみ保持します",
+    "会場未定"
+   ],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-22",
+   "title": "第53回(2027年)ダンロップテニストーナメント愛知県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "3月 6(土)〜7(日) / 13(土)",
+   "periods": [
+    {
+     "raw": "6(土)〜7(日)",
+     "normalized": "2027-03-06/2027-03-07",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    },
+    {
+     "raw": "13(土)",
+     "normalized": "2027-03-13",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "志段味SL",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-23",
+   "title": "名古屋オープンベテランテニストーナメント(3月)",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "3月 8(月)〜12(金)",
+   "periods": [
+    {
+     "raw": "8(月)〜12(金)",
+     "normalized": "2027-03-08/2027-03-12",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "パロマ瑞穂TC",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-24",
+   "title": "第66回全国実業団対抗テニス大会(ビジネスパル)県予選",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "3月 20(土)〜21(日)",
+   "periods": [
+    {
+     "raw": "20(土)〜21(日)",
+     "normalized": "2027-03-20/2027-03-21",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "東山公園TC",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  },
+  {
+   "id": "aichi-2026-25",
+   "title": "第45回第一生命全国小学生テニス選手権愛知県大会兼2027第10回愛知県小学生テニス大会",
+   "area": "愛知県",
+   "area_basis": "情報元（愛知県テニス協会）の対象地域",
+   "category": null,
+   "category_note": "情報元の表に種目の列がないため未取得",
+   "date_text": "3月 25(木)〜28(日)",
+   "periods": [
+    {
+     "raw": "25(木)〜28(日)",
+     "normalized": "2027-03-25/2027-03-28",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "year_basis": "2026年度見出しから導出",
+   "venue_text": "名古屋GTC",
+   "guideline_url": null,
+   "official_url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+   "related_links": [],
+   "parse_status": "success",
+   "warnings": [],
+   "data_quality_notes": []
+  }
+ ]
+}
