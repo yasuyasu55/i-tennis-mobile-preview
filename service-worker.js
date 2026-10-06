@@ -11,7 +11,7 @@
  */
 'use strict';
 
-var APP_VERSION = '0.7.2';
+var APP_VERSION = '0.7.3';
 var CACHE_PREFIX = 'i-tennis-mobile-shell-';
 var CACHE_NAME = CACHE_PREFIX + 'v' + APP_VERSION;
 
@@ -109,7 +109,7 @@ function fetchDataWithTimeout(url) {
 
 function isValidDataResponse(res) {
   return res.clone().json().then(function (j) {
-    return !!(j && Array.isArray(j.tournaments));
+    return !!(j && Array.isArray(j.tournaments) && j.tournaments.length > 0);   // 空のデータは採用しない（保存済みのデータを空で上書きしない）
   }).catch(function () { return false; });
 }
 
