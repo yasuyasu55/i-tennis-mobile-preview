@@ -80,13 +80,11 @@ main{padding:12px;max-width:720px;margin:auto}
 
 .research-group-title{font-weight:800;color:#07522d;font-size:15px;margin:4px 2px 8px}
 /* COURT-LINK:START */
-.research-card.court-card{display:block}
-.court-card .court-body{display:flex;flex-direction:column;gap:10px}
-.court-card .court-desc{margin:0;font-size:14px;line-height:1.6;color:#3d4a42}
-.court-card .court-btn{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;min-height:52px;padding:12px 16px;border-radius:12px;background:#08763d;color:#fff;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 2px 0 #05522a;-webkit-tap-highlight-color:transparent}
-.court-card .court-btn:active{transform:translateY(1px);box-shadow:none}
-.court-card .court-btn:focus-visible{outline:3px solid #f2b705;outline-offset:2px}
-.court-card .court-sub{font-size:12px;color:#6b7a70}
+.research-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 2px 8px}
+.research-head .research-group-title{margin:0;flex:1 1 auto;min-width:0}
+.research-head .court-mini{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:44px;min-width:44px;padding:0 12px;border-radius:12px;background:#08763d;color:#fff;font-size:14px;font-weight:800;line-height:1;white-space:nowrap;text-decoration:none;box-shadow:0 2px 0 #05522a;-webkit-tap-highlight-color:transparent}
+.research-head .court-mini:active{transform:translateY(1px);box-shadow:none}
+.research-head .court-mini:focus-visible{outline:3px solid #f2b705;outline-offset:2px}
 /* COURT-LINK:END */
 .tcard{background:white;border:1px solid #cde4d4;border-radius:14px;padding:14px;margin-bottom:10px}
 .tcard-title{font-weight:800;font-size:16px;color:#24332B;margin-bottom:8px;word-break:break-word}
@@ -172,7 +170,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.7.4</p>
+  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.8.1</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -205,19 +203,13 @@ main{padding:12px;max-width:720px;margin:auto}
   </section>
 
   <section id="screenResearch" class="screen">
-    <div class="research-group-title">🏆 大会情報</div>
-    <div id="tournamentArea"></div>
-
-    <!-- COURT-LINK:START コート空き・予約（公式予約サイトへの導線。アプリ内に空き枠は取り込まない・自動操作しない・起動時に外部へ通信しない） -->
-    <div class="research-card court-card" id="courtCard">
-      <div class="court-body">
-        <span class="label">🎾 コート空き・予約</span>
-        <p class="court-desc">豊橋市営庭球場の空き状況を確認し、公式サイトで予約できます。</p>
-        <a class="court-btn" id="courtLink" href="https://www.e-shisetsu.e-aichi.jp/user/rsvUInstSrchVacantAction.do" target="_blank" rel="noopener noreferrer">公式予約サイトを開く</a>
-        <span class="court-sub">愛知共同利用型施設予約システム</span>
-      </div>
+    <!-- COURT-LINK:START 見出し「大会情報」と同じ行の「コート予約」ボタン（公式予約サイトへの導線。アプリ内に空き枠は取り込まない・自動操作しない・起動時に外部へ通信しない） -->
+    <div class="research-head">
+      <div class="research-group-title">🏆 大会情報</div>
+      <a class="court-mini" id="courtLink" href="https://www.e-shisetsu.e-aichi.jp/user/rsvUInstSrchVacantAction.do" target="_blank" rel="noopener noreferrer">🎾 コート予約 ↗</a>
     </div>
     <!-- COURT-LINK:END -->
+    <div id="tournamentArea"></div>
   </section>
 </main>
 
@@ -1314,7 +1306,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.7.4';
+var APP_DATA_VERSION = '0.8.1';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }
