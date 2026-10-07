@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "user_agent": "I-Tennis-Mobile-DataBot/1.0 (+https://github.com/yasuyasu55/i-tennis-mobile-preview; periodic check of public tournament listings; contact via repository Issues)",
+  "request_delay_seconds": 3,
+  "timeout_seconds": 20,
+  "max_html_bytes": 3000000,
+  "max_pdf_bytes": 4000000,
+  "max_requests_per_run": 40,
+  "sources": [
+    {
+      "key": "aichi",
+      "enabled": true,
+      "min_records": 10,
+      "min_ratio": 0.5,
+      "pages": [
+        {
+          "name": "aichi_tennis_schedule.html",
+          "url": "https://www7b.biglobe.ne.jp/~aichi-tennis/tournament/index.html",
+          "required": true
+        }
+      ]
+    },
+    {
+      "key": "toyohashi",
+      "enabled": true,
+      "min_records": 10,
+      "min_ratio": 0.5,
+      "pages": [
+        {
+          "name": "toyohashi_guidelines_list.html",
+          "url": "https://www.toyohashi-tennis.net/c/taikai/guidelines/",
+          "required": true
+        },
+        {
+          "name": "toyohashi_guidelines_list_page2.html",
+          "url": "https://www.toyohashi-tennis.net/c/taikai/guidelines/page/2/",
+          "required": true
+        }
+      ],
+      "details": {
+        "max": 3,
+        "url_template": "https://www.toyohashi-tennis.net/taikai/guidelines/{id}/",
+        "name_template": "toyohashi_guideline_{id}.html"
+      }
+    },
+    {
+      "key": "gamagori",
+      "enabled": true,
+      "min_records": 3,
+      "min_ratio": 0.5,
+      "pages": [
+        {
+          "name": "gamagori_tournament.html",
+          "url": "https://gamagori-tennis.com/tournament/",
+          "required": true
+        },
+        {
+          "name": "gamagori_entry.html",
+          "url": "https://gamagori-tennis.com/entry/",
+          "required": false
+        }
+      ]
+    },
+    {
+      "key": "toyokawa",
+      "enabled": true,
+      "min_records": 3,
+      "min_ratio": 0.5,
+      "pages": [
+        {
+          "name": "toyokawa_top.html",
+          "url": "https://toyokawatennis.wixsite.com/index",
+          "required": true
+        }
+      ],
+      "pdf": {
+        "max": 6,
+        "allowed_host_suffixes": [
+          "filesusr.com"
+        ]
+      }
+    },
+    {
+      "key": "hamamatsu",
+      "enabled": true,
+      "min_records": 3,
+      "min_ratio": 0.5,
+      "pages": [
+        {
+          "name": "hamamatsu_tournament.html",
+          "url": "https://www.h-ta.jp/tournament.html",
+          "required": true
+        }
+      ],
+      "pdf": {
+        "max": 8,
+        "allowed_host_suffixes": [
+          "h-ta.jp"
+        ]
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "name": "岐阜県テニス協会",
+      "reason": "robots.txtで自動アクセスが禁止されているため、永久に対象外（TTA-MOBILE-005）"
+    }
+  ]
+}
