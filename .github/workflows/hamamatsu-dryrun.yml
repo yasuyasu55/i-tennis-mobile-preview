@@ -1,0 +1,141 @@
+# 浜松の自動更新候補（R5）の dry-run を、GitHub Actions で「1回だけ手動実行」する（TTA-CORE-001）
+#
+#   ・手動実行（workflow_dispatch）だけ。schedule・push・pull_request などのトリガーは、持たない。
+#   ・リポジトリへの書き込み（コミット・プッシュ・マージ）・Pages配備・secrets の使用は、一切しない（権限は contents: read のみ）。
+#   ・実行するコード・データは、input「ref」のブランチから取得する（main に置くのは、このワークフローの1ファイルだけで足りる。
+#     workflow_dispatch は、デフォルトブランチにあるワークフローだけが実行できるため）。
+#   ・処理は、本番と同じ経路の dry-run（pipeline/dryrun_hamamatsu.py）: 浜松だけを 取得 → 解析 → 検証 → 候補JSON生成。通常のHTTP取得だけ（ブラウザ不使用）。
+#   ・失敗したら、ジョブを失敗にする。候補JSONは、artifact に保存するだけで、採用・コミットはしない。既存データは、そのまま保持される。
+#   ・生のHTML・PDFは、保存しない（dry-run が削除する）。artifact に残すのは、報告・実行記録・候補JSONだけ。
+name: hamamatsu-dryrun
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: '実行するコード・データ一式があるブランチ名（候補を置いたブランチ）'
+        required: true
+        default: 'hamamatsu-r5-candidate'
+      confirm:
+        description: '誤操作防止: hamamatsu-dryrun と入力（1回の実行ごとに必要）'
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hamamatsu-dryrun
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  dryrun:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 入力の確認（誤操作防止）
+        env:
+          INPUT_REF: ${{ inputs.ref }}
+          INPUT_CONFIRM: ${{ inputs.confirm }}
+        run: |
+          if [ "$INPUT_CONFIRM" != "hamamatsu-dryrun" ]; then
+            echo "::error::確認の入力が一致しません。hamamatsu-dryrun と入力してください（誤操作防止）"
+            exit 1
+          fi
+          if [[ ! "$INPUT_REF" =~ ^[A-Za-z0-9._/-]{1,100}$ ]]; then
+            echo "::error::ブランチ名が不正です"
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: 必要なファイルの確認
+        run: |
+          for f in pipeline/dryrun_hamamatsu.py pipeline/run_update.py pipeline/sources.json data/tournaments.json requirements-pipeline.txt; do
+            if [ ! -f "$f" ]; then
+              echo "::error::$f がありません（指定したブランチに、候補コードとデータ一式が必要です）"
+              exit 1
+            fi
+          done
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 依存（固定バージョン）を導入
+        run: pip install -r requirements-pipeline.txt
+
+      - name: 実行環境と、比較対象のデータの記録
+        env:
+          INPUT_REF: ${{ inputs.ref }}
+        run: |
+          {
+            echo "## 実行環境"
+            echo "- 実行日時（日本時間）: $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S')"
+            echo "- ref: $INPUT_REF／commit: $(git rev-parse HEAD)"
+            echo "- runner: ${RUNNER_OS:-?} / ${ImageOS:-?}／$(python --version)／pypdf $(python -c 'import pypdf; print(pypdf.__version__)')"
+            echo "- 比較対象 data/tournaments.json の SHA-256: $(sha256sum data/tournaments.json | cut -d' ' -f1)"
+          } >> "$GITHUB_STEP_SUMMARY"
+          sha256sum data/tournaments.json | cut -d' ' -f1 > "$RUNNER_TEMP/data_before.sha"
+
+      - name: dry-run（浜松だけ・読み取り専用・通常のHTTP取得）
+        id: dry
+        run: |
+          set +e
+          python pipeline/dryrun_hamamatsu.py --out-dir dryrun_out
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: 公開データが変更されていないことの確認
+        run: |
+          after=$(sha256sum data/tournaments.json | cut -d' ' -f1)
+          before=$(cat "$RUNNER_TEMP/data_before.sha")
+          if [ "$after" != "$before" ]; then
+            echo "::error::data/tournaments.json が変更されました"
+            exit 1
+          fi
+          if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+            echo "::error::追跡ファイルが変更されました"
+            git status --porcelain
+            exit 1
+          fi
+
+      - name: 結果の要約
+        if: always()
+        run: |
+          latest=$(ls -1d dryrun_out/*/ 2>/dev/null | sort | tail -1)
+          if [ -n "$latest" ] && [ -f "${latest}dryrun_report.md" ]; then
+            { echo ""; cat "${latest}dryrun_report.md"; } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "（dry-run の結果ファイルが作られませんでした）" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: 結果を保存（artifact。生のHTML・PDFは含めない。候補JSONは保存するだけで、採用しない）
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hamamatsu-dryrun-result
+          path: |
+            dryrun_out
+            !dryrun_out/**/raw
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: 判定（失敗なら、ジョブを失敗にする。候補JSONは採用しない）
+        if: always()
+        env:
+          DRY_CODE: ${{ steps.dry.outputs.code }}
+        run: |
+          if [ "$DRY_CODE" != "0" ]; then
+            echo "::error::dry-run が成功していません（終了コード: ${DRY_CODE:-なし}）。候補JSONは採用しません。既存データは、そのまま保持されます"
+            exit 1
+          fi
+          echo "dry-run 成功。候補JSONは、artifact に保存しただけです（採用・コミットはしていません）。" >> "$GITHUB_STEP_SUMMARY"
