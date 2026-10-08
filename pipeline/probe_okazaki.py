@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 import time
 import urllib.error
 import urllib.parse
@@ -31,6 +32,8 @@ MAX_PDF = 12 * 1024 * 1024
 MAX_PDFS = 2
 DELAY_SECONDS = 3.0
 TIMEOUT_SECONDS = 25
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "data-source"))
+from parsers import okazaki_tennis as app_parser  # noqa: E402
 
 
 @dataclass
@@ -268,6 +271,41 @@ def run(out_dir: Path):
         _write_report(out_dir, report)
         return 2
 
+    # Validate the production candidate parser against the same live response bytes.
+    # The response remains in memory only; only sanitized fields and comparison results are written.
+    parsed = app_parser.parse_page(page["body"], page_url=PAGE_URL)
+    def norm_value(v):
+        return re.sub(r"\s+", " ", v.replace("\u200b", "").replace("\ufeff", "")).strip() if isinstance(v, str) else v
+    differences = []
+    parsed_by_title = {x["title"]: x for x in parsed.get("events", [])}
+    compare_fields = ("date_text", "events_text", "eligibility", "venue", "deadline_text", "guideline_url")
+    for event in events:
+        other = parsed_by_title.get(event["title"])
+        if other is None:
+            differences.append({"title": event["title"], "field": "record", "probe": "present", "candidate_parser": "missing"})
+            continue
+        for field in compare_fields:
+            if norm_value(event.get(field)) != norm_value(other.get(field)):
+                differences.append({"title": event["title"], "field": field,
+                                    "probe": norm_value(event.get(field)), "candidate_parser": norm_value(other.get(field))})
+    for title in parsed_by_title:
+        if not any(x["title"] == title for x in events):
+            differences.append({"title": title, "field": "record", "probe": "missing", "candidate_parser": "present"})
+    report["candidate_parser_check"] = {
+        "parser": "okazaki_tennis.py v0.1",
+        "status": "match" if not parsed.get("fatal_error") and not differences else "mismatch",
+        "fatal_error": parsed.get("fatal_error"),
+        "event_count": len(parsed.get("events", [])),
+        "matched_event_count": len(events) - sum(1 for d in differences if d.get("field") == "record" and d.get("probe") == "present"),
+        "differences": differences,
+        "normalized_event_dates": [{"title": e["title"], "dates": [p["normalized"] for p in e["periods"]]} for e in parsed.get("events", [])],
+    }
+    if report["candidate_parser_check"]["status"] != "match":
+        report["notes"].append("アプリ候補パーサーとprobeの抽出結果に差があります。候補採用は保留してください")
+        report["requests"] = log
+        _write_report(out_dir, report)
+        return 3
+
     # Only fetch linked guideline PDFs for entries whose deadline text is visibly present.
     pdf_urls = []
     for event in events:
@@ -305,7 +343,7 @@ def run(out_dir: Path):
         report["pdf_checks"].append(item)
         log.append({"kind": "pdf", **item})
     report["requests"] = log
-    report["status"] = "probe_ok" if report["pdf_checks"] and all(x.get("valid_pdf") for x in report["pdf_checks"]) else "page_only_or_partial"
+    report["status"] = "probe_ok" if report.get("candidate_parser_check", {}).get("status") == "match" and report["pdf_checks"] and all(x.get("valid_pdf") for x in report["pdf_checks"]) else "page_only_or_partial"
     _write_report(out_dir, report)
     return 0 if report["status"] == "probe_ok" else 1
 
