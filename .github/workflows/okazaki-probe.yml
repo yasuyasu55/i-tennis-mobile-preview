@@ -1,0 +1,74 @@
+name: okazaki-readonly-probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Candidate branch containing the read-only probe
+        required: true
+        default: okazaki-probe
+        type: string
+      confirm:
+        description: Type okazaki-readonly to confirm this one-time read-only check
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: okazaki-readonly-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Validate dispatch inputs
+        shell: bash
+        env:
+          INPUT_REF: ${{ inputs.ref }}
+          INPUT_CONFIRM: ${{ inputs.confirm }}
+        run: |
+          set -euo pipefail
+          [[ "$INPUT_CONFIRM" == "okazaki-readonly" ]] || { echo "Confirmation text mismatch"; exit 1; }
+          [[ "$INPUT_REF" == "okazaki-probe" ]] || { echo "Only the reviewed okazaki-probe branch is allowed"; exit 1; }
+          git check-ref-format --branch "$INPUT_REF" >/dev/null
+
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Run read-only probe
+        id: probe
+        shell: bash
+        run: |
+          set -uo pipefail
+          test -f pipeline/probe_okazaki.py
+          python3 --version
+          set +e
+          python3 pipeline/probe_okazaki.py --out-dir probe_out
+          result=$?
+          set -e
+          echo "probe_exit=$result" >> "$GITHUB_OUTPUT"
+          echo "Probe exit code: $result" >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+
+      - name: Save sanitized result artifact
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: okazaki-readonly-probe-result
+          path: probe_out/okazaki_probe_result.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Fail job if probe was not complete
+        if: steps.probe.outputs.probe_exit != '0'
+        shell: bash
+        run: |
+          echo "The read-only probe did not complete successfully. Inspect the artifact; no app data was changed."
+          exit 1
