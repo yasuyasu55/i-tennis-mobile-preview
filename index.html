@@ -142,6 +142,12 @@ main{padding:12px;max-width:720px;margin:auto}
 .t-fav-toolbar{margin:0 0 10px}
 .t-fav-view-btn{width:100%;min-height:44px;padding:9px 14px;border:1px solid #cde4d4;border-radius:12px;background:#fff;color:#07522d;font-size:14px;font-weight:800;text-align:left;cursor:pointer}
 .t-fav-view-btn:focus-visible{outline:3px solid #f2b705;outline-offset:2px}
+.t-display-settings{margin:0 0 10px;padding:9px 12px;border:1px solid #dbe8df;border-radius:12px;background:#f8fbf9;color:#34463b;font-size:13px}
+.t-display-settings summary{font-weight:800;cursor:pointer;min-height:24px}
+.t-display-settings-body{padding-top:8px;line-height:1.6}
+.t-display-settings label{display:flex;align-items:flex-start;gap:8px;cursor:pointer}
+.t-display-settings input{width:18px;height:18px;margin:1px 0 0;flex:0 0 auto}
+.t-display-settings small{display:block;margin:5px 0 0 26px;color:#6b7a70}
 .t-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
 .tcard.t-finished{opacity:.65;background:#f4f7f5}
 .t-badge{display:inline-block;font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;white-space:nowrap}
@@ -176,7 +182,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.8.2</p>
+  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.8.3</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -667,6 +673,24 @@ var tournamentFromCache = false;   // 通信できず、Service Workerが保存�
 var FAVORITES_STORAGE_KEY = 'i_tennis_mobile_tournament_favorites_v1';
 var favoriteIds = loadFavoriteIds();
 var favoriteView = false;
+var DISPLAY_DETAILS_KEY = 'i_tennis_mobile_hide_acquisition_details_v1';
+var hideAcquisitionDetails = loadHideAcquisitionDetails();
+
+function loadHideAcquisitionDetails(){
+  try { return localStorage.getItem(DISPLAY_DETAILS_KEY) === '1'; }
+  catch (e) { return false; }
+}
+function saveHideAcquisitionDetails(value){
+  try { localStorage.setItem(DISPLAY_DETAILS_KEY, value ? '1' : '0'); return true; }
+  catch (e) { return false; }
+}
+function tIsOptionalDetailNote(value){
+  var s = tText(value);
+  return /^自動取得/.test(s) || /^要項PDFの会場の表記:/.test(s) || /^要項PDFの確認日:/.test(s) || /^申込締切 \d{4}-\d{2}-\d{2} \d{2}:\d{2}（年は/.test(s);
+}
+function tDisplaySettingsHtml(){
+  return '<details class="t-display-settings"><summary>⚙ 表示設定</summary><div class="t-display-settings-body"><label><input type="checkbox" id="hideAcquisitionDetails"' + (hideAcquisitionDetails ? ' checked' : '') + '> 取得・分類の詳細を非表示</label><small>取得方法・確認日・照合内容などの補足情報を隠します。大会情報や重要な注意は表示されます。</small></div></details>';
+}
 
 function loadFavoriteIds(){
   try {
@@ -1012,17 +1036,18 @@ function tRenderCard(vm){
   html += tRow('申込', entryHtml);
   var snap = tText(t.source_snapshot_date);
   var snapD = tParseIsoDate(snap);
-  html += tRow('情報元', esc(tText(t.source_name) || '未取得') + (snapD ? '<span class="t-sub">資料時点: ' + esc(tFormatRange({ start: snapD, end: snapD })) + '</span>' : ''));
+  html += tRow('情報元', esc(tText(t.source_name) || '未取得') + (!hideAcquisitionDetails && snapD ? '<span class="t-sub">資料時点: ' + esc(tFormatRange({ start: snapD, end: snapD })) + '</span>' : ''));
   var ps = t.parse_status === 'success' ? '<span class="t-badge success">成功</span>' : (t.parse_status === 'partial' ? '<span class="t-badge partial">部分成功</span>' : '未取得');
   html += tRow('取得状態', ps);
 
   if (status === '参加資格要確認') { html += '<div class="t-warn">⚠ 参加資格を確認できていません。参加できるか、要項（公式情報）で確認してください。</div>'; }
   if (tText(t.eligibility_note)) { html += '<div class="t-warn">' + esc(t.eligibility_note) + '</div>'; }
   var notes = tArr(t.notes), warns = tArr(t.warnings);
-  for (i = 0; i < notes.length; i++) { html += '<div class="t-warn">' + esc(notes[i]) + '</div>'; }
-  var basis = tArr(t.classification_basis);
+  for (i = 0; i < notes.length; i++) { if (!hideAcquisitionDetails || !tIsOptionalDetailNote(notes[i])) { html += '<div class="t-warn">' + esc(notes[i]) + '</div>'; } }
+  var basis = hideAcquisitionDetails ? [] : tArr(t.classification_basis);
+  var detailSummary = basis.length ? '分類の根拠・取得時の注意' : '取得時の注意';
   if (basis.length || warns.length) {
-    html += '<details class="t-details"><summary>分類の根拠・取得時の注意</summary><ul>';
+    html += '<details class="t-details"><summary>' + detailSummary + '</summary><ul>';
     for (i = 0; i < basis.length; i++) {
       var b = basis[i] || {};
       html += '<li>' + esc(tFieldLabel(tText(b.field)) + '「' + tText(b.value) + '」← ' + tText(b.source) + (b.matched ? '「' + tText(b.matched) + '」' : '') + '（' + tText(b.rule) + '）') + '</li>';
@@ -1353,8 +1378,15 @@ function tRenderResults(){
 document.getElementById('favoritesToggle').addEventListener('click', function(){
   favoriteView = !favoriteView;
   updateFavoritesToolbar();
+  tRenderResults();});
+
+document.getElementById('tournamentArea').addEventListener('change', function(e){
+  if (!e.target || e.target.id !== 'hideAcquisitionDetails') { return; }
+  hideAcquisitionDetails = !!e.target.checked;
+  saveHideAcquisitionDetails(hideAcquisitionDetails);
   tRenderResults();
 });
+
 document.getElementById('tournamentArea').addEventListener('click', function(e){
   var node = e.target;
   while (node && node !== this && !(node.classList && node.classList.contains('t-fav-btn'))) { node = node.parentNode; }
@@ -1377,7 +1409,7 @@ function renderTournamentData(data){
   if (firstTime) {
     tState = tDefaultState();
     tApplyPreset('all');
-    el.innerHTML = tPanelHtml(data) + '<div class="t-cover" id="tCoverage">' + tCoverageHtml(data) + '</div><div id="tSummary"></div><div id="tResults"></div>';
+    el.innerHTML = tPanelHtml(data) + tDisplaySettingsHtml() + '<div class="t-cover" id="tCoverage">' + tCoverageHtml(data) + '</div><div id="tSummary"></div><div id="tResults"></div>';
     tBindPanel();
     tSyncPanel();
   } else {
@@ -1394,7 +1426,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.8.2';
+var APP_DATA_VERSION = '0.8.3';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }
