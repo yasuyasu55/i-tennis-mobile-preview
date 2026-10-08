@@ -11,7 +11,7 @@
  */
 'use strict';
 
-var APP_VERSION = '0.8.1';
+var APP_VERSION = '0.8.2';
 var CACHE_PREFIX = 'i-tennis-mobile-shell-';
 var CACHE_NAME = CACHE_PREFIX + 'v' + APP_VERSION;
 

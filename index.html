@@ -136,6 +136,12 @@ main{padding:12px;max-width:720px;margin:auto}
 .t-zero{background:#fff8e1;border:1px solid #f0dc9a;border-radius:12px;padding:12px 14px;margin:8px 0;font-size:13px;color:#5b4a00;line-height:1.7}
 .t-titleline{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
 .t-titleline .tcard-title{margin-bottom:0;flex:1;min-width:0}
+.t-fav-btn{flex:0 0 auto;min-width:42px;min-height:42px;padding:0 9px;border:1px solid #cde4d4;border-radius:10px;background:#f7fbf8;color:#07522d;font-size:23px;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.t-fav-btn[aria-pressed="true"]{background:#fff4d6;border-color:#e6c45c;color:#8a5b00}
+.t-fav-btn:focus-visible{outline:3px solid #f2b705;outline-offset:2px}
+.t-fav-toolbar{margin:0 0 10px}
+.t-fav-view-btn{width:100%;min-height:44px;padding:9px 14px;border:1px solid #cde4d4;border-radius:12px;background:#fff;color:#07522d;font-size:14px;font-weight:800;text-align:left;cursor:pointer}
+.t-fav-view-btn:focus-visible{outline:3px solid #f2b705;outline-offset:2px}
 .t-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
 .tcard.t-finished{opacity:.65;background:#f4f7f5}
 .t-badge{display:inline-block;font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;white-space:nowrap}
@@ -170,7 +176,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.8.1</p>
+  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.8.2</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -209,6 +215,7 @@ main{padding:12px;max-width:720px;margin:auto}
       <a class="court-mini" id="courtLink" href="https://www.e-shisetsu.e-aichi.jp/user/rsvUInstSrchVacantAction.do" target="_blank" rel="noopener noreferrer">🎾 コート予約 ↗</a>
     </div>
     <!-- COURT-LINK:END -->
+    <div class="t-fav-toolbar"><button id="favoritesToggle" class="t-fav-view-btn" type="button" aria-pressed="false">☆ お気に入り一覧（<span id="favoritesCount">0</span>）</button></div>
     <div id="tournamentArea"></div>
   </section>
 </main>
@@ -649,7 +656,7 @@ init();
    大会検索（初期実用版）。同梱の共通JSON(data/tournaments.json)を読み込んで、絞り込み・並べ替え・表示を行う。
    - 実行時に外部サイトへは通信しない。読み込むのは同じ場所の data/tournaments.json だけ。
    - 表示する文字列は必ず esc() を通し、URLは isSafeHttpUrl() で確認する（リンクは http/https のみ）。
-   - 読み込みに失敗しても、カレンダー・予定データには影響しない（この処理は予定データに触れない。新しい保存キーも作らない）。
+   - 読み込みに失敗しても、カレンダー・予定データには影響しない（大会検索の処理は予定データに触れない）。
    - 日付はJSONの normalized をそのまま使う。曜日・投稿日・タイトルの年月から日付を推測しない。
    - 参加資格が確認できていない大会は「参加資格要確認」と表示し、参加できると断定する表示はしない。
 */
@@ -657,6 +664,45 @@ var TOURNAMENT_DATA_URL = 'data/tournaments.json';
 var tournamentDataCache = null;
 var tournamentLoadFailed = false;
 var tournamentFromCache = false;   // 通信できず、Service Workerが保存済みのデータを返した場合 true
+var FAVORITES_STORAGE_KEY = 'i_tennis_mobile_tournament_favorites_v1';
+var favoriteIds = loadFavoriteIds();
+var favoriteView = false;
+
+function loadFavoriteIds(){
+  try {
+    var raw = localStorage.getItem(FAVORITES_STORAGE_KEY);
+    var parsed = raw ? JSON.parse(raw) : [];
+    if (!(parsed instanceof Array)) { return []; }
+    var out = [];
+    for (var i = 0; i < parsed.length; i++) {
+      if (typeof parsed[i] === 'string' && parsed[i] && out.indexOf(parsed[i]) === -1) { out.push(parsed[i]); }
+    }
+    return out;
+  } catch (e) { return []; }
+}
+function saveFavoriteIds(){
+  try { localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoriteIds)); return true; }
+  catch (e) { return false; }
+}
+function isFavoriteTournament(id){ return favoriteIds.indexOf(String(id || '')) !== -1; }
+function updateFavoritesToolbar(){
+  var count = document.getElementById('favoritesCount');
+  var button = document.getElementById('favoritesToggle');
+  if (count) { count.textContent = String(favoriteIds.length); }
+  if (button) {
+    button.setAttribute('aria-pressed', favoriteView ? 'true' : 'false');
+    button.innerHTML = favoriteView ? '← 大会一覧に戻る（お気に入り ' + favoriteIds.length + '件）' : '☆ お気に入り一覧（<span id="favoritesCount">' + favoriteIds.length + '</span>）';
+  }
+}
+function toggleFavoriteTournament(id){
+  id = String(id || '');
+  if (!id) { return; }
+  var i = favoriteIds.indexOf(id);
+  if (i === -1) { favoriteIds.push(id); }
+  else { favoriteIds.splice(i, 1); }
+  saveFavoriteIds();
+  updateFavoritesToolbar();
+}
 
 var T_GROUPS = ['一般', 'ベテラン', 'ジュニア', '学生', '実業団・団体', '不明'];
 var T_TYPES = ['シングルス', 'ダブルス', 'ミックス', '団体戦', '種目不明'];
@@ -916,6 +962,8 @@ function tRenderCard(vm){
   html += '<div class="t-titleline"><div class="tcard-title">' + esc(tText(t.title) || '（大会名なし）') + '</div>';
   if (vm.group === 'finished') { html += '<span class="t-badge finished">終了済み</span>'; }
   else if (vm.group === 'undated') { html += '<span class="t-badge undated">' + (vm.dateState === 'partial' ? '日付一部未確定' : '日付未取得') + '</span>'; }
+  var favId = tText(t.id), favOn = isFavoriteTournament(favId);
+  html += '<button class="t-fav-btn" type="button" data-fav-id="' + esc(favId) + '" aria-pressed="' + (favOn ? 'true' : 'false') + '" aria-label="' + (favOn ? 'お気に入りから削除' : 'お気に入りに追加') + '" title="' + (favOn ? 'お気に入りから削除' : 'お気に入りに追加') + '">' + (favOn ? '★' : '☆') + '</button>';
   html += '</div>';
 
   // 対象者・参加資格のバッジ
@@ -927,7 +975,7 @@ function tRenderCard(vm){
   for (var a = 0; a < aud.length; a++) { html += '<span class="t-badge aud">対象: ' + esc(aud[a]) + '</span>'; }
   html += '<span class="t-badge ' + eligCls + '">' + (status === '参加資格要確認' ? '⚠ ' : '') + esc(status) + '</span>';
   html += '</div>';
-  if (tSearched) { var why = tMatchReason(vm); if (why) { html += '<div class="t-reason" data-reason="1">' + esc(why) + '</div>'; } }   // 検索条件に使った項目だけの一致理由
+  if (tSearched && !favoriteView) { var why = tMatchReason(vm); if (why) { html += '<div class="t-reason" data-reason="1">' + esc(why) + '</div>'; } }   // 検索条件に使った項目だけの一致理由。お気に入り一覧では出さない
 
   // 開催日
   var lines = [];
@@ -1221,6 +1269,33 @@ function tRenderResults(){
   var sumEl = document.getElementById('tSummary');
   var resEl = document.getElementById('tResults');
   if (!data || !sumEl || !resEl) { return; }
+  var filterPanel = document.getElementById('tFilters');
+  var coveragePanel = document.getElementById('tCoverage');
+  if (filterPanel) { filterPanel.hidden = favoriteView; }
+  if (coveragePanel) { coveragePanel.hidden = favoriteView; }
+  updateFavoritesToolbar();
+  if (favoriteView) {
+    var byId = {};
+    var allTournaments = tArr(data.tournaments);
+    for (var fi = 0; fi < allTournaments.length; fi++) {
+      if (allTournaments[fi] && typeof allTournaments[fi] === 'object' && tText(allTournaments[fi].id)) { byId[tText(allTournaments[fi].id)] = allTournaments[fi]; }
+    }
+    sumEl.innerHTML = '<div class="t-summary">お気に入り ' + favoriteIds.length + '件</div>';
+    if (!favoriteIds.length) { resEl.innerHTML = '<div class="empty">お気に入りはまだありません。大会カードの☆を押すと、ここに保存されます。</div>'; return; }
+    var favHtml = '';
+    for (var fj = 0; fj < favoriteIds.length; fj++) {
+      var favTournament = byId[favoriteIds[fj]];
+      if (favTournament) {
+        favHtml += tRenderCard(tBuildView(favTournament, fj, tTodayStart()));
+      } else {
+        favHtml += '<div class="tcard" data-id="' + esc(favoriteIds[fj]) + '"><div class="t-titleline"><div class="tcard-title">この大会は現在の掲載データにありません</div><button class="t-fav-btn" type="button" data-fav-id="' + esc(favoriteIds[fj]) + '" aria-pressed="true" aria-label="お気に入りから削除" title="お気に入りから削除">★</button></div><div class="t-hint">大会データから見つかりません。不要なら★を押して削除できます。</div></div>';
+      }
+    }
+    resEl.innerHTML = favHtml;
+    return;
+  }
+  if (filterPanel) { filterPanel.hidden = false; }
+  if (coveragePanel) { coveragePanel.hidden = false; }
   var today = tTodayStart();
   var range = tEffectiveRange();
   var rangeBad = !!(range.start && range.end && range.start.getTime() > range.end.getTime());
@@ -1275,6 +1350,19 @@ function tRenderResults(){
   resEl.innerHTML = html;
 }
 
+document.getElementById('favoritesToggle').addEventListener('click', function(){
+  favoriteView = !favoriteView;
+  updateFavoritesToolbar();
+  tRenderResults();
+});
+document.getElementById('tournamentArea').addEventListener('click', function(e){
+  var node = e.target;
+  while (node && node !== this && !(node.classList && node.classList.contains('t-fav-btn'))) { node = node.parentNode; }
+  if (!node || node === this) { return; }
+  toggleFavoriteTournament(node.getAttribute('data-fav-id'));
+  tRenderResults();
+});
+
 function renderTournamentData(data){
   if (!data || !(data.tournaments instanceof Array)) { throw new Error('invalid tournament data'); }
   var el = document.getElementById('tournamentArea');
@@ -1306,7 +1394,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.8.1';
+var APP_DATA_VERSION = '0.8.2';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }
