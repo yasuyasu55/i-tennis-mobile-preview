@@ -4,9 +4,11 @@ import unittest
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.join(ROOT, "pipeline"))
+sys.path.insert(0, os.path.join(ROOT, "data-source"))
 from datetime import date
 
 from probe_okazaki import extract_events, _deadline_is_upcoming
+from parsers import okazaki_tennis
 
 
 FIXTURE = '''<!doctype html><html><body>
@@ -35,6 +37,18 @@ class ProbeParserTests(unittest.TestCase):
         self.assertTrue(singles["guideline_url"].endswith("/singles.pdf"))
         self.assertNotIn("formzu", singles["guideline_url"])
         self.assertEqual(team["deadline_text"], "11月1日（日）")
+
+    def test_candidate_parser_matches_probe_on_same_fixture(self):
+        probe = extract_events(FIXTURE)
+        parsed = okazaki_tennis.parse_page(FIXTURE, page_url="https://www.okazaki-tennis.com/taikai-r8")
+        self.assertIsNone(parsed["fatal_error"])
+        self.assertEqual(len(probe), len(parsed["events"]))
+        by_title = {e["title"]: e for e in parsed["events"]}
+        for event in probe:
+            candidate = by_title[event["title"]]
+            for field in ("date_text", "events_text", "eligibility", "venue", "deadline_text", "guideline_url"):
+                normalize = lambda x: " ".join((x or "").replace("\u200b", "").split())
+                self.assertEqual(normalize(event.get(field)), normalize(candidate.get(field)), (event["title"], field))
 
     def test_upcoming_deadline_selection_around_october_2026(self):
         today = date(2026, 10, 9)
