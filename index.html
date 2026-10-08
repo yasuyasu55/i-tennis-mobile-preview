@@ -112,6 +112,7 @@ main{padding:12px;max-width:720px;margin:auto}
 .t-footer{margin-top:18px;padding-top:14px;border-top:1px solid #e1ece5;display:flex;flex-direction:column;gap:10px}
 .t-footer-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .t-footer-actions .t-btn{min-height:44px;font-size:13px;font-weight:700;padding:8px 10px;border-color:#9bb8a5;color:#3d6b50}
+.t-footer-actions .t-btn.t-btn-saved{background:#08763d;border-color:#08763d;color:#fff;box-shadow:0 2px 0 #05522a}
 .t-save-status{font-size:12px;color:#07522d;line-height:1.5}
 .t-save-status[hidden]{display:none}
 .t-btn-search{display:block;width:100%;box-sizing:border-box;min-height:56px;font-size:19px;font-weight:900;letter-spacing:.06em;color:#fff;background:#08763d;border:0;border-radius:14px;padding:14px 16px;box-shadow:0 3px 0 #05522a,0 7px 16px rgba(8,118,61,.38);-webkit-tap-highlight-color:transparent;cursor:pointer}
@@ -185,7 +186,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.8.4</p>
+  <p style="margin:2px 0 0;font-size:11px;color:#a9d3b8">Ver.0.8.5</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -1240,6 +1241,16 @@ function tSig(st){
   var sel = function(map){ var o = []; for (var k in map) { if (map.hasOwnProperty(k) && map[k]) { o.push(k); } } return o.sort().join(','); };
   return [st.period, st.period === 'custom' ? st.start + '~' + st.end : '', sel(st.areas), sel(st.groups), sel(st.types), st.keyword, st.exclJunior ? 1 : 0, st.exclSenior ? 1 : 0, st.exclFinished ? 1 : 0, st.exclUndated ? 1 : 0].join('|');
 }
+var tSavedSearchSig = null;
+function tSetSaveButtonSaved(isSaved){
+  var button = document.getElementById('tSaveSearch');
+  if (!button) { return; }
+  button.classList.toggle('t-btn-saved', !!isSaved);
+  button.textContent = isSaved ? '保存済み ✓' : '検索条件を保存';
+}
+function tUpdateSaveButton(st){
+  tSetSaveButtonSaved(tSavedSearchSig !== null && tSig(st) === tSavedSearchSig);
+}
 // 矛盾する指定: 対象者でジュニア・学生が選ばれているのに、「ジュニア・学生系を除外」がON
 function tConflictOf(st){ return !!(st.exclJunior && (st.groups['ジュニア'] || st.groups['学生'])); }
 function tShowConflict(on){
@@ -1253,6 +1264,7 @@ function tMarkDirty(){
   var saved = document.getElementById('tSaveStatus');
   if (saved) { saved.hidden = true; }
   var draft = tReadPanel();
+  tUpdateSaveButton(draft);
   d.hidden = (tSig(draft) === tSig(tState));
   tShowConflict(tConflictOf(draft));
 }
@@ -1319,10 +1331,13 @@ function tBindPanel(){
     }
     if (draft.period !== 'custom') { draft.start = ''; draft.end = ''; }
     var ok = tSaveSearchPreferences(draft);
+    if (ok) { tSavedSearchSig = tSig(draft); }
+    tUpdateSaveButton(draft);
     if (status) { status.textContent = ok ? '検索条件を保存しました。次回起動時から、この条件で始まります。現在の検索結果は変わりません。' : '保存できませんでした。ブラウザの保存領域を確認してください。'; status.hidden = false; }
   });
   document.getElementById('tReset').addEventListener('click', function(){
     tClearSearchPreferences(); // リセットでは、保存済みの個人条件も解除する
+    tSavedSearchSig = null;
     tState = tDefaultState(); tApplyPreset('all');   // 全項目を標準条件（全件）へ戻して、検索を実行する
     tSyncPanel();
     tRunSearch();
@@ -1489,6 +1504,7 @@ function renderTournamentData(data){
   if (firstTime) {
     tState = tLoadSearchPreferences(data);
     if (tState.period !== 'custom') { tApplyPreset(tState.period); }
+    try { tSavedSearchSig = localStorage.getItem(SEARCH_PREFERENCES_KEY) ? tSig(tState) : null; } catch (e) { tSavedSearchSig = null; }
     el.innerHTML = tPanelHtml(data) + tDisplaySettingsHtml() + '<div class="t-cover" id="tCoverage">' + tCoverageHtml(data) + '</div><div id="tSummary"></div><div id="tResults"></div>';
     tBindPanel();
     tSyncPanel();
@@ -1506,7 +1522,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.8.4';
+var APP_DATA_VERSION = '0.8.5';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }
