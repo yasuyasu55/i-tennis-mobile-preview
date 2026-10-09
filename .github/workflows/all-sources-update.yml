@@ -39,10 +39,12 @@ jobs:
         with:
           ref: main
           path: public
+          fetch-depth: 0
       - uses: actions/checkout@v5
         with:
           ref: hamamatsu-r5-candidate
           path: collector
+          fetch-depth: 0
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'

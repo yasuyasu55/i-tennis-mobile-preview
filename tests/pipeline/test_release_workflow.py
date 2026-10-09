@@ -23,6 +23,12 @@ class ReleaseWorkflowTests(unittest.TestCase):
         fetch = next(s["run"] for s in steps if s.get("name") == "Fetch all sources without writing public data")
         self.assertIn("--dry-run", fetch)
 
+    def test_cross_repository_atomic_publication_uses_full_history(self):
+        checkouts = [s for s in self.workflow["jobs"]["update"]["steps"] if s.get("uses", "").startswith("actions/checkout@")]
+        self.assertEqual(len(checkouts), 2)
+        for step in checkouts:
+            self.assertEqual(step["with"]["fetch-depth"], "0")
+
     def test_atomic_nonforced_push_and_explicit_file_staging(self):
         script = next(s["run"] for s in self.workflow["jobs"]["update"]["steps"] if s.get("name") == "Prepare and atomically commit data only")
         self.assertIn("push --atomic", script)
