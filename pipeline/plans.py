@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.join(ROOT, "data-source"))
 from parsers import toyohashi_tennis as tt   # noqa: E402
 from parsers import toyokawa_tennis as tk    # noqa: E402
 from parsers import hamamatsu_tennis as hm   # noqa: E402
+from parsers import okazaki_tennis as ok     # noqa: E402
 
 from fetcher import FetchError               # noqa: E402
 import pdftext                               # noqa: E402
@@ -164,4 +165,5 @@ def plan_hamamatsu(cfg, cfgroot, fetcher, today, pdf_to_text):
     return res
 
 
-PLANS = {"aichi": plan_generic, "toyohashi": plan_toyohashi, "gamagori": plan_generic, "toyokawa": plan_toyokawa, "hamamatsu": plan_hamamatsu}
+# 岡崎は、まず公式大会一覧1ページだけを読む。要項PDF本文の取得・解析は別工程。
+PLANS = {"aichi": plan_generic, "toyohashi": plan_toyohashi, "gamagori": plan_generic, "toyokawa": plan_toyokawa, "hamamatsu": plan_hamamatsu, "okazaki": plan_generic}
