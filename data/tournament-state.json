@@ -1,5 +1,450 @@
 {
  "schema_version": 1,
  "miss_limit": 3,
- "entries": {}
+ "entries": {
+  "aichi-2026-2f561970": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-60d862bf": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-dee3b848": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-39868076": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-9dd8b147": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-9fa77182": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-0db7c0a8": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-4e3e1d33": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-d034dc54": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-1f7bbc4d": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-e5ae8264": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-00d82b12": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-7cb7db86": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-49b21ea4": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-ee7c51ba": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-e2a9246f": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-e1220178": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-9351f55b": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-e77453b4": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-540cf2ff": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-010f3c0f": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-8e919914": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-f87139e0": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-c9345d1e": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "aichi-2026-09cc0aca": {
+   "source_id": "aichi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4396": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4394": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4385": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4383": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4327": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4299": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4228": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4201": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4175": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4108": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4080": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4065": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-3999": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-3995": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-3903": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-3875": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-4072": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-3869": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-3807": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyohashi-3745": {
+   "source_id": "toyohashi_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "gamagori-2026-0a455938": {
+   "source_id": "gamagori_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "gamagori-2026-4d16d778": {
+   "source_id": "gamagori_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "gamagori-2026-02360546": {
+   "source_id": "gamagori_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "gamagori-2026-883839a9": {
+   "source_id": "gamagori_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "gamagori-2026-7090ef84": {
+   "source_id": "gamagori_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "gamagori-2026-9da3fc88": {
+   "source_id": "gamagori_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "gamagori-2026-5490a862": {
+   "source_id": "gamagori_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-d3dc4d5c": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-3ebbcccc": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-2b669226": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-71de1081": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-7881905b": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-5efc10ef": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-77ee226e": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "toyokawa-2026-f611bb54": {
+   "source_id": "toyokawa_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "hamamatsu-2026-6551667c": {
+   "source_id": "hamamatsu_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "hamamatsu-2026-0fc1b406": {
+   "source_id": "hamamatsu_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "hamamatsu-2026-cf882b3f": {
+   "source_id": "hamamatsu_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "hamamatsu-2026-dffcfec9": {
+   "source_id": "hamamatsu_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "hamamatsu-2026-dddc3154": {
+   "source_id": "hamamatsu_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-7d556fa6": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-710da17d": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-61e06ea4": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-fea4bb59": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-0eccec25": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-32d0e8b6": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-7766c0d2": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-4796a2aa": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  },
+  "okazaki-2026-382d711e": {
+   "source_id": "okazaki_tennis_association",
+   "first_seen_at": "2026-10-09",
+   "last_seen_at": "2026-10-09",
+   "missed_runs": 0
+  }
+ }
 }
