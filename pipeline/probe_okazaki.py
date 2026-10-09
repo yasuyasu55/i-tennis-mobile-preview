@@ -103,7 +103,10 @@ class TreeParser(HTMLParser):
 
 
 def _norm(s: str) -> str:
-    s = s.replace("\u3000", " ").replace("\xa0", " ")
+    # Wix may insert invisible formatting characters into visible card text.
+    # Remove them before title deduplication and parser-to-probe comparison.
+    s = (s.replace("\u3000", " ").replace("\xa0", " ")
+           .replace("\u200b", "").replace("\ufeff", ""))
     return re.sub(r"\s+", " ", s).strip()
 
 
