@@ -200,7 +200,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.6</p>
+  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.7</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -1564,7 +1564,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.8.6';
+var APP_DATA_VERSION = '0.8.7';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }
