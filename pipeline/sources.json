@@ -98,6 +98,19 @@
           "h-ta.jp"
         ]
       }
+    },
+    {
+      "key": "okazaki",
+      "enabled": true,
+      "min_records": 5,
+      "min_ratio": 0.5,
+      "pages": [
+        {
+          "name": "okazaki_tournament.html",
+          "url": "https://www.okazaki-tennis.com/taikai-r8",
+          "required": true
+        }
+      ]
     }
   ],
   "excluded": [
