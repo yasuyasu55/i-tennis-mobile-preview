@@ -89,23 +89,52 @@ def sanity(cfg, new, prev):
 
 
 _OPTIONAL_DETAIL_FIELDS = (
-    "deadline_text", "eligibility_note", "fee_text", "contact_text",
-    "entry_text", "entry_url", "guideline_url", "reserve_text", "reserve_periods",
+    "fee_text", "contact_text", "entry_text", "entry_url", "guideline_url",
+    "reserve_text", "reserve_periods",
 )
 
 
+def _is_empty_detail(value):
+    return value is None or value == "" or value == []
+
+
 def preserve_unread_optional_fields(previous, candidate):
-    """Keep prior optional details when a successful parse cannot read them."""
+    """Keep known optional details when this successful parse cannot read them."""
     merged = dict(candidate)
     retained = []
+
+    # Keep the display text and normalized deadline values as one group.
+    if _is_empty_detail(merged.get("deadline_text")) and not _is_empty_detail(previous.get("deadline_text")):
+        for field in ("deadline_text", "deadline_date", "deadline_time"):
+            if field in previous:
+                merged[field] = previous[field]
+                if not _is_empty_detail(previous[field]):
+                    retained.append(field)
+
+    # Eligibility status and note are derived from eligibility_text.
+    if _is_empty_detail(merged.get("eligibility_text")) and not _is_empty_detail(previous.get("eligibility_text")):
+        for field in ("eligibility_text", "eligibility_status", "eligibility_note"):
+            if field in previous:
+                merged[field] = previous[field]
+                if not _is_empty_detail(previous[field]):
+                    retained.append(field)
+        old_basis = list(previous.get("classification_basis") or [])
+        new_basis = list(merged.get("classification_basis") or [])
+        old_eligibility = [item for item in old_basis if item.get("field") == "eligibility"]
+        if old_eligibility:
+            merged["classification_basis"] = [
+                item for item in new_basis if item.get("field") != "eligibility"
+            ] + old_eligibility
+            retained.append("classification_basis.eligibility")
+
+    # Preserve other optional details individually.
     for field in _OPTIONAL_DETAIL_FIELDS:
         old_value = previous.get(field)
         new_value = merged.get(field)
-        empty = new_value is None or new_value == "" or new_value == []
-        old_present = old_value is not None and old_value != "" and old_value != []
-        if empty and old_present:
+        if _is_empty_detail(new_value) and not _is_empty_detail(old_value):
             merged[field] = old_value
             retained.append(field)
+
     if retained:
         notes = list(merged.get("notes") or [])
         marker = "今回未取得のため前回値を保持: " + ", ".join(retained)
@@ -113,7 +142,6 @@ def preserve_unread_optional_fields(previous, candidate):
             notes.append(marker)
         merged["notes"] = notes
     return merged
-
 
 def _fail(stage, message):
     return {"ok": False, "stage": stage, "message": message}
