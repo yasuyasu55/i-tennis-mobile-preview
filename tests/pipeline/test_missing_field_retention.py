@@ -71,6 +71,70 @@ class MissingFieldRetentionTests(unittest.TestCase):
         self.assertIsNone(result["deadline_date"])
         self.assertIsNone(result["deadline_time"])
 
+    def test_toyokawa_partial_pdf_run_keeps_previous_pdf_verified_fields(self):
+        previous = {
+            "id": "toyokawa-1", "source_id": "toyokawa_tennis_association",
+            "parse_status": "success", "venue": "豊川公園庭球場",
+            "event_types": ["ダブルス", "ミックス"],
+            "primary_event_types": ["ダブルス"], "component_match_types": ["ダブルス", "ミックス"],
+            "audience_types": ["一般"], "eligibility_text": "オープン参加（レベル条件あり）",
+            "eligibility_status": "その他の条件あり", "eligibility_note": "PDF確認済みの条件",
+            "deadline_text": "10月25日", "deadline_date": "2026-10-25", "deadline_time": "17:00",
+            "classification_basis": [
+                {"field": "venue", "value": "豊川公園庭球場", "source": "要項PDFの会場欄"},
+                {"field": "event_type", "value": "ミックス", "source": "要項PDFの種目欄"},
+                {"field": "audience", "value": "一般", "source": "要項PDFの資格欄"},
+                {"field": "eligibility", "value": "その他の条件あり", "source": "要項PDFの資格欄"},
+            ],
+            "year_basis": "見出しから開催年を取得／申込期間は2026年のPDFを使用",
+            "notes": ["要項PDFの確認日: 2026-10-06", "申込期間: 2026-10-04〜2026-10-25"],
+        }
+        candidate = {
+            "id": "toyokawa-1", "source_id": "toyokawa_tennis_association",
+            "parse_status": "partial", "venue": None,
+            "event_types": ["ダブルス"], "primary_event_types": ["ダブルス"],
+            "component_match_types": ["ダブルス"], "audience_types": ["不明"],
+            "eligibility_text": None, "eligibility_status": "参加資格要確認",
+            "eligibility_note": "未取得", "deadline_text": None, "deadline_date": None,
+            "deadline_time": None,
+            "classification_basis": [
+                {"field": "event_type", "value": "ダブルス", "source": "タイトル"},
+                {"field": "audience", "value": "不明", "source": "タイトル"},
+            ], "year_basis": "見出しから開催年を取得", "notes": [],
+        }
+
+        result = ru.preserve_unread_optional_fields(previous, candidate)
+
+        for field in ("venue", "event_types", "primary_event_types", "component_match_types",
+                      "audience_types", "eligibility_text", "eligibility_status", "eligibility_note",
+                      "deadline_text", "deadline_date", "deadline_time", "year_basis"):
+            self.assertEqual(result[field], previous[field], field)
+        self.assertEqual(result["parse_status"], "partial")
+        self.assertTrue(any("前回確認値（今回未確認）" in note for note in result["notes"]))
+        self.assertTrue(any("classification_basis.event_type" in note for note in result["notes"]))
+
+    def test_okazaki_keeps_prior_deadline_note_with_unconfirmed_label(self):
+        previous = {"source_id": "okazaki_tennis_association", "notes": [
+            "公式要項の郵送締切は10月30日（金）。上記はインターネット申込の締切です。"]}
+        candidate = {"source_id": "okazaki_tennis_association", "parse_status": "partial", "notes": []}
+        result = ru.preserve_unread_optional_fields(previous, candidate)
+        self.assertIn("前回確認事項（今回未確認）: 公式要項の郵送締切は10月30日（金）。上記はインターネット申込の締切です。",
+                      result["notes"])
+
+    def test_repeated_unread_deadline_note_does_not_stack_prefixes(self):
+        candidate = {"source_id": "okazaki_tennis_association", "parse_status": "partial", "notes": []}
+        previous = {"notes": ["公式要項の郵送締切は10月30日。"]}
+        once = ru.preserve_unread_optional_fields(previous, candidate)
+        twice = ru.preserve_unread_optional_fields(once, candidate)
+        self.assertEqual(once["notes"], twice["notes"])
+
+    def test_successful_pdf_parse_replaces_previous_classification(self):
+        previous = {"source_id": "toyokawa_tennis_association", "event_types": ["ダブルス", "ミックス"],
+                    "venue": "旧会場", "classification_basis": [{"field": "event_type", "source": "要項PDFの種目欄"}]}
+        candidate = {"source_id": "toyokawa_tennis_association", "parse_status": "success", "event_types": ["ダブルス"],
+                     "venue": "新会場", "notes": []}
+        self.assertEqual(ru.preserve_unread_optional_fields(previous, candidate), candidate)
+
 
 if __name__ == "__main__":
     unittest.main()

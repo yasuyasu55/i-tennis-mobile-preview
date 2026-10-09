@@ -662,6 +662,19 @@ def build_okazaki():
         event_text = [("公式大会一覧の種目欄", ev["events_text"])]
         apply_common_classification(rec, extra_audience_texts=[("公式大会一覧の参加資格欄", ev["eligibility"])],
                                     extra_event_texts=event_text, table_eligibility=ev["eligibility"])
+        # 共通分類器の説明文には「在学」が含まれるが、岡崎の一覧に
+        # 在学条件が書かれていない大会へ、その条件を付け足さない。
+        if "在学" not in ev["eligibility"] and "在学" in str(rec.get("eligibility_note") or ""):
+            rec["eligibility_note"] = "参加資格は一覧表の原文「%s」です。原文にない条件は加えず、詳細は公式要項で確認してください。" % ev["eligibility"]
+            rec["classification_basis"] = [
+                dict(item, matched=ev["eligibility"],
+                     rule="一覧表の参加資格欄の原文に基づく。原文にない対象条件は加えない")
+                if item.get("field") in ("audience", "eligibility")
+                   and item.get("source") == "一覧表の参加資格欄"
+                   and "在住在勤在学" in str(item.get("matched") or "")
+                else item
+                for item in rec.get("classification_basis", [])
+            ]
         # 岡崎の一覧には「加盟員のみ」と明記される大会がある。
         # 共通分類器を他地域のデータに波及させず、岡崎の公式原文だけを登録条件として扱う。
         if _nfkc(ev["eligibility"]).replace(" ", "") == "加盟員のみ":

@@ -135,6 +135,72 @@ def preserve_unread_optional_fields(previous, candidate):
             merged[field] = old_value
             retained.append(field)
 
+    # 豊川の一覧ページには会場・詳細種目・参加資格がなく、要項PDFが今runで
+    # 一意に対応しない場合は parse_status=partial になる。タイトルだけから
+    # 作った分類で、前回PDFから確認済みの値を上書きしない。
+    if (candidate.get("source_id") == "toyokawa_tennis_association"
+            and candidate.get("parse_status") == "partial"):
+        old_basis = list(previous.get("classification_basis") or [])
+        pdf_fields = {item.get("field") for item in old_basis
+                      if "要項PDF" in str(item.get("source") or "")}
+        field_groups = {
+            "venue": ("venue",),
+            "event_type": ("event_types", "primary_event_types", "component_match_types"),
+            "audience": ("audience_types",),
+            "eligibility": ("eligibility_text", "eligibility_status", "eligibility_note"),
+        }
+        for basis_field, record_fields in field_groups.items():
+            has_pdf_evidence = basis_field in pdf_fields
+            if basis_field == "venue" and not _is_empty_detail(previous.get("venue")) and _is_empty_detail(candidate.get("venue")):
+                # 会場は classification_basis に別フィールドとして記録されない。
+                has_pdf_evidence = True
+            if not has_pdf_evidence:
+                continue
+            for field in record_fields:
+                old_value = previous.get(field)
+                if not _is_empty_detail(old_value):
+                    merged[field] = old_value
+                    retained.append(field)
+            if basis_field in ("event_type", "audience", "eligibility"):
+                merged["classification_basis"] = [
+                    item for item in merged.get("classification_basis", [])
+                    if item.get("field") != basis_field
+                ] + [item for item in old_basis
+                     if item.get("field") == basis_field
+                     and "要項PDF" in str(item.get("source") or "")]
+                retained.append("classification_basis." + basis_field)
+
+        # PDF未対応時は、前回確認した申込期間の年根拠も消さない。
+        if ("申込期間" in str(previous.get("year_basis") or "")
+                and "申込期間" not in str(merged.get("year_basis") or "")):
+            merged["year_basis"] = previous["year_basis"]
+            retained.append("year_basis.申込期間")
+
+        # PDF由来の確認注記は消さず、今回再確認していないことを明記する。
+        old_pdf_notes = [n for n in previous.get("notes", [])
+                         if n.startswith(("要項PDFの確認日:", "申込期間:", "前回確認値（今回未確認）:"))]
+        if old_pdf_notes:
+            notes = list(merged.get("notes") or [])
+            for note in old_pdf_notes:
+                stale_note = note if note.startswith("前回確認値（今回未確認）:") else "前回確認値（今回未確認）: " + note
+                if stale_note not in notes:
+                    notes.append(stale_note)
+            merged["notes"] = notes
+
+    # 岡崎の一覧は要項・申込ページをまだ解析していない。前回の郵送締切等の
+    # 手確認メモを消さず、今回再確認していない注記として残す。
+    if (candidate.get("source_id") == "okazaki_tennis_association"
+            and candidate.get("parse_status") == "partial"):
+        old_notes = [n for n in previous.get("notes", [])
+                     if "郵送締切" in n or "申込締切" in n]
+        if old_notes:
+            notes = list(merged.get("notes") or [])
+            for note in old_notes:
+                retained_note = note if note.startswith("前回確認事項（今回未確認）:") else "前回確認事項（今回未確認）: " + note
+                if retained_note not in notes:
+                    notes.append(retained_note)
+                    retained.append("notes.previous_deadline_note")
+            merged["notes"] = notes
     if retained:
         notes = list(merged.get("notes") or [])
         marker = "今回未取得のため前回値を保持: " + ", ".join(retained)
