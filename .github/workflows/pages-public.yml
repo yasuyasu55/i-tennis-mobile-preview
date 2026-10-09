@@ -1,0 +1,48 @@
+name: pages-public
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - service-worker.js
+      - manifest.json
+      - icons/**
+      - data/tournaments.json
+      - .github/workflows/pages-public.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tennis-production-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Assemble approved public assets only
+        run: |
+          mkdir -p site/data
+          cp index.html service-worker.js manifest.json site/
+          cp -R icons site/icons
+          cp data/tournaments.json site/data/
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - uses: actions/deploy-pages@v5
+        id: deployment
