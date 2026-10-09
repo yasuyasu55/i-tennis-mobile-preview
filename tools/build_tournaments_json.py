@@ -677,7 +677,7 @@ def build_okazaki():
 
 
 
-SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu"]
+SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu", "okazaki"]
 
 
 def source_meta(key, sid, name, area, event_area, coverage, label, note, records, files, parser):
