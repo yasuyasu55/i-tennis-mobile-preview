@@ -1,9 +1,7 @@
 name: okazaki-candidate-dryrun
 
 on:
-  # 毎週月曜 03:17（日本時間）。候補作成のみで、公開データは更新しない。
-  schedule:
-    - cron: '17 18 * * 0'
+  # 全6情報源のall-sources-updateに定期実行を統合。手動確認用として維持。
   workflow_dispatch:
     inputs:
       confirm:

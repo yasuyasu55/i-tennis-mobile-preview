@@ -1,0 +1,128 @@
+name: all-sources-update
+
+on:
+  # 毎週月曜03:17 JST。main配置・Pages設定変更後に有効になる。
+  schedule:
+    - cron: '17 18 * * 0'
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: '確認文字列: all-sources-update'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tennis-production-release
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      TZ: Asia/Tokyo
+    steps:
+      - name: Check invocation
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+        run: |
+          test "$GITHUB_REF" = 'refs/heads/main'
+          if [ "$GITHUB_EVENT_NAME" = 'workflow_dispatch' ]; then
+            test "$CONFIRM" = 'all-sources-update'
+          fi
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          path: public
+      - uses: actions/checkout@v5
+        with:
+          ref: hamamatsu-r5-candidate
+          path: collector
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install extraction dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+          python -m pip install -r collector/requirements-pipeline.txt
+      - name: Offline safety tests
+        run: python -m unittest discover -s collector/tests/pipeline
+      - name: Seed from current public records
+        run: cp public/data/tournaments.json collector/data/tournaments.json
+      - name: Fetch all sources without writing public data
+        run: python collector/pipeline/run_update.py --dry-run
+      - name: Validate schema and release safety
+        run: |
+          python collector/pipeline/validate.py collector/pipeline/out/proposed/tournaments.json
+          python collector/pipeline/release_guard.py public/data/tournaments.json collector/pipeline/out/proposed/tournaments.json collector/pipeline/out/run-summary.json
+      - name: Prepare and atomically commit data only
+        run: |
+          set -euo pipefail
+          for file in tournaments.json tournament-state.json tournament-history.json update-log.json; do
+            cp "collector/pipeline/out/proposed/$file" "collector/data/$file"
+          done
+          cp collector/pipeline/out/proposed/tournaments.json public/data/tournaments.json
+          for repo in public collector; do
+            git -C "$repo" config user.name 'github-actions[bot]'
+            git -C "$repo" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          done
+          git -C public add -- data/tournaments.json
+          git -C collector add -- data/tournaments.json data/tournament-state.json data/tournament-history.json data/update-log.json
+          if ! git -C public diff --cached --quiet; then
+            git -C public commit -m 'Update verified tennis tournament data'
+          fi
+          if ! git -C collector diff --cached --quiet; then
+            git -C collector commit -m 'Persist verified collection data and run state'
+          fi
+          # 相手ブランチも同じローカルGitに読み込み、2ブランチを一括更新する。
+          # 並行更新があればnon-fast-forwardで両方停止。forceや自動マージは使わない。
+          git -C public fetch ../collector HEAD
+          candidate=$(git -C public rev-parse FETCH_HEAD)
+          git -C public push --atomic origin "HEAD:refs/heads/main" "$candidate:refs/heads/hamamatsu-r5-candidate"
+      - name: Assemble approved public assets only
+        run: |
+          mkdir -p site/data
+          cp public/index.html public/service-worker.js public/manifest.json site/
+          cp -R public/icons site/icons
+          cp public/data/tournaments.json site/data/
+          # collector・raw HTML/PDF・履歴・ログ・設定は公開成果物に含めない。
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - name: Add summary
+        if: always()
+        run: |
+          if [ -f collector/pipeline/out/summary.md ]; then
+            cat collector/pipeline/out/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: all-sources-update-report
+          path: |
+            collector/pipeline/out/summary.md
+            collector/pipeline/out/run-summary.json
+            collector/pipeline/out/proposed/*.json
+          retention-days: 14
+          if-no-files-found: ignore
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v5
+        id: deployment
