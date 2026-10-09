@@ -200,7 +200,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.7</p>
+  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.8</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -1131,7 +1131,7 @@ function tRenderCard(vm){
   html += tRow('申込', entryHtml);
   var snap = tText(t.source_snapshot_date);
   var snapD = tParseIsoDate(snap);
-  html += tRow('情報元', esc(tText(t.source_name) || '未取得') + (!hideAcquisitionDetails && snapD ? '<span class="t-sub">資料時点: ' + esc(tFormatRange({ start: snapD, end: snapD })) + '</span>' : ''));
+  html += tRow('情報元', esc(tText(t.source_name) || '未取得') + (!hideAcquisitionDetails && snapD ? '<span class="t-sub">データ基準日: ' + esc(tFormatRange({ start: snapD, end: snapD })) + '</span>' : ''));
   var ps = t.parse_status === 'success' ? '<span class="t-badge success">成功</span>' : (t.parse_status === 'partial' ? '<span class="t-badge partial">部分成功</span>' : '未取得');
   html += tRow('取得状態', ps);
 
@@ -1215,8 +1215,8 @@ function tCoverageHtml(data){
   }
   var o = data.other_areas || {};
   html += esc(tText(o.label) || 'その他エリア') + '：<span class="t-st-none">' + esc(tText(o.coverage_label) || '未対応') + '</span><br>';
-  if (snaps.length) { html += '資料時点（保存HTMLの受領日）: ' + esc(snaps.join(' ／ ')) + '<br>'; }
-  html += '「対応済み」は、保存した公式ページを取り込み済みという意味で、公式サイトの最新状態を常時取得しているわけではありません。';
+  if (snaps.length) { html += 'データ基準日（情報源ごとの取得・確認日）: ' + esc(snaps.join(' ／ ')) + '<br>'; }
+  html += '「対応済み」「部分対応」は情報源の収録範囲を示します。表示データは情報源ごとの基準日時点の内容です。定期自動更新は未設定です。最新情報は各大会の公式ページで確認してください。';
   if (tournamentFromCache) { html += '<br><span class="t-st-none">通信できないため、端末に保存済みの大会データを表示しています（前回取得できたデータです）。</span>'; }
   return html;
 }
@@ -1564,7 +1564,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.8.7';
+var APP_DATA_VERSION = '0.8.8';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }
