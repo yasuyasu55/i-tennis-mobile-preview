@@ -78,10 +78,14 @@ jobs:
               for rid in sorted(set(o)&set(n)):
                   fields = [k for k in sorted(set(o[rid])|set(n[rid])) if o[rid].get(k) != n[rid].get(k) and k != 'source_snapshot_date']
                   if fields:
-                      changed.append((n[rid].get('title',rid), fields))
+                      changed.append((n[rid].get('title',rid), fields, o[rid], n[rid]))
               print(f"- {source}: {len(o)}→{len(n)}件、新規{len(added)}・消失{len(removed)}・項目変更{len(changed)}")
-              for title, fields in changed:
-                  print(f"  - {title}: {', '.join(fields)}")
+              for title, fields, before, after in changed:
+                  print(f"  - {title}")
+                  for field in fields:
+                      left = json.dumps(before.get(field), ensure_ascii=False)
+                      right = json.dumps(after.get(field), ensure_ascii=False)
+                      print(f"    - {field}: {left[:240]} → {right[:240]}")
               if added:
                   print('  - 新規: ' + ' / '.join(n[i].get('title',i) for i in added))
               if removed:
