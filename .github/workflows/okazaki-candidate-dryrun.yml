@@ -1,6 +1,9 @@
 name: okazaki-candidate-dryrun
 
 on:
+  # 毎週月曜 03:17（日本時間）。候補作成のみで、公開データは更新しない。
+  schedule:
+    - cron: '17 18 * * 0'
   workflow_dispatch:
     inputs:
       confirm:
@@ -19,7 +22,8 @@ jobs:
     env:
       TZ: Asia/Tokyo
     steps:
-      - name: Reject unconfirmed runs
+      - name: Reject unconfirmed manual runs
+        if: github.event_name == 'workflow_dispatch'
         env:
           CONFIRM: ${{ inputs.confirm }}
         run: |
