@@ -41,6 +41,7 @@ from parsers import toyohashi_tennis as tt      # noqa: E402  承認済み(007)�
 from parsers import gamagori_tennis as gt       # noqa: E402  新規(012)
 from parsers import toyokawa_tennis as tk       # noqa: E402  新規(013-A1)
 from parsers import hamamatsu_tennis as hm      # noqa: E402  新規(021)
+from parsers import okazaki_tennis as ok        # noqa: E402  岡崎（読み取り・候補生成）
 import stable_ids                               # noqa: E402  安定ID（TTA-MOBILE-014-R1）
 import tournament_classify as tc                # noqa: E402
 
@@ -56,6 +57,7 @@ GAMAGORI_TOURNAMENT = "gamagori_tournament.html"
 GAMAGORI_ENTRY = "gamagori_entry.html"
 TOYOKAWA_TOP = "toyokawa_top.html"
 HAMAMATSU_PAGE = "hamamatsu_tournament.html"
+OKAZAKI_PAGE = "okazaki_tournament.html"
 
 WEEKDAY_KANJI = "月火水木金土日"
 WEEKDAY_TOKEN = re.compile(r"\(([月火水木金土日])\)")
@@ -615,6 +617,65 @@ def build_hamamatsu():
     return recs, {"page": {k: v for k, v in page.items() if k not in ("guidelines", "predraw")}, "youkou": {k: {"ok": v["ok"], "problems": v["problems"]} for k, v in pdfs.items()}, "pdf_summary": summ}
 
 
+def build_okazaki():
+    raw = read(OKAZAKI_PAGE)
+    page = ok.parse_page(raw, page_url=ok.PAGE_URL)
+    if page["fatal_error"]:
+        raise BuildError("岡崎パーサー失敗: " + page["fatal_error"])
+    if len(page["events"]) < 5:
+        raise BuildError("岡崎: 大会カードが5件未満です（ページ構造変更や取得欠落の可能性）")
+    recs, fiscal_years = [], []
+    for ev in page["events"]:
+        periods = ev["periods"]
+        first_date = next((p["normalized"] for p in periods if p.get("normalized")), None)
+        if not first_date:
+            raise BuildError("岡崎: 開催日を正規化できません: " + ev["title"])
+        event_year = int(first_date[:4])
+        deadline_text = ev.get("deadline_text")
+        deadline_date = None
+        deadline_time = None
+        warnings = []
+        if deadline_text:
+            m = re.search(r"(\d{1,2})\s*月\s*(\d{1,2})\s*日", _nfkc(deadline_text))
+            if m:
+                month, day = int(m.group(1)), int(m.group(2))
+                deadline_year = event_year - 1 if month > int(first_date[5:7]) else event_year
+                try:
+                    d = datetime.date(deadline_year, month, day)
+                    if d < datetime.date.fromisoformat(first_date):
+                        deadline_date = d.isoformat()
+                    else:
+                        warnings.append("申込締切の年・日付を開催日より前と確認できないため、原文のみ保持")
+                except ValueError:
+                    warnings.append("申込締切の日付が不正のため原文のみ保持")
+            else:
+                warnings.append("申込締切を解釈できないため原文のみ保持")
+        rec = make_record(
+            id="okazaki-?", title=ev["title"], source_id=ok.SOURCE_ID, source_name=ok.SOURCE_NAME,
+            source_area="岡崎", event_area="岡崎", date_text=ev["date_text"], periods=periods,
+            year_basis="大会ページURLの令和%s年度表記（4月始まり。1〜3月は年度の翌年）" % (page["fiscal_year"] - 2018),
+            deadline_text=deadline_text, deadline_date=deadline_date, deadline_time=deadline_time,
+            venue=notnull(ev["venue"]), official_url=ok.PAGE_URL, guideline_url=ev.get("guideline_url"),
+            parse_status="partial", warnings=warnings, source_snapshot_date=SNAPSHOT_DATE["okazaki"],
+            notes=["公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です"],
+        )
+        event_text = [("公式大会一覧の種目欄", ev["events_text"])]
+        apply_common_classification(rec, extra_audience_texts=[("公式大会一覧の参加資格欄", ev["eligibility"])],
+                                    extra_event_texts=event_text, table_eligibility=ev["eligibility"])
+        # 岡崎の一覧には「加盟員のみ」と明記される大会がある。
+        # 共通分類器を他地域のデータに波及させず、岡崎の公式原文だけを登録条件として扱う。
+        if _nfkc(ev["eligibility"]).replace(" ", "") == "加盟員のみ":
+            rec["eligibility_status"] = "協会登録必要"
+            rec["eligibility_text"] = ev["eligibility"]
+            rec["eligibility_note"] = "岡崎市テニス協会の加盟員に限ると一覧に明記されています。登録条件の詳細は公式要項で確認してください。"
+            rec["classification_basis"] = [b for b in rec.get("classification_basis", []) if b.get("field") != "eligibility"]
+            rec["classification_basis"].append({"field": "eligibility", "value": "協会登録必要", "matched": "加盟員のみ", "source": "一覧表の参加資格欄", "rule": "岡崎公式一覧に加盟員のみと明記"})
+        recs.append(rec)
+        fiscal_years.append(page["fiscal_year"])
+    stable_ids.assign_ids("okazaki", recs, fiscal_years)
+    return recs, {"page_url": ok.PAGE_URL, "fiscal_year": 2026, "event_count": len(recs), "pdf_body_parsed": False}
+
+
 
 SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu"]
 
@@ -658,6 +719,9 @@ SOURCE_DEFS = {
                       "年間の事業予定（画像・PDF）・ジュニア大会・終了済みの大会結果（表%d件）は取り込んでいません" % (
                           len(recs), sum(1 for r in recs if r["parse_status"] == "success"), (raw.get("page") or {}).get("results_count") or 0),
                       parser="TTA-MOBILE-021（新規）"),
+    "okazaki": dict(builder=build_okazaki, id=ok.SOURCE_ID, name="岡崎", area="岡崎", event_area="岡崎", coverage="partial", label="部分対応",
+                     note=lambda recs, raw: "令和8年度の大会一覧カード（%d件）。開催日・種目・参加資格・会場・一覧記載の締切を取得。要項PDF本文・申込先は未解析" % len(recs),
+                     parser="岡崎大会カード parser v0.1（候補。公式PDF本文は未解析）"),
 }
 
 
