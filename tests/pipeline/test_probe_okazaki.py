@@ -50,6 +50,14 @@ class ProbeParserTests(unittest.TestCase):
                 normalize = lambda x: " ".join((x or "").replace("\u200b", "").split())
                 self.assertEqual(normalize(event.get(field)), normalize(candidate.get(field)), (event["title"], field))
 
+
+    def test_zero_width_characters_in_titles_are_normalized(self):
+        html = FIXTURE.replace("岡崎シングルステニス大会".encode(), "岡崎\u200bシングルステニス大会".encode())
+        probe = extract_events(html)
+        parsed = okazaki_tennis.parse_page(html, page_url="https://www.okazaki-tennis.com/taikai-r8")
+        self.assertEqual(probe[0]["title"], "岡崎シングルステニス大会")
+        self.assertEqual(parsed["events"][0]["title"], probe[0]["title"])
+
     def test_upcoming_deadline_selection_around_october_2026(self):
         today = date(2026, 10, 9)
         self.assertTrue(_deadline_is_upcoming({"date_text": "11/29", "deadline_text": "10月26日"}, today))
