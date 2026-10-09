@@ -54,20 +54,47 @@ jobs:
       - name: Run all enabled sources as a read-only dry-run
         run: python pipeline/run_update.py --dry-run
 
-      - name: Validate proposed data
-        if: always()
+      - name: Compare proposed records with current public data
         run: |
-          if [ -f pipeline/out/proposed/tournaments.json ]; then
-            python pipeline/validate.py pipeline/out/proposed/tournaments.json
-          elif [ -f pipeline/out/run-summary.json ]; then
-            python - <<'PY'
-          import json
+          git fetch --depth=1 origin main
+          python - <<'PY'
+          import json, subprocess
           from pathlib import Path
+
+          current = json.loads(subprocess.check_output(['git', 'show', 'FETCH_HEAD:data/tournaments.json']))
+          proposed = json.loads(Path('pipeline/out/proposed/tournaments.json').read_text(encoding='utf-8'))
           summary = json.loads(Path('pipeline/out/run-summary.json').read_text(encoding='utf-8'))
-          if 'fatal_error' in summary:
-              raise SystemExit(summary['fatal_error'])
+          old = {r['id']: r for r in current['tournaments']}
+          new = {r['id']: r for r in proposed['tournaments']}
+          if len(old) != len(current['tournaments']) or len(new) != len(proposed['tournaments']):
+              raise SystemExit('重複IDを検出しました')
+          print('## 公開中データとの比較')
+          print(f"公開中 {len(old)}件 → 候補 {len(new)}件")
+          for source in sorted({r.get('source_id','') for r in old.values()} | {r.get('source_id','') for r in new.values()}):
+              o = {i:r for i,r in old.items() if r.get('source_id') == source}
+              n = {i:r for i,r in new.items() if r.get('source_id') == source}
+              added, removed = sorted(set(n)-set(o)), sorted(set(o)-set(n))
+              changed = []
+              for rid in sorted(set(o)&set(n)):
+                  fields = [k for k in sorted(set(o[rid])|set(n[rid])) if o[rid].get(k) != n[rid].get(k) and k != 'source_snapshot_date']
+                  if fields:
+                      changed.append((n[rid].get('title',rid), fields))
+              print(f"- {source}: {len(o)}→{len(n)}件、新規{len(added)}・消失{len(removed)}・項目変更{len(changed)}")
+              for title, fields in changed:
+                  print(f"  - {title}: {', '.join(fields)}")
+              if added:
+                  print('  - 新規: ' + ' / '.join(n[i].get('title',i) for i in added))
+              if removed:
+                  print('  - 候補から消失: ' + ' / '.join(o[i].get('title',i) for i in removed))
+              key = source.replace('_tennis_association','')
+              result = summary.get('results', {}).get(key)
+              if result and result.get('status') == 'failed' and (o != {i:new[i] for i in o if i in new}):
+                  raise SystemExit(f'取得失敗した情報源の前回データが変化しています: {source}')
+          print('## 取得失敗時の前回データ保持: 検証完了')
           PY
-          fi
+
+      - name: Validate proposed data
+        run: python pipeline/validate.py pipeline/out/proposed/tournaments.json
 
       - name: Add run summary
         if: always()
