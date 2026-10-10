@@ -213,18 +213,35 @@
    "event_area": "豊田",
    "coverage": "partial",
    "coverage_label": "部分対応",
-   "coverage_note": "2026年度の番号付き大会一覧8件。開催日・申込期間・要項と申込の実リンクを取得。練習会・通年チーム戦・ジュニア別ページは対象外。要項PDF本文は未解析",
+   "coverage_note": "2026年度の番号付き大会一覧8件。開催日・申込期間・要項と申込の実リンクを取得。公開済みの今後の要項から会場・費用・資格条件を補足。練習会・通年チーム戦・ジュニア別ページは対象外",
    "snapshot_date": "2026-10-10",
-   "snapshot_note": "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析",
+   "snapshot_note": "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（2件）。矛盾する日時は要確認として表示",
    "record_count": 8,
    "files": [
     {
+     "file": "toyota_578f3cc6b825_fetch.json",
+     "sha256": "d3f6999fa37069a45863f243edb653ebdd6e2ac330008c8ead6bf1e3ee598f2d"
+    },
+    {
+     "file": "toyota_578f3cc6b825_youkou.txt",
+     "sha256": "46e7ee10cf8e00a3ec5efe98ec7c26cb659e3674e41148540877a9b6f7bcd038"
+    },
+    {
+     "file": "toyota_b4ce573c030a_fetch.json",
+     "sha256": "9af4c78cbfde4ae0568f86855f88bc7e926fc8e7bbfdf83e9d45b66d3ab3db0e"
+    },
+    {
+     "file": "toyota_b4ce573c030a_youkou.txt",
+     "sha256": "2cf2789e0ebde44112c117dba1d67a6a887957c97ff0e419b1cdeecff5eba728"
+    },
+    {
      "file": "toyota_tournament.html",
-     "sha256": "56b642f8c05303bd98acbbcd09483f99ec6e9132a7cb1ea58d32f3fb5262a842"
+     "sha256": "f7c8d292cfd11bf6932529d08e4d9c5aab15c5646ee55f8abb9b97b265ed9f13"
     }
    ],
    "parser": "豊田年度別大会一覧 parser v0.1",
-   "acquisition": "automatic_http"
+   "acquisition": "automatic_http",
+   "pdf_confirmed_on": "2026-10-10"
   },
   {
    "id": "anjo_tennis_association",
@@ -233,18 +250,83 @@
    "event_area": "安城",
    "coverage": "partial",
    "coverage_label": "部分対応",
-   "coverage_note": "2026年度の公式大会表16件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。西三河マスターズは対象外。会場・費用・締切・要項本文は未取得",
+   "coverage_note": "2026年度の公式大会表16件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。公開済みの今後の要項から会場・費用・締切・資格条件を補足。西三河マスターズは対象外",
    "snapshot_date": "2026-10-10",
-   "snapshot_note": "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析",
+   "snapshot_note": "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（8件）。矛盾する日時は要確認として表示",
    "record_count": 16,
    "files": [
+    {
+     "file": "anjo_1302a7580317_fetch.json",
+     "sha256": "657f3f12137041cf8ad2a975d2cd3b4efe6181880a1d3ea9083f59fed4e46af9"
+    },
+    {
+     "file": "anjo_1302a7580317_youkou.txt",
+     "sha256": "efa69670e6bf21ebaef74cc54f9bf0baad6797d41c354b66bd407f892b5b8b69"
+    },
+    {
+     "file": "anjo_4f7ab44a2133_fetch.json",
+     "sha256": "a4561ff3b23dc5f825c7e678b607cfad714eafbe728921a833b50d3b6e87da53"
+    },
+    {
+     "file": "anjo_4f7ab44a2133_youkou.txt",
+     "sha256": "c97f5294ffe1ad1d285c9970a38b5690f8cd141092fc3ab64e1d5b71fa5512e7"
+    },
+    {
+     "file": "anjo_62069eed8be6_fetch.json",
+     "sha256": "91745f01cea1d0dfe44f69477b28af47cd825890b6ca99fd7931a9116fa00713"
+    },
+    {
+     "file": "anjo_62069eed8be6_youkou.txt",
+     "sha256": "1fec93e06cc07b0528c10e911f4564f01ccfa4e3d6d6bf5f043932c9370583cd"
+    },
+    {
+     "file": "anjo_be24e36c1fa6_fetch.json",
+     "sha256": "d7a1963361c3b397e4a309bf422cf96331fc7e9da55a0ac6cdff9c5b6571f068"
+    },
+    {
+     "file": "anjo_be24e36c1fa6_youkou.txt",
+     "sha256": "7154c549da5227fd08c2a42a7e21f1b99057abb693ab1578584e9d8388b375c7"
+    },
+    {
+     "file": "anjo_c4cd1b7202fd_fetch.json",
+     "sha256": "5e8019428808ad9f4a05009ad73371bebb91d58382fd89cc9ca74cfb89e97e6d"
+    },
+    {
+     "file": "anjo_c4cd1b7202fd_youkou.txt",
+     "sha256": "bdae629a18d38a2da9ed92230e2e32e34046984faf30686f1eec27c93d977ad7"
+    },
+    {
+     "file": "anjo_d10143e0adb8_fetch.json",
+     "sha256": "dc5e972624fa9602e3cfd1ccff5888fd5ed75ce7503bdd4c7d90809b39a10dbe"
+    },
+    {
+     "file": "anjo_d10143e0adb8_youkou.txt",
+     "sha256": "bdf90c035d10ed46955d75ad83bd9d8c1fb1854a0cce86aba4e1dd4bd6979ef0"
+    },
+    {
+     "file": "anjo_f00904a7827f_fetch.json",
+     "sha256": "88e1855db7b8263e2fa53b7b8d40b617fd45a9f6448c683c5c8d79b23e21c514"
+    },
+    {
+     "file": "anjo_f00904a7827f_youkou.txt",
+     "sha256": "42c3a31c614ee999d2bacac1c3f36e0cdf78451592860bd8067f297c70cb95ae"
+    },
+    {
+     "file": "anjo_f49958e02b8a_fetch.json",
+     "sha256": "1956b4f60705b9e23a316bb28c57005a911a5a58d9bb8b0b1377e49769fab471"
+    },
+    {
+     "file": "anjo_f49958e02b8a_youkou.txt",
+     "sha256": "689fa8c97e8be0fbdcb363b7da0e8aacdac15344628fe24c392e2ab5a63d7981"
+    },
     {
      "file": "anjo_tournament.html",
      "sha256": "c5d00dd2b03c20c1f5f4278e9b8905a62897532f8b7ec98d1a945deb166ff686"
     }
    ],
    "parser": "安城年度別大会表 parser v0.1",
-   "acquisition": "automatic_http"
+   "acquisition": "automatic_http",
+   "pdf_confirmed_on": "2026-10-10"
   },
   {
    "id": "kariya_tennis_association",
@@ -253,18 +335,27 @@
    "event_area": "刈谷",
    "coverage": "partial",
    "coverage_label": "部分対応",
-   "coverage_note": "2026年度の公式年間予定9件。開催日・予備日・概要を取得。会場・締切・費用・募集要項本文は未取得",
+   "coverage_note": "2026年度の公式年間予定9件。開催日・予備日・概要を取得。公開済みの今後の募集要項から会場・締切・費用・資格条件を補足",
    "snapshot_date": "2026-10-10",
-   "snapshot_note": "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析",
+   "snapshot_note": "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（1件）。矛盾する日時は要確認として表示",
    "record_count": 9,
    "files": [
+    {
+     "file": "kariya_71dd30b40459_fetch.json",
+     "sha256": "72f48bff5384e1d0ec4c5d60c3c13cd15ff07837c24369513c271b5a1e704ac9"
+    },
+    {
+     "file": "kariya_71dd30b40459_youkou.txt",
+     "sha256": "feeab3be37de2042568b5aa117f7957478e41bce5b9210d62b153b86a94d2b4c"
+    },
     {
      "file": "kariya_schedule.html",
      "sha256": "3521db3d138bf4502ea6246560966338c6d69c85988e729de8c848bf3285f072"
     }
    ],
    "parser": "刈谷年度別大会予定 parser v0.1",
-   "acquisition": "automatic_http"
+   "acquisition": "automatic_http",
+   "pdf_confirmed_on": "2026-10-10"
   }
  ],
  "other_areas": {
@@ -287,8 +378,8 @@
    "刈谷": 9
   },
   "by_parse_status": {
-   "success": 30,
-   "partial": 77
+   "success": 36,
+   "partial": 71
   }
  },
  "tournaments": [
@@ -6622,10 +6713,10 @@
    "reserve_periods": [],
    "date_hint": null,
    "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
-   "deadline_text": "8/21-8/30",
+   "deadline_text": "8月21日(金)~ 8月30日(日)",
    "deadline_date": "2026-08-30",
    "deadline_time": null,
-   "venue": null,
+   "venue": "豊田市内コート (全会場、砂入り人工芝コート)",
    "event_types": [
     "ダブルス"
    ],
@@ -6634,24 +6725,18 @@
    ],
    "component_match_types": [],
    "audience_types": [
-    "不明"
+    "一般",
+    "ベテラン"
    ],
-   "eligibility_status": "参加資格要確認",
-   "eligibility_text": null,
-   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "eligibility_status": "地域条件あり",
+   "eligibility_text": "(1)豊田市在住、在勤、在学者及び豊田市テニス協会員 / (2)ベテラン部門は、2026年12月31日時点の年齢 / (35・45・55・65・70歳以上)",
+   "eligibility_note": "会場の詳細・部門ごとの開催日は実施要項を確認してください",
    "official_url": "https://www.toyota-ta.jp/tournament/",
    "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_D_k.pdf",
    "entry_url": null,
    "entry_text": "申込期間（公式一覧）: 8/21-8/30",
-   "parse_status": "partial",
+   "parse_status": "success",
    "classification_basis": [
-    {
-     "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
-    },
     {
      "field": "event_type",
      "value": "ダブルス",
@@ -6661,22 +6746,40 @@
     },
     {
      "field": "eligibility",
-     "value": "参加資格要確認",
-     "matched": null,
-     "source": "—",
-     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+     "value": "地域条件あり",
+     "matched": "(1)豊田市在住、在勤、在学者及び豊田市テニス協会員 / (2)ベテラン部門は、2026年12月31日時点の年齢 / (35・45・55・65・70歳以上)",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "要項PDFの資格欄",
+     "rule": "一般とベテラン部門を明記"
+    },
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "ベテラン",
+     "source": "要項PDFの資格欄",
+     "rule": "一般とベテラン部門を明記"
     }
    ],
    "warnings": [],
    "notes": [
-    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+    "要項PDFの確認日: 2026-10-10"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_D_k.pdf",
+    "pdf_sha256": "7e1ebc25900d4de45202ee1bd6a5368c27cf8021b807d52a1260ef64fe0d9cab",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員ペア : 3,000円 協会員・非協会員ペア : 4,500円 非協会員ペア : 6,000円"
   },
   {
    "id": "toyota-2026-f66221c6",
@@ -6715,10 +6818,10 @@
    "reserve_periods": [],
    "date_hint": null,
    "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
-   "deadline_text": "10/2-10/11",
+   "deadline_text": "10月 2日(金) ~ 10月11日(日)",
    "deadline_date": "2026-10-11",
    "deadline_time": null,
-   "venue": null,
+   "venue": "豊田市内コート (全会場、砂入り人工芝コート)",
    "event_types": [
     "シングルス"
    ],
@@ -6727,24 +6830,18 @@
    ],
    "component_match_types": [],
    "audience_types": [
-    "不明"
+    "一般",
+    "ベテラン"
    ],
-   "eligibility_status": "参加資格要確認",
-   "eligibility_text": null,
-   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "eligibility_status": "地域条件あり",
+   "eligibility_text": "(1)豊田市在住、在勤、在学者及び豊田市テニス協会員 / (2)ベテラン部門は、2026年12月31日時点の年齢 / (35・45・55・65・70歳以上)                         ※12月13日",
+   "eligibility_note": "会場の詳細・部門ごとの開催日は実施要項を確認してください",
    "official_url": "https://www.toyota-ta.jp/tournament/",
    "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_S_k.pdf",
    "entry_url": "https://business.form-mailer.jp/fms/01de52e9152046",
    "entry_text": "申込期間（公式一覧）: 10/2-10/11",
-   "parse_status": "partial",
+   "parse_status": "success",
    "classification_basis": [
-    {
-     "field": "audience",
-     "value": "不明",
-     "matched": null,
-     "source": "タイトル",
-     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
-    },
     {
      "field": "event_type",
      "value": "シングルス",
@@ -6754,22 +6851,40 @@
     },
     {
      "field": "eligibility",
-     "value": "参加資格要確認",
-     "matched": null,
-     "source": "—",
-     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+     "value": "地域条件あり",
+     "matched": "(1)豊田市在住、在勤、在学者及び豊田市テニス協会員 / (2)ベテラン部門は、2026年12月31日時点の年齢 / (35・45・55・65・70歳以上)                         ※12月13日",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "要項PDFの資格欄",
+     "rule": "一般とベテラン部門を明記"
+    },
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "ベテラン",
+     "source": "要項PDFの資格欄",
+     "rule": "一般とベテラン部門を明記"
     }
    ],
    "warnings": [],
    "notes": [
-    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+    "要項PDFの確認日: 2026-10-10"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_S_k.pdf",
+    "pdf_sha256": "c83c5cb2fc70807761b3e2930e665c6c9b02fbbf5a74a87590732c5334c6af94",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "豊田市テニス協会員 : 2,000円 非協会員: 4,000円"
   },
   {
    "id": "toyota-2026-17d139e9",
@@ -7473,10 +7588,10 @@
    ],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
-   "deadline_date": null,
+   "deadline_text": "9月6日(日)から10月4日(日)まで",
+   "deadline_date": "2026-10-04",
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)10面",
    "event_types": [
     "ダブルス"
    ],
@@ -7488,19 +7603,19 @@
     "一般"
    ],
    "eligibility_status": "その他の条件あり",
-   "eligibility_text": "ビギナーの方※戦績制限あり",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_text": "オープン(安城市テニス協会員以外の方も出場可能) / ○女子C級ダブルス 過去安城B級ベスト4以上は出場できません / ○女子D級ダブルス 過去安城A級B級、各地域大会A級B級に参加された方は出場できません / ※過去安城C級ベスト4以上、各地域大会C級ベスト4以上の方は出場できません / ※初心の方、試合経験の少ない方が出場できます / ※主催者判断でレベルが高い方は出場をお断りする場合があります",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%911023%E7%A7%8B%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3CD%E7%B4%9A2.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
    "entry_text": null,
-   "parse_status": "partial",
+   "parse_status": "success",
    "classification_basis": [
     {
      "field": "audience",
      "value": "一般",
-     "matched": "ビギナーの方※戦績制限あり",
-     "source": "一覧表の参加資格欄",
+     "matched": "オープン(安城市テニス協会員以外の方も出場可能) / ○女子C級ダブルス 過去安城B級ベスト4以上は出場できません / ○女子D級ダブルス 過去安城A級B級、各地域大会A級B級に参加された方は出場できません / ※過去安城C級ベスト4以上、各地域大会C級ベスト4以上の方は出場できません / ※初心の方、試合経験の少ない方が出場できます / ※主催者判断でレベルが高い方は出場をお断りする場合があります",
+     "source": "要項PDFの資格欄",
      "rule": "参加資格が明記されており（その他の条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
@@ -7513,22 +7628,26 @@
     {
      "field": "eligibility",
      "value": "その他の条件あり",
-     "matched": "ビギナーの方※戦績制限あり",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "matched": "オープン(安城市テニス協会員以外の方も出場可能) / ○女子C級ダブルス 過去安城B級ベスト4以上は出場できません / ○女子D級ダブルス 過去安城A級B級、各地域大会A級B級に参加された方は出場できません / ※過去安城C級ベスト4以上、各地域大会C級ベスト4以上の方は出場できません / ※初心の方、試合経験の少ない方が出場できます / ※主催者判断でレベルが高い方は出場をお断りする場合があります",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
    "warnings": [],
    "notes": [
     "公式大会表の種目: 女子D(C・D)",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%911023%E7%A7%8B%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3CD%E7%B4%9A2.pdf",
+    "pdf_sha256": "daf3115837ec0abce00044af85b94dbfa8e68fdefa0cff4997bae21b6a3614cb",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員ペア2,000円 協会員・非協会員ペア3,000円 非協会員ペア4,000円"
   },
   {
    "id": "anjo-2026-2f30f75a",
@@ -7561,10 +7680,10 @@
    ],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
-   "deadline_date": null,
+   "deadline_text": "10月4日(日)まで   (9月12日申込開始予定)",
+   "deadline_date": "2026-10-04",
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)10面",
    "event_types": [
     "ダブルス"
    ],
@@ -7575,14 +7694,14 @@
    "audience_types": [
     "一般"
    ],
-   "eligibility_status": "オープン参加（詳細条件は要項確認）",
-   "eligibility_text": "オープン☆西三河マスターズ参加資格対象大会(ベスト8以上)※チャレンジャーは戦績制限あり",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "オープン(安城市テニス協会員以外の方も出場可能) / 下記に該当する方は、チャレンジャー大会に参加出来ません。 / 過去のチャレンジャー大会優勝者 / 過去3年以内の各地域大会(チャレンジャー、C級、D級を除く)で / トーナメント、リーグ戦を含め3回以上勝った方 / 過去3年以内に安城C級以上でベスト4以上の方 / 愛知県ジュニアポイント、10ポイント以上の方 / 主催者判断でチャレンジ大会にふさわしく無い高レベルと判断した方",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261024%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E5%A4%A7%E4%BC%9A%E4%B8%80%E8%88%AC%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC2.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
    "entry_text": null,
-   "parse_status": "partial",
+   "parse_status": "success",
    "classification_basis": [
     {
      "field": "audience",
@@ -7600,23 +7719,27 @@
     },
     {
      "field": "eligibility",
-     "value": "オープン参加（詳細条件は要項確認）",
-     "matched": "オープン☆西三河マスターズ参加資格対象大会(ベスト8以上)※チャレンジャーは戦績制限あり",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "value": "その他の条件あり",
+     "matched": "オープン(安城市テニス協会員以外の方も出場可能) / 下記に該当する方は、チャレンジャー大会に参加出来ません。 / 過去のチャレンジャー大会優勝者 / 過去3年以内の各地域大会(チャレンジャー、C級、D級を除く)で / トーナメント、リーグ戦を含め3回以上勝った方 / 過去3年以内に安城C級以上でベスト4以上の方 / 愛知県ジュニアポイント、10ポイント以上の方 / 主催者判断でチャレンジ大会にふさわしく無い高レベルと判断した方",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
    "warnings": [],
    "notes": [
     "公式大会表の種目: 男女一般D,男女チャレンジャーD",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261024%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E5%A4%A7%E4%BC%9A%E4%B8%80%E8%88%AC%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC2.pdf",
+    "pdf_sha256": "4608583c476abf0c74a1bcdcf016624f85d2847f217b21997136dea508b363ff",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員2,000円 協会員・非協会員ペア3,000円 非協会員ペア4,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
   {
    "id": "anjo-2026-85375003",
@@ -7641,10 +7764,10 @@
    "reserve_periods": [],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
-   "deadline_date": null,
+   "deadline_text": "2026年9月19日(土)~10月11日(日)",
+   "deadline_date": "2026-10-11",
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)",
    "event_types": [
     "ダブルス"
    ],
@@ -7655,14 +7778,14 @@
    "audience_types": [
     "ベテラン"
    ],
-   "eligibility_status": "オープン参加（詳細条件は要項確認）",
-   "eligibility_text": "オープン",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_status": "年齢条件あり",
+   "eligibility_text": "年齢基準 男女とも共通 / 45歳以上 1981年12月31日以前 / 55歳以上 1971年12月31日以前 / 65歳以上 1961年12月31日以前 / 女子45歳ダブルス、 55歳ダブルス、65歳ダブルス / 男子45歳ダブルス、 55歳ダブルス、65歳ダブルス",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261031%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3%E5%A4%A7%E4%BC%9A.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
    "entry_text": null,
-   "parse_status": "partial",
+   "parse_status": "success",
    "classification_basis": [
     {
      "field": "audience",
@@ -7680,23 +7803,27 @@
     },
     {
      "field": "eligibility",
-     "value": "オープン参加（詳細条件は要項確認）",
-     "matched": "オープン",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "value": "年齢条件あり",
+     "matched": "年齢基準 男女とも共通 / 45歳以上 1981年12月31日以前 / 55歳以上 1971年12月31日以前 / 65歳以上 1961年12月31日以前 / 女子45歳ダブルス、 55歳ダブルス、65歳ダブルス / 男子45歳ダブルス、 55歳ダブルス、65歳ダブルス",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
    "warnings": [],
    "notes": [
     "公式大会表の種目: 男女ベテランD(45・55・65歳以上",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261031%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3%E5%A4%A7%E4%BC%9A.pdf",
+    "pdf_sha256": "d071193621f29661d3cf831cabf4ef8bdc34e9d06e5b3e9500ef0f175a438595",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員ペア2000円、協会員・非協会員ペア3000円、非協会員ペア4000円 / コンソレーションが開催できなかった場合は、半額とさせていただきます"
   },
   {
    "id": "anjo-2026-e848d6b8",
@@ -7729,10 +7856,10 @@
    ],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
-   "deadline_date": null,
+   "deadline_text": "10月22日(木)まで   (10月1日より受付予定)",
+   "deadline_date": "2026-10-22",
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)10面",
    "event_types": [
     "ダブルス"
    ],
@@ -7743,9 +7870,9 @@
    "audience_types": [
     "一般"
    ],
-   "eligibility_status": "オープン参加（詳細条件は要項確認）",
-   "eligibility_text": "オープン※戦績制限あり",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "オープン(安城市テニス協会員以外の方も出場可能) / ○女子Cダブルス 過去のBベスト4以上は出場できません。初心者向け。",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261112%E7%A7%8B%E5%AD%A3%E5%A5%B3%E5%AD%90%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
@@ -7755,9 +7882,9 @@
     {
      "field": "audience",
      "value": "一般",
-     "matched": "オープン※戦績制限あり",
-     "source": "一覧表の参加資格欄",
-     "rule": "参加資格が明記されており（オープン参加（詳細条件は要項確認））、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+     "matched": "オープン(安城市テニス協会員以外の方も出場可能) / ○女子Cダブルス 過去のBベスト4以上は出場できません。初心者向け。",
+     "source": "要項PDFの資格欄",
+     "rule": "参加資格が明記されており（その他の条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
      "field": "event_type",
@@ -7768,23 +7895,30 @@
     },
     {
      "field": "eligibility",
-     "value": "オープン参加（詳細条件は要項確認）",
-     "matched": "オープン※戦績制限あり",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "value": "その他の条件あり",
+     "matched": "オープン(安城市テニス協会員以外の方も出場可能) / ○女子Cダブルス 過去のBベスト4以上は出場できません。初心者向け。",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
-   "warnings": [],
+   "warnings": [
+    "要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認"
+   ],
    "notes": [
     "公式大会表の種目: 女子D(A・B・C)",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10",
+    "要確認: 要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261112%E7%A7%8B%E5%AD%A3%E5%A5%B3%E5%AD%90%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9.pdf",
+    "pdf_sha256": "31d7fa7014b94099408492e25b2aeb045d5f58d4d7b55af020070c074016531c",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員ペア2,000円 協会員と非協会員ペア3,000円 非協会員ペア4,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
   {
    "id": "anjo-2026-f183a386",
@@ -7817,10 +7951,10 @@
    ],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
+   "deadline_text": "2026年8月1日(日)~8月31日(火)",
    "deadline_date": null,
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)",
    "event_types": [
     "シングルス"
    ],
@@ -7832,8 +7966,8 @@
     "一般"
    ],
    "eligibility_status": "地域条件あり",
-   "eligibility_text": "安城市在住、在勤、在学",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_text": "安城市在住、在勤、在学 / 申込フォーマットのランキング欄、またはメッセージ欄に、 / 安城市在住、勤務先名、または学校名記入",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/08/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%912026%E5%AE%89%E5%9F%8E%E9%81%B8%E6%89%8B%E6%A8%A9.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
@@ -7843,8 +7977,8 @@
     {
      "field": "audience",
      "value": "一般",
-     "matched": "安城市在住、在勤、在学",
-     "source": "一覧表の参加資格欄",
+     "matched": "安城市在住、在勤、在学 / 申込フォーマットのランキング欄、またはメッセージ欄に、 / 安城市在住、勤務先名、または学校名記入",
+     "source": "要項PDFの資格欄",
      "rule": "参加資格が明記されており（地域条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
@@ -7857,22 +7991,29 @@
     {
      "field": "eligibility",
      "value": "地域条件あり",
-     "matched": "安城市在住、在勤、在学",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "matched": "安城市在住、在勤、在学 / 申込フォーマットのランキング欄、またはメッセージ欄に、 / 安城市在住、勤務先名、または学校名記入",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
-   "warnings": [],
+   "warnings": [
+    "要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
+   ],
    "notes": [
     "公式大会表の種目: 男女S",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10",
+    "要確認: 要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/08/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%912026%E5%AE%89%E5%9F%8E%E9%81%B8%E6%89%8B%E6%A8%A9.pdf",
+    "pdf_sha256": "3e9de0986fccb4a08f5d8b9c410a8c47e253831005f9851b48396746309e2eff",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "無料"
   },
   {
    "id": "anjo-2026-8672d103",
@@ -7897,10 +8038,10 @@
    "reserve_periods": [],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
+   "deadline_text": "10月31日(日)まで       (10/10受付開始予定)",
    "deadline_date": null,
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)10面",
    "event_types": [
     "シングルス"
    ],
@@ -7911,9 +8052,9 @@
    "audience_types": [
     "ベテラン"
    ],
-   "eligibility_status": "オープン参加（詳細条件は要項確認）",
-   "eligibility_text": "オープン",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_status": "年齢条件あり",
+   "eligibility_text": "オープン(安城市テニス協会員以外の方も出場可能) / 40歳以上 1986年12月31日以前 / 50歳以上 1976年12月31日以前 / 60歳以上 1966年12月31日以前",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261121%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
@@ -7936,23 +8077,30 @@
     },
     {
      "field": "eligibility",
-     "value": "オープン参加（詳細条件は要項確認）",
-     "matched": "オープン",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "value": "年齢条件あり",
+     "matched": "オープン(安城市テニス協会員以外の方も出場可能) / 40歳以上 1986年12月31日以前 / 50歳以上 1976年12月31日以前 / 60歳以上 1966年12月31日以前",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
-   "warnings": [],
+   "warnings": [
+    "要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
+   ],
    "notes": [
     "公式大会表の種目: 男女ベテランS(40・50・60歳以上)",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10",
+    "要確認: 要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261121%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3.pdf",
+    "pdf_sha256": "5a52ad020f4cff4fe1fc7f05300a5a4f8f68943875b4c95375e525f7e5601e13",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員2,000円 非協会員3,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
   {
    "id": "anjo-2026-fac9e7bb",
@@ -7977,10 +8125,10 @@
    "reserve_periods": [],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
-   "deadline_date": null,
+   "deadline_text": "11月14日(土)まで     (10/24受付開始予定)",
+   "deadline_date": "2026-11-14",
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)10面",
    "event_types": [
     "シングルス"
    ],
@@ -7992,8 +8140,8 @@
     "一般"
    ],
    "eligibility_status": "オープン参加（詳細条件は要項確認）",
-   "eligibility_text": "オープン",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_text": "オープン(安城市テニス協会員以外の方も出場可能)",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261205%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E4%B8%80%E8%88%AC.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
@@ -8017,22 +8165,29 @@
     {
      "field": "eligibility",
      "value": "オープン参加（詳細条件は要項確認）",
-     "matched": "オープン",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "matched": "オープン(安城市テニス協会員以外の方も出場可能)",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
-   "warnings": [],
+   "warnings": [
+    "要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認"
+   ],
    "notes": [
     "公式大会表の種目: 男女一般S",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10",
+    "要確認: 要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261205%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E4%B8%80%E8%88%AC.pdf",
+    "pdf_sha256": "e9fcb5471a28c1e3dc971ddcb72eb3f213856ffcdd4bebffb78e8df4872684d1",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員2,000円 非協会員3,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
   {
    "id": "anjo-2026-8de0488c",
@@ -8057,10 +8212,10 @@
    "reserve_periods": [],
    "date_hint": null,
    "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
-   "deadline_text": null,
+   "deadline_text": "11月21日(日)まで       (10/31受付開始予定)",
    "deadline_date": null,
    "deadline_time": null,
-   "venue": null,
+   "venue": "安城市総合運動公園テニスコート(砂入り人工芝)10面",
    "event_types": [
     "シングルス"
    ],
@@ -8072,8 +8227,8 @@
     "一般"
    ],
    "eligibility_status": "その他の条件あり",
-   "eligibility_text": "※チャレンジャーは戦績制限あり",
-   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "eligibility_text": "下記に該当する方は、チャレンジャー大会に参加出来ません。 / 過去のチャレンジャー大会優勝者 / 過去3年以内の各地域大会(チャレンジャー、C級、D級を除く)で / トーナメント、リーグ戦を含め3回以上勝った方 / 過去3年以内に安城C級以上でベスト4以上の方 / 愛知県ジュニアポイント、10ポイント以上の方 / 主催者判断でチャレンジ大会にふさわしく無い高レベルと判断した方",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261212%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC.pdf",
    "entry_url": "http://anjo-tennis.net/entry/",
@@ -8083,8 +8238,8 @@
     {
      "field": "audience",
      "value": "一般",
-     "matched": "※チャレンジャーは戦績制限あり",
-     "source": "一覧表の参加資格欄",
+     "matched": "下記に該当する方は、チャレンジャー大会に参加出来ません。 / 過去のチャレンジャー大会優勝者 / 過去3年以内の各地域大会(チャレンジャー、C級、D級を除く)で / トーナメント、リーグ戦を含め3回以上勝った方 / 過去3年以内に安城C級以上でベスト4以上の方 / 愛知県ジュニアポイント、10ポイント以上の方 / 主催者判断でチャレンジ大会にふさわしく無い高レベルと判断した方",
+     "source": "要項PDFの資格欄",
      "rule": "参加資格が明記されており（その他の条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
     },
     {
@@ -8097,22 +8252,31 @@
     {
      "field": "eligibility",
      "value": "その他の条件あり",
-     "matched": "※チャレンジャーは戦績制限あり",
-     "source": "一覧表の参加資格欄",
-     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+     "matched": "下記に該当する方は、チャレンジャー大会に参加出来ません。 / 過去のチャレンジャー大会優勝者 / 過去3年以内の各地域大会(チャレンジャー、C級、D級を除く)で / トーナメント、リーグ戦を含め3回以上勝った方 / 過去3年以内に安城C級以上でベスト4以上の方 / 愛知県ジュニアポイント、10ポイント以上の方 / 主催者判断でチャレンジ大会にふさわしく無い高レベルと判断した方",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
-   "warnings": [],
+   "warnings": [
+    "要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認",
+    "要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
+   ],
    "notes": [
     "公式大会表の種目: 男女チャレンジャーS",
-    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+    "要項PDFの確認日: 2026-10-10",
+    "要確認: 要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認",
+    "要確認: 要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261212%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC.pdf",
+    "pdf_sha256": "4f2f0177cdd8d3d986a54fb5afe636e6a090766bdee4523a7704a3645a902bd4",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "協会員2,000円 非協会員3,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
   {
    "id": "anjo-2026-59a082b9",
@@ -8699,10 +8863,10 @@
    ],
    "date_hint": null,
    "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
-   "deadline_text": null,
-   "deadline_date": null,
+   "deadline_text": "10月23日(金)。但し、男女各40組にて締め切ります。",
+   "deadline_date": "2026-10-23",
    "deadline_time": null,
-   "venue": null,
+   "venue": "刈谷市洲原テニスコート(オムニコート) / 刈谷市狩野テニスコート(オムニコート)",
    "event_types": [
     "ダブルス"
    ],
@@ -8713,14 +8877,14 @@
    "audience_types": [
     "一般"
    ],
-   "eligibility_status": "参加資格要確認",
-   "eligibility_text": "一般男子ダブルス、一般女子ダブルス ↑ A,Bクラス別の一般男子ダブルス、一般女子ダブルス (Aクラス:オープン、Bクラス:クローズド)",
-   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "eligibility_status": "協会登録必要",
+   "eligibility_text": "B級 連盟登録者(当日受付可、500円) / A級クラスはオープン、但し エントリー数少数の場合中止にします。 / B級クラスは初、中級者対象。",
+   "eligibility_note": "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください",
    "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
-   "guideline_url": null,
+   "guideline_url": "https://www.katch.ne.jp/~fmhmksy/20261101_entry.pdf",
    "entry_url": null,
    "entry_text": null,
-   "parse_status": "partial",
+   "parse_status": "success",
    "classification_basis": [
     {
      "field": "audience",
@@ -8738,23 +8902,27 @@
     },
     {
      "field": "eligibility",
-     "value": "参加資格要確認",
-     "matched": null,
-     "source": "—",
-     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+     "value": "協会登録必要",
+     "matched": "B級 連盟登録者(当日受付可、500円) / A級クラスはオープン、但し エントリー数少数の場合中止にします。 / B級クラスは初、中級者対象。",
+     "source": "要項PDFの資格欄",
+     "rule": "大会名・年度・開催月日の対応を確認。個別条件は要項に従う"
     }
    ],
    "warnings": [],
    "notes": [
     "公式年間予定の概要: 一般男子ダブルス、一般女子ダブルス ↑ A,Bクラス別の一般男子ダブルス、一般女子ダブルス (Aクラス:オープン、Bクラス:クローズド)",
-    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+    "要項PDFの確認日: 2026-10-10"
    ],
    "source_snapshot_date": "2026-10-10",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "not_attempted"
-   }
+    "pdf_state": "parsed_details",
+    "guideline_url": "https://www.katch.ne.jp/~fmhmksy/20261101_entry.pdf",
+    "pdf_sha256": "90e7866c6f501876b1ee323232f1ed9c88cb4fc4557150d4239af4dd471a158b",
+    "confirmed_on": "2026-10-10"
+   },
+   "fee_text": "3,000円/組。 試合当日受付時に納入。(不参加者には別途事務局から請求)"
   },
   {
    "id": "kariya-2026-a1d58665",
