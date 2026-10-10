@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 from fetcher import PoliteFetcher
 
 f = PoliteFetcher('I-Tennis-Mobile-DataBot/1.0 (+https://github.com/yasuyasu55/i-tennis-mobile-preview)', timeout=20, max_requests=12)
-urls = [('anjo', 'https://anjo-tennis.net/' + quote('大会情報') + '/'),
-        ('kariya_menu', 'https://www.katch.ne.jp/~fmhmksy/newpage2.htm'),
+urls = [('anjo_http', 'http://anjo-tennis.net/' + quote('大会情報') + '/'),
+        ('kariya_schedule', 'https://www.katch.ne.jp/~fmhmksy/newpage6.htm'),
         ('kariya_top', 'https://www.katch.ne.jp/~fmhmksy/renmeitop.htm')]
 Path('pipeline/out-probe').mkdir(exist_ok=True)
 for name, url in urls:
