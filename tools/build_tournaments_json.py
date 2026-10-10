@@ -760,7 +760,7 @@ def supplement_regional_details(rec,event,key):
             status_elig=rec.get("eligibility_status") or "参加資格要確認"
             if "在住" in text:status_elig="地域条件あり"
             elif re.search(r"歳|年齢",text):status_elig="年齢条件あり"
-            elif "連盟登録者" in text:status_elig="協会登録必要"
+            elif "連盟登録者" in text:status_elig="その他の条件あり" if "オープン" in text else "協会登録必要"
             elif re.search(r"参加出来ません|出場できません|対象|優勝者",text):status_elig="その他の条件あり"
             elif "オープン" in text:status_elig="オープン参加（詳細条件は要項確認）"
             rec["eligibility_status"]=status_elig

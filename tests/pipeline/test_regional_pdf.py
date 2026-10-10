@@ -28,6 +28,10 @@ class RegionalDetails(unittest.TestCase):
  def test_multiple_fees_and_qualifications_retained(self):
   t=TEXT+'■ 参加資格 初級者、過去優勝者は参加出来ません\n■ 参加料 無料\n■ 表彰 賞品\n'
   r=p.parse(t,EV,'anjo');self.assertIn('無料',r['fields']['fee_text']);self.assertIn('優勝者',r['fields']['eligibility_text'])
+ def test_class_specific_conditions_all_retained(self):
+  text=TEXT+"■ 種目 女子A級 過去優勝者も出場可能\n女子B級 過去A・B級優勝者以外は出場可能\n女子C級 過去B級ベスト4以上は出場できません\n■ 表彰 賞品\n"
+  r=p.parse(text,EV,'anjo')
+  for category in ('女子A級','女子B級','女子C級'):self.assertIn(category,r['fields']['eligibility_text'])
  def test_repeated_optional_failures_keep_pdf_conditions(self):
   old={'source_id':'anjo_tennis_association','venue':'既知コート','fee_text':'2000円','eligibility_text':'年齢条件','eligibility_status':'年齢条件あり','eligibility_note':'要項確認','audience_types':['ベテラン'],'classification_basis':[{'field':'eligibility','source':'要項PDFの資格欄'}],'acquisition':{'pdf_state':'parsed_details'}}
   candidate={'source_id':old['source_id'],'eligibility_text':'オープン','audience_types':[],'classification_basis':[],'acquisition':{'pdf_state':'fetch_failed'}}

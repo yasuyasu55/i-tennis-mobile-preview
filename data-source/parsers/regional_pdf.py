@@ -77,10 +77,10 @@ def parse(text,event,key):
     elig=values('参加資格')
     kinds=values('種目')
     # Class/age restrictions are often in the kind block instead of eligibility.
-    restricted=[s for s in kinds if re.search(r'出場できません|出場出来ません|出場をお断り|対象|歳|オープン|ベスト|試合経験|初心',s)]
+    restricted=kinds if any(re.search(r'出場できません|出場出来ません|出場をお断り|対象|歳|オープン|ベスト|試合経験|初心|優勝',s) for s in kinds) else []
     if elig:out['fields']['eligibility_text']=' / '.join(elig+restricted)
     if key=='toyota':
-        age_lines=[s for v in b.get('部門/期日',[]) for s in v if '歳以上' in s]
+        age_lines=[m[0] for v in b.get('部門/期日',[]) for s in v for m in re.finditer(r'\([^()]*歳以上\)',s)]
         if age_lines and elig:out['fields']['eligibility_text']+=' / '+' / '.join(age_lines)
         out['fields']['eligibility_note']='会場の詳細・部門ごとの開催日は実施要項を確認してください'
     deadlines=values('申込締切','申込期限','申込期間')
