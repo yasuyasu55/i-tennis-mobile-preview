@@ -110,7 +110,13 @@
           "url": "https://www.okazaki-tennis.com/taikai-r8",
           "required": true
         }
-      ]
+      ],
+      "pdf": {
+        "max": 4,
+        "allowed_host_suffixes": [
+          "www.okazaki-tennis.com"
+        ]
+      }
     }
   ],
   "excluded": [

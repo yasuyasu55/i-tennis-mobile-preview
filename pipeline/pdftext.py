@@ -17,6 +17,26 @@ def _pypdf_text(data: bytes) -> str:
     return "\f".join((pg.extract_text() or "") for pg in r.pages)
 
 
+def pdf_to_layout(data: bytes, run=subprocess.run) -> str:
+    """表の列を保って読む任意の補助。既存pypdf経路の挙動を変えない。"""
+    if not data.startswith(b"%PDF"):
+        raise PdfError("PDFではありません")
+    with tempfile.TemporaryDirectory() as directory:
+        path = os.path.join(directory, "table.pdf")
+        with open(path, "wb") as stream:
+            stream.write(data)
+        try:
+            result = run(["pdftotext", "-layout", path, "-"], capture_output=True, timeout=60)
+        except (FileNotFoundError, subprocess.TimeoutExpired) as ex:
+            raise PdfError("表形式の補助抽出を利用できません") from ex
+    if result.returncode:
+        raise PdfError("表形式の補助抽出が失敗しました")
+    text = result.stdout.decode("utf-8", "replace")
+    if len(text.strip()) < 50:
+        raise PdfError("表形式の文字情報がありません")
+    return text
+
+
 def pdf_to_text(data: bytes, run=subprocess.run) -> str:
     if not data.startswith(b"%PDF"):
         raise PdfError("PDFではありません")

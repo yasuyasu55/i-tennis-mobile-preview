@@ -42,6 +42,8 @@ from parsers import gamagori_tennis as gt       # noqa: E402  新規(012)
 from parsers import toyokawa_tennis as tk       # noqa: E402  新規(013-A1)
 from parsers import hamamatsu_tennis as hm      # noqa: E402  新規(021)
 from parsers import okazaki_tennis as ok        # noqa: E402  岡崎（読み取り・候補生成）
+from parsers import okazaki_pdf as op           # noqa: E402  要項の費用・方法別締切
+from parsers import hamamatsu_pdf_table as ht   # noqa: E402  複数種目を含む表形式の補足
 import stable_ids                               # noqa: E402  安定ID（TTA-MOBILE-014-R1）
 import tournament_classify as tc                # noqa: E402
 
@@ -443,7 +445,7 @@ def _refine_doubles_and_mixed(rec):
 
 PREVIOUS_RECORDS = []      # 前回の同じ情報源の記録（失敗時の保持＝staleの判定に使う）。run_update が、取得の前に設定する
 
-_PDF_STATE_JP = {"parsed": "取得成功・解析成功", "fetched_unparsed": "取得成功・解析未取得", "fetch_failed": "取得失敗", "not_attempted": "今回は取得していない", "none": "要項PDFのリンクなし",
+_PDF_STATE_JP = {"parsed": "取得成功・解析成功", "partial_details": "取得成功・費用と種目別締切を補足", "fetched_unparsed": "取得成功・解析未取得", "fetch_failed": "取得失敗", "not_attempted": "今回は取得していない", "none": "要項PDFのリンクなし",
                  "reference_only": "取得成功・この大会の項目には使わない（同じ公式フォルダの要項PDF）"}
 _PDF_FIELDS = ("deadline_text", "deadline_date", "deadline_time", "eligibility_status", "eligibility_text", "eligibility_note", "fee_text", "entry_text")
 _PDF_NOTE_PREFIXES = ("申込締切 ", "要項PDFの会場の表記", "要項PDFの確認日")
@@ -533,6 +535,8 @@ def build_hamamatsu():
         key = url_key(ev["guideline_url"]) if ev["guideline_url"] else None
         y = pdfs.get("hamamatsu_%s_youkou.txt" % key) if key else None
         fs = fetchstat.get("hamamatsu_%s_fetch.json" % key) if key else None
+        layout_raw = read("hamamatsu_%s_layout.txt" % key, optional=True) if key else None
+        table_detail = ht.parse(layout_raw.decode("utf-8"), ev) if layout_raw is not None else None
         if y is not None and ev["origin"] == "guidelines":
             used.add("hamamatsu_%s_youkou.txt" % key)
         row_dates = {p["normalized"] for p in ev["periods"] if p["normalized"]}
@@ -549,6 +553,8 @@ def build_hamamatsu():
             pdf_state, detail = "none", None
         elif use_pdf:
             pdf_state, detail = "parsed", None
+        elif table_detail:
+            pdf_state, detail = "partial_details", None
         elif fs and fs.get("state") == "fetch_failed":
             pdf_state, detail = "fetch_failed", "%s: %s" % (fs.get("stage"), fs.get("message"))
         elif ev["origin"] == "predraw_only" and fs and fs.get("state") == "fetched" and y is not None and y["ok"]:
@@ -596,10 +602,17 @@ def build_hamamatsu():
                     held = _hold_previous_pdf_values(rec, prev, reason)
             if not held:
                 rec["warnings"].append("申込締切・参加資格・参加費は、要項PDFから取得できていません（未取得・要確認）")
+        if table_detail and not use_pdf:
+            rec["fee_text"] = table_detail["fee_text"]
+            rec["entry_text"] = table_detail["entry_text"]
+            rec["notes"].extend(table_detail["deadline_notes"])
+            rec["notes"].append("要項PDFの確認日: %s（表の列配置を保持して読み取り。参加資格の分類と原文の日付は変更していません）" % (PDF_CONFIRMED_ON or "不明"))
+            rec["warnings"] = [w for w in rec["warnings"] if "申込締切・参加資格・参加費は、要項PDFから取得できていません" not in w]
+            rec["warnings"].append("参加資格の詳細と、複数種目に共通する単一の申込締切は未確定です。種目別の締切と公式要項を確認してください")
         # ---- 取得の記録（自動取得）。手動取得の記録は、実取得の全工程が成功したデータでは、この記録に置き換わる ----
         urls = [hm.PAGE_URL] + [u for u in [ev["guideline_url"], ev["entry_url"]] + ev["predraw_urls"] if u]
         acq = {"method": "http", "auto_fetch": True, "tool": "通常のHTTP取得（pipeline）", "official_urls": urls, "pdf_state": pdf_state, "pdf_state_jp": _PDF_STATE_JP[pdf_state],
-               "pdf_extractor": (fs or {}).get("extractor")}
+            "pdf_extractor": (fs or {}).get("layout_extractor") if table_detail else (fs or {}).get("extractor")}
         st = rec.pop("_stale", None)
         if st:
             acq["stale"] = st
@@ -611,7 +624,7 @@ def build_hamamatsu():
     if not recs:
         raise BuildError("浜松: 取り込める大会がありません")
     stable_ids.assign_ids("hamamatsu", recs, fys)
-    summ = {"pdf_total": len(pdf_states), "pdf_parsed": sum(1 for v in pdf_states.values() if v == "parsed"), "pdf_unparsed": sum(1 for v in pdf_states.values() if v in ("fetched_unparsed", "reference_only")),
+    summ = {"pdf_total": len(pdf_states), "pdf_parsed": sum(1 for v in pdf_states.values() if v == "parsed"), "pdf_partial_details": sum(1 for v in pdf_states.values() if v == "partial_details"), "pdf_unparsed": sum(1 for v in pdf_states.values() if v in ("fetched_unparsed", "reference_only")),
             "pdf_fetch_failed": sum(1 for v in pdf_states.values() if v == "fetch_failed"), "pdf_not_attempted": sum(1 for v in pdf_states.values() if v == "not_attempted"),
             "stale_records": sum(1 for r in recs if (r.get("acquisition") or {}).get("stale")), "fetch_status_present": bool(fetchstat)}
     return recs, {"page": {k: v for k, v in page.items() if k not in ("guidelines", "predraw")}, "youkou": {k: {"ok": v["ok"], "problems": v["problems"]} for k, v in pdfs.items()}, "pdf_summary": summ}
@@ -683,10 +696,34 @@ def build_okazaki():
             rec["eligibility_note"] = "岡崎市テニス協会の加盟員に限ると一覧に明記されています。登録条件の詳細は公式要項で確認してください。"
             rec["classification_basis"] = [b for b in rec.get("classification_basis", []) if b.get("field") != "eligibility"]
             rec["classification_basis"].append({"field": "eligibility", "value": "協会登録必要", "matched": "加盟員のみ", "source": "一覧表の参加資格欄", "rule": "岡崎公式一覧に加盟員のみと明記"})
+        # 一覧の分類は維持し、タイトル・開催日・曜日が一致したPDFだけを補足する。
+        guideline = ev.get("guideline_url")
+        text = read("okazaki_%s_youkou.txt" % url_key(guideline), optional=True) if guideline else None
+        detail = op.parse(text.decode("utf-8"), ev) if text is not None else None
+        status_raw = read("okazaki_%s_fetch.json" % url_key(guideline), optional=True) if guideline else None
+        status = json.loads(status_raw.decode("utf-8")) if status_raw else {}
+        if detail and detail["ok"]:
+            main = next((d for d in detail["deadlines"] if d["mode"] == "インターネット"),
+                        next((d for d in detail["deadlines"] if d["mode"] == "共通"), None))
+            if main and (not rec["deadline_date"] or main["date"] == rec["deadline_date"]):
+                rec["deadline_date"] = main["date"]
+                rec["deadline_text"] = main["text"]
+            elif main:
+                rec["warnings"].append("一覧と要項の申込締切が異なるため、一覧の締切を維持しています。要項で確認してください")
+            rec["fee_text"] = " ／ ".join(detail["fee_lines"])
+            rec["notes"] = ["公式大会一覧から取得。要項PDFの参加費・方法別締切を確認しました。申込先ページは未解析です"]
+            rec["notes"].extend("要項PDFの%s申込締切: %s" % (d["mode"], d["text"]) for d in detail["deadlines"])
+            rec["notes"].append("要項PDFの確認日: %s（大会名・開催日・曜日を一覧と照合）" % (PDF_CONFIRMED_ON or "不明"))
+        elif detail:
+            rec["warnings"].append("要項PDFの詳細は未採用: " + "・".join(detail["problems"]))
+        rec["acquisition"] = {"method": "http", "auto_fetch": True,
+                              "pdf_state": "parsed_details" if detail and detail["ok"] else status.get("state", "not_attempted"),
+                              "pdf_extractor": status.get("extractor")}
         recs.append(rec)
         fiscal_years.append(page["fiscal_year"])
     stable_ids.assign_ids("okazaki", recs, fiscal_years)
-    return recs, {"page_url": ok.PAGE_URL, "fiscal_year": 2026, "event_count": len(recs), "pdf_body_parsed": False}
+    return recs, {"page_url": ok.PAGE_URL, "fiscal_year": page["fiscal_year"], "event_count": len(recs),
+                  "pdf_details_parsed": sum(1 for r in recs if r.get("acquisition", {}).get("pdf_state") == "parsed_details")}
 
 
 
@@ -733,8 +770,8 @@ SOURCE_DEFS = {
                           len(recs), sum(1 for r in recs if r["parse_status"] == "success"), (raw.get("page") or {}).get("results_count") or 0),
                       parser="TTA-MOBILE-021（新規）"),
     "okazaki": dict(builder=build_okazaki, id=ok.SOURCE_ID, name="岡崎", area="岡崎", event_area="岡崎", coverage="partial", label="部分対応",
-                     note=lambda recs, raw: "令和8年度の大会一覧カード（%d件）。開催日・種目・参加資格・会場・一覧記載の締切を取得。要項PDF本文・申込先は未解析" % len(recs),
-                     parser="岡崎大会カード parser v0.1（候補。公式PDF本文は未解析）"),
+                     note=lambda recs, raw: "令和%s年度の大会一覧カード（%d件）。開催日・種目・参加資格・会場・一覧記載の締切を取得。要項PDFの参加費・方法別締切を確認した大会は%d件。申込先ページは未解析" % (raw["fiscal_year"] - 2018, len(recs), raw.get("pdf_details_parsed", 0)),
+                     parser="岡崎大会カード・要項の費用／方法別締切 parser v0.2"),
 }
 
 
@@ -755,8 +792,8 @@ def build_source(key):
         meta["pdf_confirmed_on"] = PDF_CONFIRMED_ON
         full = ps.get("pdf_fetch_failed", 0) == 0 and ps.get("stale_records", 0) == 0
         meta["acquisition"] = "automatic_http" if full else "automatic_http_partial"
-        meta["snapshot_note"] = ("公式ページ・要項PDFを、通常のHTTP取得で自動取得（取得日: %s。ページ内に更新日の記載なし）。要項PDF %d件: 取得・解析成功 %d件／取得成功・解析未取得 %d件／取得失敗 %d件。前回成功値を保持している大会: %d件" % (
-            SNAPSHOT_DATE["hamamatsu"], ps.get("pdf_total", 0), ps.get("pdf_parsed", 0), ps.get("pdf_unparsed", 0), ps.get("pdf_fetch_failed", 0), ps.get("stale_records", 0)))
+        meta["snapshot_note"] = ("公式ページ・要項PDFを、通常のHTTP取得で自動取得（取得日: %s。ページ内に更新日の記載なし）。要項PDF %d件: 取得・解析成功 %d件／費用・種目別締切を補足 %d件／取得成功・解析未取得 %d件／取得失敗 %d件。前回成功値を保持している大会: %d件" % (
+            SNAPSHOT_DATE["hamamatsu"], ps.get("pdf_total", 0), ps.get("pdf_parsed", 0), ps.get("pdf_partial_details", 0), ps.get("pdf_unparsed", 0), ps.get("pdf_fetch_failed", 0), ps.get("stale_records", 0)))
     if key == "toyokawa":
         meta["pdf_confirmed_on"] = PDF_CONFIRMED_ON
         meta["snapshot_note"] = "保存HTMLの受領日（要項PDFの確認日: %s）" % PDF_CONFIRMED_ON

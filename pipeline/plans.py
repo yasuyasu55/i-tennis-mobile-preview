@@ -156,6 +156,13 @@ def plan_hamamatsu(cfg, cfgroot, fetcher, today, pdf_to_text):
                 status.update({"state": "fetched", "extractor": getattr(pdf_to_text, "last_extractor", None)})
                 st["pdf_extractor"] = status["extractor"] or st["pdf_extractor"]
                 res.inputs["hamamatsu_%s_youkou.txt" % key] = text.encode("utf-8")
+                if not hm.parse_youkou_text(text)["ok"]:
+                    try:
+                        layout = pdftext.pdf_to_layout(r.body)
+                        res.inputs["hamamatsu_%s_layout.txt" % key] = layout.encode("utf-8")
+                        status["layout_extractor"] = "pdftotext -layout"
+                    except pdftext.PdfError:
+                        pass  # 任意の補足。失敗しても既存の解析結果を維持する。
             except pdftext.PdfError as ex:
                 status.update({"state": "text_failed", "stage": "pdftext", "message": str(ex)})
                 st["pdf_text_failed"] += 1
@@ -165,5 +172,47 @@ def plan_hamamatsu(cfg, cfgroot, fetcher, today, pdf_to_text):
     return res
 
 
-# 岡崎は、まず公式大会一覧1ページだけを読む。要項PDF本文の取得・解析は別工程。
-PLANS = {"aichi": plan_generic, "toyohashi": plan_toyohashi, "gamagori": plan_generic, "toyokawa": plan_toyokawa, "hamamatsu": plan_hamamatsu, "okazaki": plan_generic}
+def plan_okazaki(cfg, cfgroot, fetcher, today, pdf_to_text):
+    res = SourcePlanResult()
+    _generic_pages(cfg, fetcher, cfgroot, res)
+    pc = cfg.get("pdf") or {}
+    page = res.inputs.get("okazaki_tournament.html")
+    res.stats = {"pdf_attempted": 0, "pdf_fetched": 0, "pdf_fetch_failed": 0, "pdf_text_failed": 0}
+    if not page or not pc.get("max"):
+        return res
+    seen = set()
+    for event in ok.parse_page(page)["events"]:
+        url = event.get("guideline_url")
+        ends = [p["normalized"] for p in event["periods"] if p.get("normalized")]
+        if not url or url in seen or (ends and max(ends) < today):
+            continue
+        seen.add(url)
+        if not _host_allowed(url, pc.get("allowed_host_suffixes", [])):
+            continue
+        if res.stats["pdf_attempted"] >= pc["max"]:
+            res.notes.append("岡崎: 要項PDFの取得上限に達したため残りは未確認です")
+            break
+        res.stats["pdf_attempted"] += 1
+        key = hamamatsu_pdf_key(url)
+        status = {"url": url, "state": "fetch_failed"}
+        try:
+            pdf = fetcher.get(url, cfgroot["max_pdf_bytes"])
+            res.stats["pdf_fetched"] += 1
+            status.update(http_status=pdf.status, sha256=hashlib.sha256(pdf.body).hexdigest(), bytes=len(pdf.body))
+            try:
+                text = pdf_to_text(pdf.body)
+                res.inputs["okazaki_%s_youkou.txt" % key] = text.encode("utf-8")
+                status.update(state="fetched", extractor=getattr(pdf_to_text, "last_extractor", None))
+            except pdftext.PdfError as ex:
+                res.stats["pdf_text_failed"] += 1
+                status.update(state="text_failed", message=str(ex))
+                res.notes.append("岡崎: 要項の文字を読み取れません: " + event["title"])
+        except FetchError as ex:
+            res.stats["pdf_fetch_failed"] += 1
+            status.update(stage=ex.stage, message=ex.message)
+            res.notes.append("岡崎: 要項PDFを取得できません: " + event["title"])
+        res.inputs["okazaki_%s_fetch.json" % key] = json.dumps(status, ensure_ascii=False).encode("utf-8")
+    return res
+
+
+PLANS = {"aichi": plan_generic, "toyohashi": plan_toyohashi, "gamagori": plan_generic, "toyokawa": plan_toyokawa, "hamamatsu": plan_hamamatsu, "okazaki": plan_okazaki}
