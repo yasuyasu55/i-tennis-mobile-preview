@@ -1,0 +1,22 @@
+name: Inspect Nagoya source
+on:
+  push:
+    branches: [nagoya-source-preview]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-pipeline.txt
+      - run: python tools/inspect_nagoya.py
+      - uses: actions/upload-artifact@v6
+        with:
+          name: nagoya-evidence
+          path: nagoya-evidence/
+          retention-days: 2
