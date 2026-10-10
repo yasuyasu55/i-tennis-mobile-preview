@@ -27,3 +27,12 @@
 
 ## 変更範囲
 検証専用ブランチshinshiro-source-probeのprobeとこの文書のみ。main、hamamatsu-r5-candidate、公開JSON、公開UI、既存の週次更新は変更していない。不要な再アクセスを避けるためprobeのpushトリガーを終了した。
+
+## 再確認（2026-10-10 13:25 JST）
+
+- GitHub Actionsの既存読み取り専用probeを再実行（run 38014773827、attempt 2、job 114130707197）。実測ログ: https://github.com/yasuyasu55/i-tennis-mobile-preview/actions/runs/38014773827/attempts/2
+- HTTP/HTTPSのwww入口はいずれもrobots.txt接続が25秒でタイムアウト。既存fetcherにより本文取得前に停止し、取得大会は0件。ジョブ成功は診断完了を示すもので、取得成功ではない。
+- クラウドブラウザでhttps://shinshiro-tennis.com/を開くと502 Bad GatewayとConnection refusedを表示。利用者のブラウザでも同じ状態になるか、恒久障害かは不明。
+- 公開アプリはブラウザで接続・表示できた。Ver.0.8.10、74件、浜松・豊橋・豊川・蒲郡・岡崎・愛知県協会掲載の独立チェックボックスを確認。
+- 新城の追加は接続改善待ち。検索結果のタイトルだけから大会レコードは作成していない。main・collector・公開JSON・既存定期更新に変更なし。
+- 別途確認事項: 公開画面の情報源説明に「定期自動更新は未設定です」という旧文言が残る。mainのall-sources-update.ymlには月曜03:17 JSTのscheduleが存在する。定期実行成功は10月12日の実行結果で確認する必要がある。今回この表示文言は変更していない。
