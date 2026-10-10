@@ -45,6 +45,15 @@
    "summary": "大会情報が更新されました（9件 → 9件）",
    "records_before": 9,
    "records_after": 9
+  },
+  {
+   "at": "2026-10-10T14:06:59+09:00",
+   "source": "toyota_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（0件 → 8件）",
+   "records_before": 0,
+   "records_after": 8
   }
  ]
 }
