@@ -1,0 +1,22 @@
+name: Tournament details evidence
+on:
+  push:
+    branches: [tournament-details-preview]
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-pipeline.txt
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - run: python tools/inspect_details.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tournament-details-evidence
+          path: detail-evidence/
+          retention-days: 2
