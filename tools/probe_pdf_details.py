@@ -29,6 +29,13 @@ for key,url,parser in [("okazaki",ok.PAGE_URL,ok.parse_page),("hamamatsu",hm.PAG
                 pdf=f.get(item["url"],4000000)
                 txt=pdf_to_text(pdf.body)
                 item.update(status=pdf.status,sha256=hashlib.sha256(pdf.body).hexdigest(),extractor=pdf_to_text.last_extractor,text=txt[:24000])
+                if key=="hamamatsu":
+                    import tempfile, subprocess
+                    with tempfile.TemporaryDirectory() as d:
+                        src=Path(d)/"source.pdf"
+                        src.write_bytes(pdf.body)
+                        layout=subprocess.run(["pdftotext","-layout",str(src),"-"],capture_output=True,timeout=30,check=True).stdout.decode("utf-8")
+                    item["layout_text"]=layout
             except (FetchError,PdfError) as ex: item["error"]=str(ex)
             out["pdfs"].append(item)
     except FetchError as ex: out["error"]=str(ex)
