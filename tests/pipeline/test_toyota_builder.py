@@ -73,6 +73,12 @@ class ToyotaTests(unittest.TestCase):
         after = bt.build_source("toyota")["records"]
         self.assertEqual([r["id"] for r in before], [r["id"] for r in after])
 
+    def test_explicit_team_match_is_classified_without_inventing_components(self):
+        bt.PROVIDER = {"toyota_tournament.html": fixture().replace('架空大会4(シングルス)'.encode(), '架空カーニバル(ハンディキャップチーム戦)'.encode())}
+        row = bt.build_source("toyota")["records"][3]
+        self.assertEqual(row['primary_event_types'], ['団体戦'])
+        self.assertEqual(row['component_match_types'], [])
+
     def test_fetch_failure_keeps_previous_toyota(self):
         source = bt.build_source("toyota")
         prev = bt.assemble([source])

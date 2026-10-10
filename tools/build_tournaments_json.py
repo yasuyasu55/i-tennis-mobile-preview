@@ -745,6 +745,10 @@ def build_toyota():
                           notes=["公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"],
                           acquisition={"method": "http", "auto_fetch": True, "pdf_state": "not_attempted"})
         apply_common_classification(rec)
+        if "チーム戦" in ev["title"] and not rec["event_types"]:
+            rec["event_types"] = ["団体戦"]
+            rec["classification_basis"].append({"field": "event_type", "value": "団体戦", "matched": "チーム戦",
+                                                "source": "公式大会一覧の大会名", "rule": "豊田の大会名にチーム戦と明記"})
         recs.append(rec)
     stable_ids.assign_ids("toyota", recs, [page["fiscal_year"]] * len(recs))
     return recs, {"fiscal_year": page["fiscal_year"], "event_count": len(recs)}
@@ -823,6 +827,9 @@ def build_source(key):
     if key == "toyokawa":
         meta["pdf_confirmed_on"] = PDF_CONFIRMED_ON
         meta["snapshot_note"] = "保存HTMLの受領日（要項PDFの確認日: %s）" % PDF_CONFIRMED_ON
+    if key == "toyota":
+        meta["acquisition"] = "automatic_http"
+        meta["snapshot_note"] = "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析"
     return {"key": key, "records": recs, "raw": raw, "meta": meta, "warnings": list(RUN_WARNINGS)}
 
 
