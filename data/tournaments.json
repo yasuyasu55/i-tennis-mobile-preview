@@ -225,6 +225,46 @@
    ],
    "parser": "豊田年度別大会一覧 parser v0.1",
    "acquisition": "automatic_http"
+  },
+  {
+   "id": "anjo_tennis_association",
+   "name": "安城",
+   "area": "安城",
+   "event_area": "安城",
+   "coverage": "partial",
+   "coverage_label": "部分対応",
+   "coverage_note": "2026年度の公式大会表16件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。西三河マスターズは対象外。会場・費用・締切・要項本文は未取得",
+   "snapshot_date": "2026-10-10",
+   "snapshot_note": "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析",
+   "record_count": 16,
+   "files": [
+    {
+     "file": "anjo_tournament.html",
+     "sha256": "c5d00dd2b03c20c1f5f4278e9b8905a62897532f8b7ec98d1a945deb166ff686"
+    }
+   ],
+   "parser": "安城年度別大会表 parser v0.1",
+   "acquisition": "automatic_http"
+  },
+  {
+   "id": "kariya_tennis_association",
+   "name": "刈谷",
+   "area": "刈谷",
+   "event_area": "刈谷",
+   "coverage": "partial",
+   "coverage_label": "部分対応",
+   "coverage_note": "2026年度の公式年間予定9件。開催日・予備日・概要を取得。会場・締切・費用・募集要項本文は未取得",
+   "snapshot_date": "2026-10-10",
+   "snapshot_note": "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析",
+   "record_count": 9,
+   "files": [
+    {
+     "file": "kariya_schedule.html",
+     "sha256": "3521db3d138bf4502ea6246560966338c6d69c85988e729de8c848bf3285f072"
+    }
+   ],
+   "parser": "刈谷年度別大会予定 parser v0.1",
+   "acquisition": "automatic_http"
   }
  ],
  "other_areas": {
@@ -234,7 +274,7 @@
   "coverage_note": "この版では、上記以外の地域の大会情報は取得していません（検索結果0件は「大会がない」ではなく「未対応」の可能性があります）"
  },
  "summary": {
-  "total": 82,
+  "total": 107,
   "by_source": {
    "愛知県協会": 25,
    "豊橋": 20,
@@ -242,11 +282,13 @@
    "豊川": 8,
    "浜松": 5,
    "岡崎": 9,
-   "豊田": 8
+   "豊田": 8,
+   "安城": 16,
+   "刈谷": 9
   },
   "by_parse_status": {
    "success": 30,
-   "partial": 52
+   "partial": 77
   }
  },
  "tournaments": [
@@ -6807,6 +6849,2194 @@
     "auto_fetch": true,
     "pdf_state": "not_attempted"
    }
+  },
+  {
+   "id": "anjo-2026-4a738ce0",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城オープンシングルス大会(一般)",
+   "title": "安城オープンシングルス大会(一般)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "4/5(日)",
+   "periods": [
+    {
+     "raw": "4/5(日)",
+     "normalized": "2026-04-05",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/03/4%E6%9C%88%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E4%B8%80%E8%88%AC.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "タイトル",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女一般S",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-868fa133",
+   "fiscal_year": 2026,
+   "event_key": "2026|女子ウィークデイc・d級",
+   "title": "女子ウィークデイC・D級",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "5/8(金)",
+   "periods": [
+    {
+     "raw": "5/8(金)",
+     "normalized": "2026-05-08",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "5/22(金)",
+   "reserve_periods": [
+    {
+     "raw": "5/22(金)",
+     "normalized": "2026-05-22",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "ビギナーの方※戦績制限あり",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/03/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%912026%E6%98%A5%E3%81%AE%E3%83%93%E3%82%AE%E3%83%8A%E3%83%BC%E3%83%AC%E3%83%87%E3%82%A3%E3%83%BC%E3%82%B9CD%E7%B4%9A%E5%A4%A7%E4%BC%9A2.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "ビギナーの方※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（その他の条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式大会表の種目（S=シングルス・D=ダブルス）",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "その他の条件あり",
+     "matched": "ビギナーの方※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 女子D(C・D)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-e315028b",
+   "fiscal_year": 2026,
+   "event_key": "2026|春季女子ウィークデーダブルス",
+   "title": "春季女子ウィークデーダブルス",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "5/21(木)",
+   "periods": [
+    {
+     "raw": "5/21(木)",
+     "normalized": "2026-05-21",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "6/4(木)",
+   "reserve_periods": [
+    {
+     "raw": "6/4(木)",
+     "normalized": "2026-06-04",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン※戦績制限あり",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/04/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%912026%E6%98%A5%E5%AD%A3%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A4%E5%A5%B3%E5%AD%90%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9ABC2.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "オープン※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（オープン参加（詳細条件は要項確認））、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 女子D(A・B・C)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-cc76c268",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城オープンシングルス大会(チャレンジャー)",
+   "title": "安城オープンシングルス大会(チャレンジャー)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "5/30(土)",
+   "periods": [
+    {
+     "raw": "5/30(土)",
+     "normalized": "2026-05-30",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/05/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%912026%E5%B9%B4%E5%BA%A6%E3%80%80%E5%AE%89%E5%9F%8E%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%EF%BC%88%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC%EF%BC%893.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（オープン参加（詳細条件は要項確認））、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女チャレンジャーS",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-1a8d42dc",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城オープンダブルス大会(一般・チャレンジャー)",
+   "title": "安城オープンダブルス大会(一般・チャレンジャー)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "6/7(日)",
+   "periods": [
+    {
+     "raw": "6/7(日)",
+     "normalized": "2026-06-07",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン※チャレンジャーは戦績制限あり",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/04/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91%E5%AE%89%E5%9F%8E%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E5%A4%A7%E4%BC%9A%EF%BC%88%E4%B8%80%E8%88%AC%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC%EF%BC%89.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "タイトル",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン※チャレンジャーは戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女一般D,男女チャレンジャーD",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-7d76e3cd",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城オープンダブルス大会(ベテラン)",
+   "title": "安城オープンダブルス大会(ベテラン)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "6/21(日)",
+   "periods": [
+    {
+     "raw": "6/21(日)",
+     "normalized": "2026-06-21",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "7/18(土)",
+   "reserve_periods": [
+    {
+     "raw": "7/18(土)",
+     "normalized": "2026-07-18",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "ベテラン"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/04/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91%E5%AE%89%E5%9F%8E%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E5%A4%A7%E4%BC%9A%EF%BC%88%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3%EF%BC%89.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "ベテラン",
+     "source": "タイトル",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男子ベテランD(100・120歳以上)女子ベテランD(90・110歳以上)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-d3996fdd",
+   "fiscal_year": 2026,
+   "event_key": "2026|ミックスダブルス大会(一般・ベテラン)",
+   "title": "ミックスダブルス大会(一般・ベテラン)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "8/9(日)",
+   "periods": [
+    {
+     "raw": "8/9(日)",
+     "normalized": "2026-08-09",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ミックス"
+   ],
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "ベテラン",
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/06/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9%E5%A4%A7%E4%BC%9A%EF%BC%88%E4%B8%80%E8%88%AC%EF%BC%86%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3%EF%BC%89%EF%BC%92.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "ベテラン",
+     "source": "タイトル",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "タイトル",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "タイトル",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: ミックスD(一般・50歳以上)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-c7ae0dff",
+   "fiscal_year": 2026,
+   "event_key": "2026|秋の女子ウィークデイc・d級",
+   "title": "秋の女子ウィークデイC・D級",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "10/23(金)",
+   "periods": [
+    {
+     "raw": "10/23(金)",
+     "normalized": "2026-10-23",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "11/13(金)",
+   "reserve_periods": [
+    {
+     "raw": "11/13(金)",
+     "normalized": "2026-11-13",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "ビギナーの方※戦績制限あり",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%911023%E7%A7%8B%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3CD%E7%B4%9A2.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "ビギナーの方※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（その他の条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式大会表の種目（S=シングルス・D=ダブルス）",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "その他の条件あり",
+     "matched": "ビギナーの方※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 女子D(C・D)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-2f30f75a",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城市民ダブルス大会(一般・チャレンジャー)",
+   "title": "安城市民ダブルス大会(一般・チャレンジャー)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "10/24(土)",
+   "periods": [
+    {
+     "raw": "10/24(土)",
+     "normalized": "2026-10-24",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "11/14(土)",
+   "reserve_periods": [
+    {
+     "raw": "11/14(土)",
+     "normalized": "2026-11-14",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン☆西三河マスターズ参加資格対象大会(ベスト8以上)※チャレンジャーは戦績制限あり",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261024%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E5%A4%A7%E4%BC%9A%E4%B8%80%E8%88%AC%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC2.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "タイトル",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン☆西三河マスターズ参加資格対象大会(ベスト8以上)※チャレンジャーは戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女一般D,男女チャレンジャーD",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-85375003",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城市民ダブルス大会(ベテラン)",
+   "title": "安城市民ダブルス大会(ベテラン)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "10/31(土)",
+   "periods": [
+    {
+     "raw": "10/31(土)",
+     "normalized": "2026-10-31",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "ベテラン"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261031%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3%E5%A4%A7%E4%BC%9A.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "ベテラン",
+     "source": "タイトル",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女ベテランD(45・55・65歳以上",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-e848d6b8",
+   "fiscal_year": 2026,
+   "event_key": "2026|秋季女子ウィークデーダブルス",
+   "title": "秋季女子ウィークデーダブルス",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "11/12(木)",
+   "periods": [
+    {
+     "raw": "11/12(木)",
+     "normalized": "2026-11-12",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "11/26(木)",
+   "reserve_periods": [
+    {
+     "raw": "11/26(木)",
+     "normalized": "2026-11-26",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン※戦績制限あり",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261112%E7%A7%8B%E5%AD%A3%E5%A5%B3%E5%AD%90%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "オープン※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（オープン参加（詳細条件は要項確認））、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン※戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 女子D(A・B・C)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-f183a386",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城選手権大会",
+   "title": "安城選手権大会",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "11/15(日)",
+   "periods": [
+    {
+     "raw": "11/15(日)",
+     "normalized": "2026-11-15",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "11/29(日)",
+   "reserve_periods": [
+    {
+     "raw": "11/29(日)",
+     "normalized": "2026-11-29",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "地域条件あり",
+   "eligibility_text": "安城市在住、在勤、在学",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/08/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%912026%E5%AE%89%E5%9F%8E%E9%81%B8%E6%89%8B%E6%A8%A9.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "安城市在住、在勤、在学",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（地域条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "公式大会表の種目（S=シングルス・D=ダブルス）",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "地域条件あり",
+     "matched": "安城市在住、在勤、在学",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女S",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-8672d103",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城市民シングルス大会(ベテラン)",
+   "title": "安城市民シングルス大会(ベテラン)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "11/21(土)",
+   "periods": [
+    {
+     "raw": "11/21(土)",
+     "normalized": "2026-11-21",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "ベテラン"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261121%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "ベテラン",
+     "source": "タイトル",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女ベテランS(40・50・60歳以上)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-fac9e7bb",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城市民シングルス大会(一般)",
+   "title": "安城市民シングルス大会(一般)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "12/5(土)",
+   "periods": [
+    {
+     "raw": "12/5(土)",
+     "normalized": "2026-12-05",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261205%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E4%B8%80%E8%88%AC.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "タイトル",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女一般S",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-8de0488c",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城市民シングルス大会(チャレンジャー)",
+   "title": "安城市民シングルス大会(チャレンジャー)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "12/12(土)",
+   "periods": [
+    {
+     "raw": "12/12(土)",
+     "normalized": "2026-12-12",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "※チャレンジャーは戦績制限あり",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261212%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC.pdf",
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "※チャレンジャーは戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "参加資格が明記されており（その他の条件あり）、年齢・学年・所属による限定の表示が無いため「一般」。大会名に対象者を示す語が無いだけでは「不明」にしない（要項に詳細条件が残る可能性は、参加資格の欄で案内）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "その他の条件あり",
+     "matched": "※チャレンジャーは戦績制限あり",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女チャレンジャーS",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "anjo-2026-59a082b9",
+   "fiscal_year": 2026,
+   "event_key": "2026|安城オープンシングルス大会(ベテラン)",
+   "title": "安城オープンシングルス大会(ベテラン)",
+   "source_id": "anjo_tennis_association",
+   "source_name": "安城市テニス協会",
+   "source_area": "安城",
+   "event_area": "安城",
+   "date_text": "1/30(土)",
+   "periods": [
+    {
+     "raw": "1/30(土)",
+     "normalized": "2027-01-30",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会表の2026年度見出し。1〜3月は翌年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "ベテラン"
+   ],
+   "eligibility_status": "オープン参加（詳細条件は要項確認）",
+   "eligibility_text": "オープン",
+   "eligibility_note": "公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください",
+   "official_url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
+   "guideline_url": null,
+   "entry_url": "http://anjo-tennis.net/entry/",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "ベテラン",
+     "source": "タイトル",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "オープン参加（詳細条件は要項確認）",
+     "matched": "オープン",
+     "source": "一覧表の参加資格欄",
+     "rule": "一覧の明記内容のみ。オープンでも詳細条件は要項確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式大会表の種目: 男女ベテランS(45・55・65歳以上)",
+    "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-4b6c6f8b",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市市長杯",
+   "title": "刈谷市 市長杯",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2026年4月19日/予26日",
+   "periods": [
+    {
+     "raw": "2026年4月19日",
+     "normalized": "2026-04-19",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予26日",
+   "reserve_periods": [
+    {
+     "raw": "予26日",
+     "normalized": "2026-04-26",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "一般男子ダブルス、一般女子ダブルス",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "公式年間予定の概要",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式年間予定の概要",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: 一般男子ダブルス、一般女子ダブルス",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-5d95331f",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市チーム団体戦",
+   "title": "刈谷市 チーム団体戦",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2026年5月24日/予31日",
+   "periods": [
+    {
+     "raw": "2026年5月24日",
+     "normalized": "2026-05-24",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予31日",
+   "reserve_periods": [
+    {
+     "raw": "予31日",
+     "normalized": "2026-05-31",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ミックス",
+    "団体戦",
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [
+    "ミックス",
+    "ダブルス"
+   ],
+   "audience_types": [
+    "団体限定",
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "一般女子ダブルス+一般男子ダブルス +一般ミックスダブルス",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "団体限定",
+     "matched": "チーム",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語（団体／対抗／チーム）"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "公式年間予定の概要",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "公式年間予定の概要",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "event_type",
+     "value": "団体戦",
+     "matched": "団体戦",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "一般男子・女子ダブルス",
+     "source": "公式年間予定の概要",
+     "rule": "団体戦の構成種目に一般男子または女子ダブルスが明記"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: 一般女子ダブルス+一般男子ダブルス +一般ミックスダブルス",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-3e817abf",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市女子ウィークデーチーム団体戦",
+   "title": "刈谷市 女子ウィークデーチーム団体戦",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2026年6月11日/予18日",
+   "periods": [
+    {
+     "raw": "2026年6月11日",
+     "normalized": "2026-06-11",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予18日",
+   "reserve_periods": [
+    {
+     "raw": "予18日",
+     "normalized": "2026-06-18",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス",
+    "団体戦"
+   ],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [
+    "ダブルス"
+   ],
+   "audience_types": [
+    "団体限定",
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "一般女子ダブルス",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "団体限定",
+     "matched": "チーム",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語（団体／対抗／チーム）"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "公式年間予定の概要",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式年間予定の概要",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "event_type",
+     "value": "団体戦",
+     "matched": "団体戦",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: 一般女子ダブルス",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-7ac13326",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市100歳・120歳テニス大会",
+   "title": "刈谷市 100歳・120歳テニス大会",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2026年 6月28日/予7月5日",
+   "periods": [
+    {
+     "raw": "2026年 6月28日",
+     "normalized": "2026-06-28",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予7月5日",
+   "reserve_periods": [
+    {
+     "raw": "予7月5日",
+     "normalized": "2026-07-05",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": null,
+   "primary_event_types": null,
+   "component_match_types": [],
+   "audience_types": [
+    "ベテラン"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "ペア合計年齢100歳・120歳以上(本年12月末時点の年齢) 女性は+10歳ハンディ有",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "120歳以上",
+     "source": "公式年間予定の概要",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: ペア合計年齢100歳・120歳以上(本年12月末時点の年齢) 女性は+10歳ハンディ有",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-39db8249",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市チャレンジ大会",
+   "title": "刈谷市 チャレンジ大会",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2026年9月27日/予 10月 4日",
+   "periods": [
+    {
+     "raw": "2026年9月27日",
+     "normalized": "2026-09-27",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予 10月 4日",
+   "reserve_periods": [
+    {
+     "raw": "予 10月 4日",
+     "normalized": "2026-10-04",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "Cクラスの一般男子ダブルス、一般女子ダブルス (出場制限有り、詳細は募集要項参照ください)",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "公式年間予定の概要",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式年間予定の概要",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: Cクラスの一般男子ダブルス、一般女子ダブルス (出場制限有り、詳細は募集要項参照ください)",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-29b73dcb",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市テニス選手権大会",
+   "title": "刈谷市 テニス選手権大会",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2026年11月1日/予8日",
+   "periods": [
+    {
+     "raw": "2026年11月1日",
+     "normalized": "2026-11-01",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予8日",
+   "reserve_periods": [
+    {
+     "raw": "予8日",
+     "normalized": "2026-11-08",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "一般男子ダブルス、一般女子ダブルス ↑ A,Bクラス別の一般男子ダブルス、一般女子ダブルス (Aクラス:オープン、Bクラス:クローズド)",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "公式年間予定の概要",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式年間予定の概要",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: 一般男子ダブルス、一般女子ダブルス ↑ A,Bクラス別の一般男子ダブルス、一般女子ダブルス (Aクラス:オープン、Bクラス:クローズド)",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-a1d58665",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市楽々テニス団体戦",
+   "title": "刈谷市 楽々テニス団体戦",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2026年12月3日/予10日",
+   "periods": [
+    {
+     "raw": "2026年12月3日",
+     "normalized": "2026-12-03",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予10日",
+   "reserve_periods": [
+    {
+     "raw": "予10日",
+     "normalized": "2026-12-10",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス",
+    "団体戦"
+   ],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [
+    "ダブルス"
+   ],
+   "audience_types": [
+    "団体限定",
+    "ベテラン"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "60歳以上を1名以上含む4〜6名でのダブルス団体戦 (12月末時点で60歳以上)",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "団体限定",
+     "matched": "団体戦",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語（団体／対抗／チーム）"
+    },
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "60歳以上",
+     "source": "公式年間予定の概要",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式年間予定の概要",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "event_type",
+     "value": "団体戦",
+     "matched": "団体戦",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: 60歳以上を1名以上含む4〜6名でのダブルス団体戦 (12月末時点で60歳以上)",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-03b47773",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市女子ウィークデー大会",
+   "title": "刈谷市 女子ウィークデー大会",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2027年 3月4日/予11日",
+   "periods": [
+    {
+     "raw": "2027年 3月4日",
+     "normalized": "2027-03-04",
+     "year": 2027,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予11日",
+   "reserve_periods": [
+    {
+     "raw": "予11日",
+     "normalized": "2027-03-11",
+     "year": 2027,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "一般女子ダブルス",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "公式年間予定の概要",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "公式年間予定の概要",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: 一般女子ダブルス",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "kariya-2026-4664319d",
+   "fiscal_year": 2026,
+   "event_key": "2026|刈谷市ミックス大会",
+   "title": "刈谷市 ミックス大会",
+   "source_id": "kariya_tennis_association",
+   "source_name": "刈谷市テニス連盟",
+   "source_area": "刈谷",
+   "event_area": "刈谷",
+   "date_text": "2027年 3月21日/予28日",
+   "periods": [
+    {
+     "raw": "2027年 3月21日",
+     "normalized": "2027-03-21",
+     "year": 2027,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": "予28日",
+   "reserve_periods": [
+    {
+     "raw": "予28日",
+     "normalized": "2027-03-28",
+     "year": 2027,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "date_hint": null,
+   "year_basis": "公式年間予定の令和年度見出しと各行の明記された開催年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ミックス"
+   ],
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": "一般ミックスダブルス",
+   "eligibility_note": "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください",
+   "official_url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "公式年間予定の概要",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "タイトル",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式年間予定の概要: 一般ミックスダブルス",
+    "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
   }
  ],
  "update": {
@@ -6850,6 +9080,18 @@
     "last_failure": null
    },
    "toyota_tennis_association": {
+    "status": "ok",
+    "data_as_of": "2026-10-10",
+    "consecutive_failures": 0,
+    "last_failure": null
+   },
+   "anjo_tennis_association": {
+    "status": "ok",
+    "data_as_of": "2026-10-10",
+    "consecutive_failures": 0,
+    "last_failure": null
+   },
+   "kariya_tennis_association": {
     "status": "ok",
     "data_as_of": "2026-10-10",
     "consecutive_failures": 0,

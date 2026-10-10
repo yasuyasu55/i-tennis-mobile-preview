@@ -19,7 +19,7 @@ REQUIRED = ["id", "title", "source_id", "source_name", "source_area", "event_are
 EVENT_TYPES = {"シングルス", "ダブルス", "ミックス", "団体戦"}
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}(/\d{4}-\d{2}-\d{2})?$")
 ISO_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-ID_RE = re.compile(r"^((aichi|gamagori|toyokawa|hamamatsu|okazaki|toyota)-\d{4}-[0-9a-f]{8}|toyohashi-\d+)$")
+ID_RE = re.compile(r"^((aichi|gamagori|toyokawa|hamamatsu|okazaki|toyota|anjo|kariya)-\d{4}-[0-9a-f]{8}|toyohashi-\d+)$")
 EVENT_KINDS = ("failed", "recovered", "data_changed", "removed")
 FORBIDDEN = ["誰でも" + "参加可能"]   # 断定表現は使わない（TTA-MOBILE-012-R1）
 
