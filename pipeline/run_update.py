@@ -89,7 +89,7 @@ def sanity(cfg, new, prev):
 
 
 _OPTIONAL_DETAIL_FIELDS = (
-    "fee_text", "contact_text", "entry_text", "entry_url", "guideline_url",
+    "venue", "fee_text", "contact_text", "entry_text", "entry_url", "guideline_url",
     "reserve_text", "reserve_periods",
 )
 
@@ -134,6 +134,21 @@ def preserve_unread_optional_fields(previous, candidate):
         if _is_empty_detail(new_value) and not _is_empty_detail(old_value):
             merged[field] = old_value
             retained.append(field)
+
+    # These annual tables cannot replace previously verified PDF conditions.
+    if (candidate.get("source_id") in ("anjo_tennis_association", "kariya_tennis_association", "toyota_tennis_association")
+            and (candidate.get("acquisition") or {}).get("pdf_state") != "parsed_details"
+            and any("要項PDF" in str(b.get("source")) for b in previous.get("classification_basis", []))):
+        for field in ("eligibility_text", "eligibility_status", "eligibility_note", "audience_types"):
+            merged[field] = previous.get(field)
+            retained.append(field)
+        merged["warnings"] = list(dict.fromkeys(list(merged.get("warnings") or []) + list(previous.get("warnings") or [])))
+        merged["notes"] = list(dict.fromkeys(list(merged.get("notes") or []) + [n for n in previous.get("notes", []) if n.startswith("要確認:")]))
+        old_basis = previous.get("classification_basis") or []
+        merged["classification_basis"] = [b for b in merged.get("classification_basis", [])
+            if b.get("field") not in ("eligibility", "audience")] + [b for b in old_basis
+            if b.get("field") in ("eligibility", "audience")]
+        merged["acquisition"] = dict(candidate.get("acquisition") or {}, previous_pdf_confirmed_on=(previous.get("acquisition") or {}).get("confirmed_on"))
 
     # 豊川の一覧ページには会場・詳細種目・参加資格がなく、要項PDFが今runで
     # 一意に対応しない場合は parse_status=partial になる。タイトルだけから

@@ -45,6 +45,7 @@ from parsers import okazaki_tennis as ok        # noqa: E402  岡崎（読み取
 from parsers import okazaki_pdf as op           # noqa: E402  要項の費用・方法別締切
 from parsers import toyota_tennis as ty
 from parsers import kariya_tennis as ky
+from parsers import regional_pdf as rp
 from parsers import anjo_tennis as aj
 from parsers import hamamatsu_pdf_table as ht   # noqa: E402  複数種目を含む表形式の補足
 import stable_ids                               # noqa: E402  安定ID（TTA-MOBILE-014-R1）
@@ -730,6 +731,58 @@ def build_okazaki():
 
 
 
+def supplement_regional_details(rec,event,key):
+    urls=[rec.get("guideline_url")] if rec.get("guideline_url") else []
+    if key=="kariya":
+        urls=[json.loads(read(name).decode("utf-8"))["url"] for name in provider_names("kariya_","_fetch.json")]
+    for url in urls:
+        token=hashlib.sha256(url.encode("utf-8")).hexdigest()[:12]
+        raw=read(f"{key}_{token}_youkou.txt",optional=True)
+        status_raw=read(f"{key}_{token}_fetch.json",optional=True)
+        status=json.loads(status_raw.decode("utf-8")) if status_raw else {"state":"not_attempted"}
+        if not raw:
+            if key!="kariya":rec["acquisition"]["pdf_state"]=status["state"]
+            continue
+        detail=rp.parse(raw.decode("utf-8"),event,key)
+        if not detail["matched"]:
+            if key!="kariya":
+                rec["warnings"].extend(detail["warnings"])
+                rec["acquisition"]["pdf_state"]="unmatched"
+            continue
+        fields=detail["fields"]
+        if rec.get("deadline_date") and fields.get("deadline_date") and rec["deadline_date"]!=fields["deadline_date"]:
+            fields.pop("deadline_date",None);fields.pop("deadline_text",None)
+            detail["warnings"].append("要項と一覧の申込締切が不一致。一覧の締切を維持し公式へ要確認")
+        rec.update(fields)
+        rec["guideline_url"]=url
+        if fields.get("eligibility_text"):
+            text=fields["eligibility_text"]
+            status_elig=rec.get("eligibility_status") or "参加資格要確認"
+            if "在住" in text:status_elig="地域条件あり"
+            elif re.search(r"歳|年齢",text):status_elig="年齢条件あり"
+            elif "連盟登録者" in text:status_elig="協会登録必要"
+            elif re.search(r"参加出来ません|出場できません|対象|優勝者",text):status_elig="その他の条件あり"
+            elif "オープン" in text:status_elig="オープン参加（詳細条件は要項確認）"
+            rec["eligibility_status"]=status_elig
+            rec["eligibility_note"]=fields.get("eligibility_note") or "要項の資格欄と種目欄を補足。部門ごとの条件を要項で確認してください"
+            rec["classification_basis"]=[b for b in rec["classification_basis"] if b["field"]!="eligibility"]
+            rec["classification_basis"].append({"field":"eligibility","value":status_elig,"matched":text,"source":"要項PDFの資格欄","rule":"大会名・年度・開催月日の対応を確認。個別条件は要項に従う"})
+            if key=="toyota" and "ベテラン" in text:
+                rec["audience_types"]=[a for a in rec["audience_types"] if a!="不明"]
+                rec["classification_basis"]=[b for b in rec["classification_basis"] if not (b["field"]=="audience" and b["value"]=="不明")]
+                for audience in ("一般","ベテラン"):
+                    if audience not in rec["audience_types"]:rec["audience_types"].append(audience)
+                    rec["classification_basis"].append({"field":"audience","value":audience,"matched":audience,"source":"要項PDFの資格欄","rule":"一般とベテラン部門を明記"})
+        rec["warnings"].extend(detail["warnings"])
+        rec["notes"]=[n for n in rec["notes"] if "未解析" not in n and "未取得" not in n]
+        rec["notes"].append("要項PDFの確認日: "+str(PDF_CONFIRMED_ON))
+        rec["notes"].extend("要確認: "+w for w in detail["warnings"])
+        rec["acquisition"].update(pdf_state="parsed_details",guideline_url=url,pdf_sha256=status.get("sha256"),confirmed_on=PDF_CONFIRMED_ON)
+        rec["parse_status"]="success" if not detail["warnings"] and all(rec.get(f) for f in ("venue","fee_text","eligibility_text","deadline_date")) else "partial"
+        break
+    return rec
+
+
 def build_toyota():
     try:
         page = ty.parse_page(read("toyota_tournament.html"))
@@ -751,6 +804,7 @@ def build_toyota():
             rec["event_types"] = ["団体戦"]
             rec["classification_basis"].append({"field": "event_type", "value": "団体戦", "matched": "チーム戦",
                                                 "source": "公式大会一覧の大会名", "rule": "豊田の大会名にチーム戦と明記"})
+        supplement_regional_details(rec,ev,"toyota")
         recs.append(rec)
     stable_ids.assign_ids("toyota", recs, [page["fiscal_year"]] * len(recs))
     return recs, {"fiscal_year": page["fiscal_year"], "event_count": len(recs)}
@@ -780,6 +834,7 @@ def build_kariya():
         if "団体戦" in (rec["event_types"] or []) and "ダブルス" not in rec["event_types"] and re.search(r"一般(?:男子|女子)ダブルス",ev["overview"]):
             rec["event_types"].append("ダブルス")
             rec["classification_basis"].append({"field":"event_type","value":"ダブルス","matched":"一般男子・女子ダブルス","source":"公式年間予定の概要","rule":"団体戦の構成種目に一般男子または女子ダブルスが明記"})
+        supplement_regional_details(rec,ev,"kariya")
         recs.append(rec)
     stable_ids.assign_ids("kariya", recs, [page["fiscal_year"]] * len(recs))
     return recs, {"fiscal_year":page["fiscal_year"],"event_count":len(recs)}
@@ -817,6 +872,7 @@ def build_anjo():
         rec["classification_basis"] = [b for b in rec["classification_basis"] if b["field"] != "eligibility"]
         rec["classification_basis"].append({"field":"eligibility","value":status,"matched":elig,
                                             "source":"一覧表の参加資格欄","rule":"一覧の明記内容のみ。オープンでも詳細条件は要項確認"})
+        supplement_regional_details(rec,ev,"anjo")
         recs.append(rec)
     stable_ids.assign_ids("anjo",recs,[page["fiscal_year"]]*len(recs))
     return recs,{"fiscal_year":page["fiscal_year"],"event_count":len(recs),"excluded":page["excluded"]}
@@ -846,13 +902,13 @@ def _heading_year(raw):
 
 SOURCE_DEFS = {
     "anjo": dict(builder=build_anjo, id=aj.SOURCE_ID, name="安城", area="安城", event_area="安城", coverage="partial", label="部分対応",
-                 note=lambda recs, raw: "%d年度の公式大会表%d件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。西三河マスターズは対象外。会場・費用・締切・要項本文は未取得" % (raw["fiscal_year"],len(recs)),
+                 note=lambda recs, raw: "%d年度の公式大会表%d件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。公開済みの今後の要項から会場・費用・締切・資格条件を補足。西三河マスターズは対象外" % (raw["fiscal_year"],len(recs)),
                  parser="安城年度別大会表 parser v0.1"),
     "kariya": dict(builder=build_kariya, id=ky.SOURCE_ID, name="刈谷", area="刈谷", event_area="刈谷", coverage="partial", label="部分対応",
-                   note=lambda recs, raw: "%d年度の公式年間予定%d件。開催日・予備日・概要を取得。会場・締切・費用・募集要項本文は未取得" % (raw["fiscal_year"],len(recs)),
+                   note=lambda recs, raw: "%d年度の公式年間予定%d件。開催日・予備日・概要を取得。公開済みの今後の募集要項から会場・締切・費用・資格条件を補足" % (raw["fiscal_year"],len(recs)),
                    parser="刈谷年度別大会予定 parser v0.1"),
     "toyota": dict(builder=build_toyota, id=ty.SOURCE_ID, name="豊田", area="豊田", event_area="豊田", coverage="partial", label="部分対応",
-                   note=lambda recs, raw: "%d年度の番号付き大会一覧%d件。開催日・申込期間・要項と申込の実リンクを取得。練習会・通年チーム戦・ジュニア別ページは対象外。要項PDF本文は未解析" % (raw["fiscal_year"], len(recs)),
+                   note=lambda recs, raw: "%d年度の番号付き大会一覧%d件。開催日・申込期間・要項と申込の実リンクを取得。公開済みの今後の要項から会場・費用・資格条件を補足。練習会・通年チーム戦・ジュニア別ページは対象外" % (raw["fiscal_year"], len(recs)),
                    parser="豊田年度別大会一覧 parser v0.1"),
     "aichi": dict(builder=build_aichi, id=at.SOURCE_ID, name="愛知県協会", area="愛知県", event_area="愛知県協会掲載", coverage="supported", label="対応済み",
                   note=lambda recs, raw: "%d年度競技日程の表（%d件）。要項PDFの本文は解析していません" % (recs[0]["fiscal_year"], len(recs)), parser="TTA-MOBILE-006-R1（承認済み・無改変）"),
@@ -903,7 +959,8 @@ def build_source(key):
         meta["snapshot_note"] = "保存HTMLの受領日（要項PDFの確認日: %s）" % PDF_CONFIRMED_ON
     if key in ("toyota", "anjo", "kariya"):
         meta["acquisition"] = "automatic_http"
-        meta["snapshot_note"] = "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析"
+        meta["snapshot_note"] = "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（%d件）。矛盾する日時は要確認として表示" % sum((r.get("acquisition") or {}).get("pdf_state")=="parsed_details" for r in recs)
+        meta["pdf_confirmed_on"] = PDF_CONFIRMED_ON
     return {"key": key, "records": recs, "raw": raw, "meta": meta, "warnings": list(RUN_WARNINGS)}
 
 

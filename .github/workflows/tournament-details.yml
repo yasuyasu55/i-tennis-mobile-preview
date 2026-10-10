@@ -1,0 +1,56 @@
+name: Verify tournament details
+on:
+  push:
+    branches: [tournament-details-preview]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          path: current-public
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-pipeline.txt
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - run: python -m unittest discover -s tests/pipeline
+      - run: cp current-public/data/tournaments.json data/tournaments.json
+      - run: python pipeline/run_update.py --dry-run --only anjo,kariya,toyota --out-dir pipeline/out-details
+      - run: python pipeline/validate.py pipeline/out-details/proposed/tournaments.json
+      - name: Verify stable tournaments and enrichment
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path('current-public/data/tournaments.json').read_text())
+          new=json.loads(Path('pipeline/out-details/proposed/tournaments.json').read_text())
+          summary=json.loads(Path('pipeline/out-details/run-summary.json').read_text())
+          for key in ('anjo','kariya','toyota'):assert summary['results'][key]['status']=='ok',summary['results'][key]
+          a={r['id']:r for r in old['tournaments']};b={r['id']:r for r in new['tournaments']}
+          assert set(a)==set(b)
+          sources={'anjo_tennis_association','kariya_tennis_association','toyota_tennis_association'}
+          for key,r in a.items():
+            if r['source_id'] not in sources:assert b[key]==r,key
+            for field in ('title','source_id','event_area','date_text','periods','reserve_periods'):
+              assert b[key].get(field)==r.get(field),(key,field)
+            for field in ('event_types','audience_types'):
+              assert (set(r.get(field) or [])-{'不明'})<=set(b[key].get(field) or []),(key,field)
+          enriched=[r for r in b.values() if r['source_id'] in sources and r.get('fee_text') and r.get('venue')]
+          assert len(enriched)>=11,len(enriched)
+          print('All',len(b),'IDs and dates retained; enriched',len(enriched),'events')
+          PY
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: tournament-details-verified
+          path: |
+            pipeline/out-details/proposed/*.json
+            pipeline/out-details/run-summary.json
+            pipeline/out-details/summary.md
+          retention-days: 14

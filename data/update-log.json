@@ -72,6 +72,33 @@
    "summary": "大会情報が更新されました（0件 → 9件）",
    "records_before": 0,
    "records_after": 9
+  },
+  {
+   "at": "2026-10-10T14:49:30+09:00",
+   "source": "toyota_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（8件 → 8件）",
+   "records_before": 8,
+   "records_after": 8
+  },
+  {
+   "at": "2026-10-10T14:49:30+09:00",
+   "source": "anjo_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（16件 → 16件）",
+   "records_before": 16,
+   "records_after": 16
+  },
+  {
+   "at": "2026-10-10T14:49:30+09:00",
+   "source": "kariya_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（9件 → 9件）",
+   "records_before": 9,
+   "records_after": 9
   }
  ]
 }
