@@ -44,6 +44,8 @@ from parsers import hamamatsu_tennis as hm      # noqa: E402  新規(021)
 from parsers import okazaki_tennis as ok        # noqa: E402  岡崎（読み取り・候補生成）
 from parsers import okazaki_pdf as op           # noqa: E402  要項の費用・方法別締切
 from parsers import toyota_tennis as ty
+from parsers import kariya_tennis as ky
+from parsers import anjo_tennis as aj
 from parsers import hamamatsu_pdf_table as ht   # noqa: E402  複数種目を含む表形式の補足
 import stable_ids                               # noqa: E402  安定ID（TTA-MOBILE-014-R1）
 import tournament_classify as tc                # noqa: E402
@@ -754,7 +756,73 @@ def build_toyota():
     return recs, {"fiscal_year": page["fiscal_year"], "event_count": len(recs)}
 
 
-SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu", "okazaki", "toyota"]
+def build_kariya():
+    try:
+        page = ky.parse_page(read("kariya_schedule.html"))
+    except ValueError as ex:
+        raise BuildError("刈谷: " + str(ex)) from ex
+    recs = []
+    for ev in page["events"]:
+        rec = make_record(title="刈谷市 " + ev["title"], source_id=ky.SOURCE_ID, source_name=ky.SOURCE_NAME,
+                          source_area="刈谷", event_area="刈谷", date_text=ev["date_text"], periods=ev["periods"],
+                          reserve_text=ev["reserve_text"], reserve_periods=ev["reserve_periods"],
+                          year_basis="公式年間予定の令和年度見出しと各行の明記された開催年",
+                          official_url=ky.PAGE_URL, source_snapshot_date=SNAPSHOT_DATE["kariya"],
+                          notes=["公式年間予定の概要: " + ev["overview"],
+                                 "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"],
+                          acquisition={"method":"http","auto_fetch":True,"pdf_state":"not_attempted"})
+        apply_common_classification(rec,
+            extra_audience_texts=[("公式年間予定の概要",ev["overview"])],
+            extra_event_texts=[("公式年間予定の概要",ev["overview"])])
+        rec["eligibility_text"] = ev["overview"]
+        rec["eligibility_note"] = "年間予定の概要を表示しています。登録・年齢・級別などの詳細条件は各大会の募集要項で確認してください"
+        # Team components may include both normal doubles and mixed doubles.
+        if "団体戦" in (rec["event_types"] or []) and "ダブルス" not in rec["event_types"] and re.search(r"一般(?:男子|女子)ダブルス",ev["overview"]):
+            rec["event_types"].append("ダブルス")
+            rec["classification_basis"].append({"field":"event_type","value":"ダブルス","matched":"一般男子・女子ダブルス","source":"公式年間予定の概要","rule":"団体戦の構成種目に一般男子または女子ダブルスが明記"})
+        recs.append(rec)
+    stable_ids.assign_ids("kariya", recs, [page["fiscal_year"]] * len(recs))
+    return recs, {"fiscal_year":page["fiscal_year"],"event_count":len(recs)}
+
+
+def build_anjo():
+    try:
+        page = aj.parse_page(read("anjo_tournament.html"))
+    except ValueError as ex:
+        raise BuildError("安城: " + str(ex)) from ex
+    recs = []
+    for ev in page["events"]:
+        kind_text = re.sub(r"S(?=[(,\s]|$)", "シングルス", ev["kinds"])
+        kind_text = re.sub(r"D(?=[(,\s]|$)", "ダブルス", kind_text)
+        rec = make_record(title=ev["title"], source_id=aj.SOURCE_ID, source_name=aj.SOURCE_NAME,
+                          source_area="安城", event_area="安城", date_text=ev["date_text"], periods=ev["periods"],
+                          reserve_text=ev["reserve_text"], reserve_periods=ev["reserve_periods"],
+                          year_basis="公式大会表の%d年度見出し。1〜3月は翌年" % page["fiscal_year"],
+                          official_url=aj.PAGE_URL, guideline_url=ev["guideline_url"], entry_url=ev["entry_url"],
+                          source_snapshot_date=SNAPSHOT_DATE["anjo"],
+                          notes=["公式大会表の種目: " + ev["kinds"], "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"],
+                          acquisition={"method":"http","auto_fetch":True,"pdf_state":"not_attempted"})
+        apply_common_classification(rec, extra_audience_texts=[("公式大会表の種目",kind_text)],
+                                    extra_event_texts=[("公式大会表の種目（S=シングルス・D=ダブルス）",kind_text)])
+        elig = ev["eligibility"]
+        status = "参加資格要確認"
+        if "安城市在住" in elig:
+            status = "地域条件あり"
+        elif elig.startswith("オープン"):
+            status = "オープン参加（詳細条件は要項確認）"
+        elif "戦績制限" in elig:
+            status = "その他の条件あり"
+        rec.update(eligibility_text=elig, eligibility_status=status,
+                   eligibility_note="公式一覧の参加資格を表示しています。年齢・戦績・登録などの詳細条件は各大会の要項で確認してください")
+        rec["classification_basis"] = [b for b in rec["classification_basis"] if b["field"] != "eligibility"]
+        rec["classification_basis"].append({"field":"eligibility","value":status,"matched":elig,
+                                            "source":"一覧表の参加資格欄","rule":"一覧の明記内容のみ。オープンでも詳細条件は要項確認"})
+        recs.append(rec)
+    stable_ids.assign_ids("anjo",recs,[page["fiscal_year"]]*len(recs))
+    return recs,{"fiscal_year":page["fiscal_year"],"event_count":len(recs),"excluded":page["excluded"]}
+
+
+SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu", "okazaki", "toyota", "anjo", "kariya"]
 
 
 def source_meta(key, sid, name, area, event_area, coverage, label, note, records, files, parser):
@@ -777,6 +845,12 @@ def _heading_year(raw):
 
 
 SOURCE_DEFS = {
+    "anjo": dict(builder=build_anjo, id=aj.SOURCE_ID, name="安城", area="安城", event_area="安城", coverage="partial", label="部分対応",
+                 note=lambda recs, raw: "%d年度の公式大会表%d件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。西三河マスターズは対象外。会場・費用・締切・要項本文は未取得" % (raw["fiscal_year"],len(recs)),
+                 parser="安城年度別大会表 parser v0.1"),
+    "kariya": dict(builder=build_kariya, id=ky.SOURCE_ID, name="刈谷", area="刈谷", event_area="刈谷", coverage="partial", label="部分対応",
+                   note=lambda recs, raw: "%d年度の公式年間予定%d件。開催日・予備日・概要を取得。会場・締切・費用・募集要項本文は未取得" % (raw["fiscal_year"],len(recs)),
+                   parser="刈谷年度別大会予定 parser v0.1"),
     "toyota": dict(builder=build_toyota, id=ty.SOURCE_ID, name="豊田", area="豊田", event_area="豊田", coverage="partial", label="部分対応",
                    note=lambda recs, raw: "%d年度の番号付き大会一覧%d件。開催日・申込期間・要項と申込の実リンクを取得。練習会・通年チーム戦・ジュニア別ページは対象外。要項PDF本文は未解析" % (raw["fiscal_year"], len(recs)),
                    parser="豊田年度別大会一覧 parser v0.1"),
@@ -827,7 +901,7 @@ def build_source(key):
     if key == "toyokawa":
         meta["pdf_confirmed_on"] = PDF_CONFIRMED_ON
         meta["snapshot_note"] = "保存HTMLの受領日（要項PDFの確認日: %s）" % PDF_CONFIRMED_ON
-    if key == "toyota":
+    if key in ("toyota", "anjo", "kariya"):
         meta["acquisition"] = "automatic_http"
         meta["snapshot_note"] = "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析"
     return {"key": key, "records": recs, "raw": raw, "meta": meta, "warnings": list(RUN_WARNINGS)}

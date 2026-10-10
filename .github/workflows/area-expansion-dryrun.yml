@@ -1,0 +1,66 @@
+name: area-expansion-dryrun
+on:
+  push:
+    branches: [anjo-kariya-source-preview]
+    paths:
+      - data-source/parsers/anjo_tennis.py
+      - data-source/parsers/kariya_tennis.py
+      - tools/build_tournaments_json.py
+      - pipeline/**
+      - tests/pipeline/test_anjo_kariya_builder.py
+      - .github/workflows/area-expansion-dryrun.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          path: current-public
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-pipeline.txt
+      - name: Verify parsers and retention offline
+        run: python -m unittest discover -s tests/pipeline
+      - name: Seed exact current public data
+        run: cp current-public/data/tournaments.json data/tournaments.json
+      - name: Fetch only newly approved areas
+        run: python pipeline/run_update.py --dry-run --only anjo,kariya --out-dir pipeline/out-areas
+      - name: Verify existing records and independent area assignments
+        run: |
+          python pipeline/validate.py pipeline/out-areas/proposed/tournaments.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old = json.loads(Path('current-public/data/tournaments.json').read_text())
+          new = json.loads(Path('pipeline/out-areas/proposed/tournaments.json').read_text())
+          summary = json.loads(Path('pipeline/out-areas/run-summary.json').read_text())
+          a = {r['id']:r for r in old['tournaments']}
+          b = {r['id']:r for r in new['tournaments']}
+          assert all(b.get(i) == r for i,r in a.items()), 'Existing tournament changed or removed'
+          assert len(b) == len(new['tournaments']), 'Duplicate ID'
+          expected = {'anjo':'安城','kariya':'刈谷'}
+          for key,area in expected.items():
+              result = summary['results'][key]
+              assert result['status'] == 'ok', result
+              rows = [r for r in b.values() if r['source_id'] == key+'_tennis_association']
+              assert rows and len(rows) == result['records']
+              assert all(r['event_area'] == area for r in rows)
+              print(key, len(rows), 'verified')
+          assert not any(r['event_area'] in ['田原','新城','西尾'] for i,r in b.items() if i not in a)
+          print('Existing records preserved:',len(a),'Total:',len(b))
+          PY
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: area-expansion-verified-data
+          path: |
+            pipeline/out-areas/proposed/*.json
+            pipeline/out-areas/run-summary.json
+            pipeline/out-areas/summary.md
+          retention-days: 7
