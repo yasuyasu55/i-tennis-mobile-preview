@@ -42,3 +42,9 @@
 ユーザー依頼により既存の読み取り専用probeを再実行。run 38014773827 attempt 3、job 114135908477。HTTP/HTTPSのwww入口は両方ともrobots.txtへの接続が25秒でタイムアウト。本文取得前に停止し、取得大会は0件。診断処理は完了したが新城取得成功ではない。検索サービスによる年間予定ページ・robots.txtの直接取得も失敗。main・公開データ・地域選択・定期更新は変更していない。
 
 実行記録: https://github.com/yasuyasu55/i-tennis-mobile-preview/actions/runs/38014773827/attempts/3
+
+## 再確認（2026-10-10 13:58 JST / attempt 4）
+
+ユーザー依頼で読み取り専用probeを再実行（job 114136375529）。HTTP/HTTPSのwww入口はともにrobots.txt接続が25秒でタイムアウトし、本文取得前に停止。取得大会は0件。診断完了と取得成功を区別する。公開データ・UI・既存自動更新に変更なし。
+
+実行記録: https://github.com/yasuyasu55/i-tennis-mobile-preview/actions/runs/38014773827/attempts/4
