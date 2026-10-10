@@ -202,7 +202,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.9</p>
+  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.10</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -1173,47 +1173,21 @@ function tAreaValues(data){
   }
   return out;
 }
-// 表示上の地域をまとめる。データと保存条件は従来のevent_areaを保持する。
-var T_AREA_LAYOUT = [
-  { label: '浜松', values: ['浜松'], outside: false },
-  { label: '豊橋・豊川・蒲郡', values: ['豊橋', '豊川', '蒲郡'], outside: false },
-  { label: '東三河その他', values: ['新城', '新城市', '田原', '田原市'], outside: false },
-  { label: '岡崎・安城・刈谷・西尾', values: ['岡崎', '安城', '刈谷', '西尾'], outside: false },
-  { label: '豊田', values: ['豊田'], outside: false },
-  { label: '名古屋', values: ['名古屋'], outside: false },
-  { label: '愛知県協会掲載', values: ['愛知県協会掲載'], outside: false }
-];
-function tAreaGroups(data){
-  var available = tAreaValues(data), groups = [], used = [];
-  T_AREA_LAYOUT.forEach(function(def){
-    var values = def.values.filter(function(v){ return available.indexOf(v) !== -1; });
-    if (values.length) { groups.push({ label: def.label, values: values, outside: def.outside }); used = used.concat(values); }
-  });
-  var outside = {};
-  available.forEach(function(v){
-    if (used.indexOf(v) !== -1) { return; }
-    var label = /^岐阜/.test(v) ? '岐阜' : (/^三重/.test(v) ? '三重' : (/^(静岡|沼津|富士|焼津|藤枝)/.test(v) ? '静岡中東部' : 'その他'));
-    if (!outside[label]) { outside[label] = []; }
-    outside[label].push(v);
-  });
-  ['岐阜', '三重', '静岡中東部', 'その他'].forEach(function(label){
-    if (outside[label]) { groups.push({ label: label, values: outside[label], outside: true }); }
-  });
-  return groups;
-}
-function tAreaChecks(groups){
-  var html = '<div class="t-checks">';
-  groups.forEach(function(group){
-    html += '<label class="t-chk"><input type="checkbox" class="tChk" data-kind="area" data-areas="' + esc(JSON.stringify(group.values)) + '" value="' + esc(group.label) + '"> ' + esc(group.label) + '</label>';
-  });
-  return html + '</div>';
+// 地域は市ごとに選択する。活動圏の見出しだけを分け、保存条件はevent_areaのまま保持する。
+function tAreaSections(data){
+  var available = tAreaValues(data);
+  var order = ['浜松', '豊橋', '豊川', '蒲郡', '新城', '新城市', '田原', '田原市', '岡崎', '豊田', '安城', '刈谷', '西尾', '名古屋', '愛知県協会掲載'];
+  return {
+    inside: order.filter(function(v){ return available.indexOf(v) !== -1; }),
+    outside: available.filter(function(v){ return order.indexOf(v) === -1; })
+  };
 }
 function tAreaPanelHtml(data){
-  var groups = tAreaGroups(data), inside = groups.filter(function(g){ return !g.outside; }), outside = groups.filter(function(g){ return g.outside; });
-  var html = '<div class="t-fgroup"><div class="t-flabel">地域（未選択＝すべて）</div><div class="t-fnote">活動圏内</div>' + tAreaChecks(inside);
-  if (outside.length) {
-    var selected = outside.some(function(g){ return g.values.some(function(v){ return !!tState.areas[v]; }); });
-    html += '<details class="t-area-outside" id="tAreaOutside"' + (selected ? ' open' : '') + '><summary>活動圏外を表示</summary>' + tAreaChecks(outside) + '</details>';
+  var areas = tAreaSections(data);
+  var html = '<div class="t-fgroup"><div class="t-flabel">地域（未選択＝すべて）</div><div class="t-fnote">活動圏内</div>' + tChecks('area', areas.inside);
+  if (areas.outside.length) {
+    var selected = areas.outside.some(function(v){ return !!tState.areas[v]; });
+    html += '<details class="t-area-outside" id="tAreaOutside"' + (selected ? ' open' : '') + '><summary>活動圏外を表示</summary>' + tChecks('area', areas.outside) + '</details>';
   }
   return html + '</div>';
 }
@@ -1286,15 +1260,8 @@ function tSyncBoxes(isOn){
   var boxes = document.getElementById('tFilters').querySelectorAll('input.tChk');
   for (var i = 0; i < boxes.length; i++) {
     var b = boxes[i], on = isOn ? isOn(b.getAttribute('data-kind'), b.value) : b.checked;
-    if (isOn && b.getAttribute('data-kind') === 'area' && b.getAttribute('data-areas')) {
-      var values = JSON.parse(b.getAttribute('data-areas'));
-      b._selectedAreas = values.filter(function(v){ return isOn('area', v); });
-      on = b._selectedAreas.length === values.length;
-      b.indeterminate = b._selectedAreas.length > 0 && !on;
-      b.title = b.indeterminate ? '保存済みの条件：' + b._selectedAreas.join('・') + '。変更すると、この地域グループ全体を選択します。' : '';
-    }
     b.checked = on;
-    b.parentNode.className = 't-chk' + (on || b.indeterminate ? ' on' : '');
+    b.parentNode.className = 't-chk' + (on ? ' on' : '');
   }
 }
 function tApplyPreset(p){
@@ -1318,11 +1285,7 @@ function tReadPanel(){
   var boxes = document.getElementById('tFilters').querySelectorAll('input.tChk');
   for (var i = 0; i < boxes.length; i++) {
     var b = boxes[i], kind = b.getAttribute('data-kind');
-    if (kind === 'area') {
-      var values = b.getAttribute('data-areas') ? JSON.parse(b.getAttribute('data-areas')) : [b.value];
-      var selected = b.indeterminate ? (b._selectedAreas || []) : (b.checked ? values : []);
-      values.forEach(function(v){ st.areas[v] = selected.indexOf(v) !== -1; });
-    }
+    if (kind === 'area') { st.areas[b.value] = b.checked; }
     else if (kind === 'group') { st.groups[b.value] = b.checked; }
     else { st.types[b.value] = b.checked; }
   }
@@ -1621,7 +1584,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.8.9';
+var APP_DATA_VERSION = '0.8.10';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }
