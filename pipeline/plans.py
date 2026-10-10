@@ -217,3 +217,40 @@ def plan_okazaki(cfg, cfgroot, fetcher, today, pdf_to_text):
 
 PLANS = {"aichi": plan_generic, "toyohashi": plan_toyohashi, "gamagori": plan_generic, "toyokawa": plan_toyokawa, "hamamatsu": plan_hamamatsu, "okazaki": plan_okazaki, "toyota": plan_generic, "kariya": plan_generic, "anjo": plan_generic}
 
+
+
+def plan_regional_details(cfg,cfgroot,fetcher,today,pdf_to_text):
+    """Upcoming, linked official PDFs only; Kariya candidates require PDF content matching."""
+    from parsers import anjo_tennis, toyota_tennis
+    from bs4 import BeautifulSoup
+    res=SourcePlanResult();_generic_pages(cfg,fetcher,cfgroot,res)
+    key=cfg['key'];pc=cfg.get('pdf') or {}
+    if not pc.get('max'):return res
+    if key=='kariya':
+        raw=res.inputs.get('kariya_top.html',b'')
+        soup=BeautifulSoup(raw.decode('cp932',errors='replace'),'html.parser')
+        urls=[urllib.parse.urljoin('https://www.katch.ne.jp/~fmhmksy/renmeitop.htm',a['href']) for a in soup.find_all('a',href=True) if '大会募集' in a.get_text() and a['href'].lower().endswith('.pdf')]
+    else:
+        parser=anjo_tennis if key=='anjo' else toyota_tennis
+        events=parser.parse_page(res.inputs[key+'_tournament.html'])['events']
+        urls=[e['guideline_url'] for e in events if e.get('guideline_url') and max(p['normalized'] for p in e['periods'])>=today]
+    for url in list(dict.fromkeys(urls))[:pc['max']]:
+        if not _host_allowed(url,pc.get('allowed_host_suffixes',[])):continue
+        token=hamamatsu_pdf_key(url);status={'url':url,'state':'fetch_failed'}
+        try:
+            r=fetcher.get(url,cfgroot['max_pdf_bytes'])
+            status.update(sha256=hashlib.sha256(r.body).hexdigest(),bytes=len(r.body),http_status=r.status)
+            try:
+                text=pdftext.pdf_to_layout(r.body)
+                res.inputs[f'{key}_{token}_youkou.txt']=text.encode('utf-8')
+                status.update(state='fetched',extractor='pdftotext -layout')
+            except pdftext.PdfError as ex:
+                status.update(state='text_failed',message=str(ex))
+                res.notes.append(key+': 要項PDFの文字を読み取れません')
+        except FetchError as ex:
+            status.update(stage=ex.stage,message=ex.message)
+            res.notes.append(key+': 要項PDFを取得できません')
+        res.inputs[f'{key}_{token}_fetch.json']=json.dumps(status,ensure_ascii=False).encode('utf-8')
+    return res
+
+PLANS.update({k:plan_regional_details for k in ('anjo','kariya','toyota')})

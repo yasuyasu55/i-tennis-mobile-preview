@@ -5,7 +5,7 @@
   "timeout_seconds": 20,
   "max_html_bytes": 3000000,
   "max_pdf_bytes": 4000000,
-  "max_requests_per_run": 48,
+  "max_requests_per_run": 64,
   "sources": [
     {
       "key": "aichi",
@@ -129,7 +129,13 @@
           "url": "https://www.toyota-ta.jp/tournament/",
           "required": true
         }
-      ]
+      ],
+      "pdf": {
+        "max": 4,
+        "allowed_host_suffixes": [
+          "www.toyota-ta.jp"
+        ]
+      }
     },
     {
       "key": "anjo",
@@ -142,7 +148,13 @@
           "url": "http://anjo-tennis.net/%E5%A4%A7%E4%BC%9A%E6%83%85%E5%A0%B1/",
           "required": true
         }
-      ]
+      ],
+      "pdf": {
+        "max": 8,
+        "allowed_host_suffixes": [
+          "anjo-tennis.net"
+        ]
+      }
     },
     {
       "key": "kariya",
@@ -154,8 +166,19 @@
           "name": "kariya_schedule.html",
           "url": "https://www.katch.ne.jp/~fmhmksy/newpage6.htm",
           "required": true
+        },
+        {
+          "name": "kariya_top.html",
+          "url": "https://www.katch.ne.jp/~fmhmksy/renmeitop.htm",
+          "required": false
         }
-      ]
+      ],
+      "pdf": {
+        "max": 4,
+        "allowed_host_suffixes": [
+          "www.katch.ne.jp"
+        ]
+      }
     }
   ],
   "excluded": [
