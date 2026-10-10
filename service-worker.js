@@ -11,7 +11,7 @@
  */
 'use strict';
 
-var APP_VERSION = '0.8.10';
+var APP_VERSION = '0.8.11';
 var CACHE_PREFIX = 'i-tennis-mobile-shell-';
 var CACHE_NAME = CACHE_PREFIX + 'v' + APP_VERSION;
 
@@ -218,3 +218,4 @@ self.addEventListener('fetch', function (event) {
 
   // 上記以外（将来のAPI等）には介入しない = キャッシュしない
 });
+

@@ -205,6 +205,26 @@
     }
    ],
    "parser": "岡崎大会カード・要項の費用／方法別締切 parser v0.2"
+  },
+  {
+   "id": "toyota_tennis_association",
+   "name": "豊田",
+   "area": "豊田",
+   "event_area": "豊田",
+   "coverage": "partial",
+   "coverage_label": "部分対応",
+   "coverage_note": "2026年度の番号付き大会一覧8件。開催日・申込期間・要項と申込の実リンクを取得。練習会・通年チーム戦・ジュニア別ページは対象外。要項PDF本文は未解析",
+   "snapshot_date": "2026-10-10",
+   "snapshot_note": "公式の年度別大会一覧を通常のHTTPで自動取得。要項PDF本文は未解析",
+   "record_count": 8,
+   "files": [
+    {
+     "file": "toyota_tournament.html",
+     "sha256": "56b642f8c05303bd98acbbcd09483f99ec6e9132a7cb1ea58d32f3fb5262a842"
+    }
+   ],
+   "parser": "豊田年度別大会一覧 parser v0.1",
+   "acquisition": "automatic_http"
   }
  ],
  "other_areas": {
@@ -214,18 +234,19 @@
   "coverage_note": "この版では、上記以外の地域の大会情報は取得していません（検索結果0件は「大会がない」ではなく「未対応」の可能性があります）"
  },
  "summary": {
-  "total": 74,
+  "total": 82,
   "by_source": {
    "愛知県協会": 25,
    "豊橋": 20,
    "蒲郡": 7,
    "豊川": 8,
    "浜松": 5,
-   "岡崎": 9
+   "岡崎": 9,
+   "豊田": 8
   },
   "by_parse_status": {
    "success": 30,
-   "partial": 44
+   "partial": 52
   }
  },
  "tournaments": [
@@ -6119,6 +6140,673 @@
     "pdf_state": "not_attempted",
     "pdf_extractor": null
    }
+  },
+  {
+   "id": "toyota-2026-d3e05184",
+   "fiscal_year": 2026,
+   "event_key": "2026|豊田市民総合体育大会テニス競技(シングルス)",
+   "title": "豊田市民総合体育大会 テニス競技(シングルス)",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "4/12 4/19",
+   "periods": [
+    {
+     "raw": "4/12",
+     "normalized": "2026-04-12",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    },
+    {
+     "raw": "4/19",
+     "normalized": "2026-04-19",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "2/27-3/8",
+   "deadline_date": "2026-03-08",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": "申込期間（公式一覧）: 2/27-3/8",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "toyota-2026-998c9152",
+   "fiscal_year": 2026,
+   "event_key": "2026|豊田市民総合体育大会テニス競技(ダブルス)",
+   "title": "豊田市民総合体育大会 テニス競技(ダブルス)",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "5/17 5/24",
+   "periods": [
+    {
+     "raw": "5/17",
+     "normalized": "2026-05-17",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    },
+    {
+     "raw": "5/24",
+     "normalized": "2026-05-24",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "4/3-4/12",
+   "deadline_date": "2026-04-12",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": "申込期間（公式一覧）: 4/3-4/12",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "toyota-2026-8f0eda7c",
+   "fiscal_year": 2026,
+   "event_key": "2026|豊田レクリエーションダブルス",
+   "title": "豊田レクリエーション ダブルス",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "6/21",
+   "periods": [
+    {
+     "raw": "6/21",
+     "normalized": "2026-06-21",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "5/15-5/24",
+   "deadline_date": "2026-05-24",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": "申込期間（公式一覧）: 5/15-5/24",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "toyota-2026-87938f32",
+   "fiscal_year": 2026,
+   "event_key": "2026|わい!わい!テニスカーニバル(ハンディキャップチーム戦)",
+   "title": "わい!わい!テニスカーニバル(ハンディキャップチーム戦)",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "8/2",
+   "periods": [
+    {
+     "raw": "8/2",
+     "normalized": "2026-08-02",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "6/19-6/28",
+   "deadline_date": "2026-06-28",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "団体戦"
+   ],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "団体限定"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "（タイトルの語から）団体・所属単位での参加の可能性（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_waiwai_k.pdf",
+   "entry_url": null,
+   "entry_text": "申込期間（公式一覧）: 6/19-6/28",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "団体限定",
+     "matched": "チーム",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語（団体／対抗／チーム）"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    },
+    {
+     "field": "event_type",
+     "value": "団体戦",
+     "matched": "チーム戦",
+     "source": "公式大会一覧の大会名",
+     "rule": "豊田の大会名にチーム戦と明記"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "toyota-2026-b18d7b82",
+   "fiscal_year": 2026,
+   "event_key": "2026|”とよた”ビンテージテニスマッチ(ダブルス)",
+   "title": "”とよた”ビンテージテニスマッチ(ダブルス)",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "9/6",
+   "periods": [
+    {
+     "raw": "9/6",
+     "normalized": "2026-09-06",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "7/17-7/26",
+   "deadline_date": "2026-07-26",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_vntg_k.pdf",
+   "entry_url": null,
+   "entry_text": "申込期間（公式一覧）: 7/17-7/26",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "toyota-2026-2becd287",
+   "fiscal_year": 2026,
+   "event_key": "2026|豊田市民テニス選手権大会(ダブルス)",
+   "title": "豊田市民テニス選手権大会(ダブルス)",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "9/27 10/11",
+   "periods": [
+    {
+     "raw": "9/27",
+     "normalized": "2026-09-27",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    },
+    {
+     "raw": "10/11",
+     "normalized": "2026-10-11",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "8/21-8/30",
+   "deadline_date": "2026-08-30",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_D_k.pdf",
+   "entry_url": null,
+   "entry_text": "申込期間（公式一覧）: 8/21-8/30",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "ダブルス",
+     "source": "タイトル",
+     "rule": "「ダブルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "toyota-2026-f66221c6",
+   "fiscal_year": 2026,
+   "event_key": "2026|豊田市民テニス選手権大会(シングルス)",
+   "title": "豊田市民テニス選手権大会 (シングルス)",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "11/8,15 11/29",
+   "periods": [
+    {
+     "raw": "11/8",
+     "normalized": "2026-11-08",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    },
+    {
+     "raw": "15",
+     "normalized": "2026-11-15",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    },
+    {
+     "raw": "11/29",
+     "normalized": "2026-11-29",
+     "year": 2026,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "10/2-10/11",
+   "deadline_date": "2026-10-11",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "シングルス"
+   ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "不明"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_S_k.pdf",
+   "entry_url": "https://business.form-mailer.jp/fms/01de52e9152046",
+   "entry_text": "申込期間（公式一覧）: 10/2-10/11",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "不明",
+     "matched": null,
+     "source": "タイトル",
+     "rule": "対象者を示す語がタイトルに無いため確定しない（推測しない）"
+    },
+    {
+     "field": "event_type",
+     "value": "シングルス",
+     "matched": "シングルス",
+     "source": "タイトル",
+     "rule": "「シングルス」の語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
+  },
+  {
+   "id": "toyota-2026-17d139e9",
+   "fiscal_year": 2026,
+   "event_key": "2026|newyearテニスマッチ(混成チーム対抗戦)",
+   "title": "NEW YEAR テニスマッチ(混成チーム対抗戦)",
+   "source_id": "toyota_tennis_association",
+   "source_name": "豊田市テニス協会",
+   "source_area": "豊田",
+   "event_area": "豊田",
+   "date_text": "2027年 1/10",
+   "periods": [
+    {
+     "raw": "1/10",
+     "normalized": "2027-01-10",
+     "year": 2027,
+     "weekday_check": "not_available",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
+   "deadline_text": "11/27-12/6",
+   "deadline_date": "2026-12-06",
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "団体戦"
+   ],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "団体限定"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "（タイトルの語から）団体・所属単位での参加の可能性（要項で確認）",
+   "official_url": "https://www.toyota-ta.jp/tournament/",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": "申込期間（公式一覧）: 11/27-12/6",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "団体限定",
+     "matched": "チーム",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語（団体／対抗／チーム）"
+    },
+    {
+     "field": "event_type",
+     "value": "団体戦",
+     "matched": "対抗",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted"
+   }
   }
  ],
  "update": {
@@ -6156,6 +6844,12 @@
     "last_failure": null
    },
    "okazaki_tennis_association": {
+    "status": "ok",
+    "data_as_of": "2026-10-10",
+    "consecutive_failures": 0,
+    "last_failure": null
+   },
+   "toyota_tennis_association": {
     "status": "ok",
     "data_as_of": "2026-10-10",
     "consecutive_failures": 0,
