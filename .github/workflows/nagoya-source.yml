@@ -30,7 +30,7 @@ jobs:
           import json
           from pathlib import Path
           out=Path('pipeline/out-nagoya')
-          summary=json.loads((out/'summary.json').read_text())
+          summary=json.loads((out/'run-summary.json').read_text())
           old=json.loads(Path('current-public/data/tournaments.json').read_text())
           new=json.loads((out/'proposed/tournaments.json').read_text())
           assert summary['results']['nagoya']['status']=='ok',summary
@@ -50,6 +50,6 @@ jobs:
         with:
           name: nagoya-proposed
           path: |
-            pipeline/out-nagoya/summary.json
+            pipeline/out-nagoya/run-summary.json
             pipeline/out-nagoya/proposed/*.json
           retention-days: 14
