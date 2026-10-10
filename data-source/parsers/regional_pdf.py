@@ -40,8 +40,8 @@ def title_matches(text, event, key):
         title = title.replace('C・D級','【C・D級】').replace('シングルス大会','シングルス')
         title = title.replace('秋季女子ウィークデーダブルス','秋季ウィークデー女子ダブルス')
     if title not in head:return False
-    fy = min(int(p['normalized'][:4]) for p in event['periods'])
-    if min(p['normalized'][5:7] for p in event['periods']) < '04':fy-=1
+    first = datetime.date.fromisoformat(min(p['normalized'] for p in event['periods']))
+    fy = first.year - (first.month < 4)
     if key == 'kariya':return ('令和%d年'%(fy-2018)) in head
     return ('%d年度'%fy) in head
 

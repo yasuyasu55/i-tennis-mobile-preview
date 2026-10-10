@@ -142,6 +142,8 @@ def preserve_unread_optional_fields(previous, candidate):
         for field in ("eligibility_text", "eligibility_status", "eligibility_note", "audience_types"):
             merged[field] = previous.get(field)
             retained.append(field)
+        merged["warnings"] = list(dict.fromkeys(list(merged.get("warnings") or []) + list(previous.get("warnings") or [])))
+        merged["notes"] = list(dict.fromkeys(list(merged.get("notes") or []) + [n for n in previous.get("notes", []) if n.startswith("要確認:")]))
         old_basis = previous.get("classification_basis") or []
         merged["classification_basis"] = [b for b in merged.get("classification_basis", [])
             if b.get("field") not in ("eligibility", "audience")] + [b for b in old_basis

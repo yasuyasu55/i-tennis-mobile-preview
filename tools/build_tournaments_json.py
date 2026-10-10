@@ -768,6 +768,8 @@ def supplement_regional_details(rec,event,key):
             rec["classification_basis"]=[b for b in rec["classification_basis"] if b["field"]!="eligibility"]
             rec["classification_basis"].append({"field":"eligibility","value":status_elig,"matched":text,"source":"要項PDFの資格欄","rule":"大会名・年度・開催月日の対応を確認。個別条件は要項に従う"})
             if key=="toyota" and "ベテラン" in text:
+                rec["audience_types"]=[a for a in rec["audience_types"] if a!="不明"]
+                rec["classification_basis"]=[b for b in rec["classification_basis"] if not (b["field"]=="audience" and b["value"]=="不明")]
                 for audience in ("一般","ベテラン"):
                     if audience not in rec["audience_types"]:rec["audience_types"].append(audience)
                     rec["classification_basis"].append({"field":"audience","value":audience,"matched":audience,"source":"要項PDFの資格欄","rule":"一般とベテラン部門を明記"})
@@ -776,7 +778,7 @@ def supplement_regional_details(rec,event,key):
         rec["notes"].append("要項PDFの確認日: "+str(PDF_CONFIRMED_ON))
         rec["notes"].extend("要確認: "+w for w in detail["warnings"])
         rec["acquisition"].update(pdf_state="parsed_details",guideline_url=url,pdf_sha256=status.get("sha256"),confirmed_on=PDF_CONFIRMED_ON)
-        rec["parse_status"]="partial" if detail["warnings"] else rec["parse_status"]
+        rec["parse_status"]="success" if not detail["warnings"] and all(rec.get(f) for f in ("venue","fee_text","eligibility_text","deadline_date")) else "partial"
         break
     return rec
 

@@ -40,7 +40,7 @@ jobs:
             for field in ('title','source_id','event_area','date_text','periods','reserve_periods'):
               assert b[key].get(field)==r.get(field),(key,field)
             for field in ('event_types','audience_types'):
-              assert set(r.get(field) or [])<=set(b[key].get(field) or []),(key,field)
+              assert (set(r.get(field) or [])-{'不明'})<=set(b[key].get(field) or []),(key,field)
           enriched=[r for r in b.values() if r['source_id'] in sources and r.get('fee_text') and r.get('venue')]
           assert len(enriched)>=11,len(enriched)
           print('All',len(b),'IDs and dates retained; enriched',len(enriched),'events')
