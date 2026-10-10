@@ -8,7 +8,7 @@ sys.path.insert(0,str(ROOT/"pipeline"))
 from fetcher import PoliteFetcher, FetchError
 f=PoliteFetcher("I-Tennis-Mobile-DataBot/1.0 (+https://github.com/yasuyasu55/i-tennis-mobile-preview)",delay=3,timeout=25,max_requests=12)
 report={"source":"新城テニス協会","pages":[],"requests":[]}
-for url in ["https://shinshiro-tennis.com/","https://shinshiro-tennis.com/e1382200.html","https://shinshiro-tennis.com/e1376566.html","https://shinshiro-tennis.com/e1383946.html"]:
+for url in ["http://www.shinshiro-tennis.com/","https://www.shinshiro-tennis.com/"]:
     item={"url":url}
     try:
         result=f.get(url,3000000)
