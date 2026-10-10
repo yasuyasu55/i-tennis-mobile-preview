@@ -643,6 +643,24 @@
    "first_seen_at": "2026-10-10",
    "last_seen_at": "2026-10-10",
    "missed_runs": 0
+  },
+  "nagoya-2026-c734912e": {
+   "source_id": "nagoya_tennis_association",
+   "first_seen_at": "2026-10-10",
+   "last_seen_at": "2026-10-10",
+   "missed_runs": 0
+  },
+  "nagoya-2026-93517d41": {
+   "source_id": "nagoya_tennis_association",
+   "first_seen_at": "2026-10-10",
+   "last_seen_at": "2026-10-10",
+   "missed_runs": 0
+  },
+  "nagoya-2026-12e7ee51": {
+   "source_id": "nagoya_tennis_association",
+   "first_seen_at": "2026-10-10",
+   "last_seen_at": "2026-10-10",
+   "missed_runs": 0
   }
  }
 }

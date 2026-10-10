@@ -46,6 +46,7 @@ from parsers import okazaki_pdf as op           # noqa: E402  要項の費用・
 from parsers import toyota_tennis as ty
 from parsers import kariya_tennis as ky
 from parsers import regional_pdf as rp
+from parsers import nagoya_tennis as ng
 from parsers import anjo_tennis as aj
 from parsers import hamamatsu_pdf_table as ht   # noqa: E402  複数種目を含む表形式の補足
 import stable_ids                               # noqa: E402  安定ID（TTA-MOBILE-014-R1）
@@ -878,7 +879,47 @@ def build_anjo():
     return recs,{"fiscal_year":page["fiscal_year"],"event_count":len(recs),"excluded":page["excluded"]}
 
 
-SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu", "okazaki", "toyota", "anjo", "kariya"]
+def build_nagoya():
+    try:
+        page = ng.parse_page(read("nagoya_tournament.html"))
+    except ValueError as ex:
+        raise BuildError("名古屋: " + str(ex)) from ex
+    recs = []
+    for ev in page["events"]:
+        detailed = ev["guideline_url"] is not None
+        eligibility = page["common_eligibility"] + (" ／ " + ev["eligibility"] if ev["eligibility"] else "")
+        rec = make_record(title=ev["title"], source_id=ng.SOURCE_ID, source_name=ng.SOURCE_NAME,
+            source_area="名古屋", event_area="名古屋", date_text=ev["date_text"], periods=ev["periods"],
+            year_basis="公式開催予定の年度と明記された開催年。大会案内は開催日時欄の明記年",
+            official_url=ev["official_url"], guideline_url=ev["guideline_url"], entry_url=ev["entry_url"],
+            venue=ev["venue"], fee_text=ev["fee_text"], entry_text=ev["entry_text"],
+            source_snapshot_date=SNAPSHOT_DATE["nagoya"],
+            notes=["公式ページ内の大会案内から取得。申込欄は受付開始の案内で、締切日は未掲載です" if detailed else
+                   "開催予定日のみ公表。会場・参加費・申込開始・締切と大会ごとの詳細条件は未掲載です"],
+            acquisition={"method":"http", "auto_fetch":True, "html_details":detailed})
+        apply_common_classification(rec, extra_event_texts=[("公式大会案内の進行欄", (ev["rules"] or "").replace("男子D", "男子ダブルス").replace("女子D", "女子ダブルス"))])
+        if ev["kind"] == "団体戦" and re.search(r"(?:男子|女子)D", ev["rules"] or ""):
+            if "ダブルス" not in rec["event_types"]:
+                rec["event_types"].append("ダブルス")
+                rec["classification_basis"].append({"field":"event_type", "value":"ダブルス", "matched":"男子D・女子D",
+                    "source":"公式大会案内の進行欄", "rule":"団体戦の構成種目に男女ダブルスが明記"})
+        rec.update(eligibility_text=eligibility, eligibility_status="その他の条件あり",
+                   eligibility_note="協会主催大会の共通条件はアマチュア限定です。大会ごとの条件も公式案内で確認してください")
+        rec["classification_basis"] = [b for b in rec["classification_basis"] if b["field"] != "eligibility"]
+        rec["classification_basis"].append({"field":"eligibility", "value":"その他の条件あり", "matched":eligibility,
+            "source":"公式ページの共通条件・大会案内", "rule":"明記された参加条件のみ。予定のみの大会に別大会の条件を流用しない"})
+        if page["adult_association"]:
+            rec["audience_types"] = ["一般"]
+            rec["classification_basis"] = [b for b in rec["classification_basis"] if b["field"] != "audience"]
+            rec["classification_basis"].append({"field":"audience", "value":"一般", "matched":"社会人のアマチュアの男女",
+                "source":"公式ページの協会紹介", "rule":"協会の対象者が社会人のアマチュアと明記。大会ごとの年齢・その他条件は要確認"})
+        rec["warnings"] = list(ev["periods"][0]["warnings"])
+        recs.append(rec)
+    stable_ids.assign_ids("nagoya", recs, [e["fiscal_year"] for e in page["events"]])
+    return recs, {"fiscal_year":page["fiscal_year"], "detail_count":page["detail_count"]}
+
+
+SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu", "okazaki", "toyota", "anjo", "kariya", "nagoya"]
 
 
 def source_meta(key, sid, name, area, event_area, coverage, label, note, records, files, parser):
@@ -901,6 +942,9 @@ def _heading_year(raw):
 
 
 SOURCE_DEFS = {
+    "nagoya": dict(builder=build_nagoya, id=ng.SOURCE_ID, name="名古屋", area="名古屋", event_area="名古屋", coverage="partial", label="部分対応",
+        note=lambda recs, raw: "%d年度の公式開催予定と掲載中の大会案内、計%d件（詳細案内%d件）。結果ギャラリー・練習会は対象外。名古屋市内すべての大会を網羅するものではありません" % (raw["fiscal_year"],len(recs),raw["detail_count"]),
+        parser="名古屋公式開催予定・HTML大会案内 parser v0.1"),
     "anjo": dict(builder=build_anjo, id=aj.SOURCE_ID, name="安城", area="安城", event_area="安城", coverage="partial", label="部分対応",
                  note=lambda recs, raw: "%d年度の公式大会表%d件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。公開済みの今後の要項から会場・費用・締切・資格条件を補足。西三河マスターズは対象外" % (raw["fiscal_year"],len(recs)),
                  parser="安城年度別大会表 parser v0.1"),
@@ -961,6 +1005,9 @@ def build_source(key):
         meta["acquisition"] = "automatic_http"
         meta["snapshot_note"] = "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（%d件）。矛盾する日時は要確認として表示" % sum((r.get("acquisition") or {}).get("pdf_state")=="parsed_details" for r in recs)
         meta["pdf_confirmed_on"] = PDF_CONFIRMED_ON
+    if key == "nagoya":
+        meta["acquisition"] = "automatic_http"
+        meta["snapshot_note"] = "公式の開催予定とページ内大会案内を自動取得。開催年は明記されたものだけを採用。未掲載の詳細は推測しません"
     return {"key": key, "records": recs, "raw": raw, "meta": meta, "warnings": list(RUN_WARNINGS)}
 
 

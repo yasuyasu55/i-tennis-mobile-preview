@@ -356,6 +356,26 @@
    "parser": "刈谷年度別大会予定 parser v0.1",
    "acquisition": "automatic_http",
    "pdf_confirmed_on": "2026-10-10"
+  },
+  {
+   "id": "nagoya_tennis_association",
+   "name": "名古屋",
+   "area": "名古屋",
+   "event_area": "名古屋",
+   "coverage": "partial",
+   "coverage_label": "部分対応",
+   "coverage_note": "2026年度の公式開催予定と掲載中の大会案内、計3件（詳細案内1件）。結果ギャラリー・練習会は対象外。名古屋市内すべての大会を網羅するものではありません",
+   "snapshot_date": "2026-10-10",
+   "snapshot_note": "公式の開催予定とページ内大会案内を自動取得。開催年は明記されたものだけを採用。未掲載の詳細は推測しません",
+   "record_count": 3,
+   "files": [
+    {
+     "file": "nagoya_tournament.html",
+     "sha256": "de240606b9e996e1dc2142de25f3c6e46c9f25fa4d3045069c93413e64a88f12"
+    }
+   ],
+   "parser": "名古屋公式開催予定・HTML大会案内 parser v0.1",
+   "acquisition": "automatic_http"
   }
  ],
  "other_areas": {
@@ -365,7 +385,7 @@
   "coverage_note": "この版では、上記以外の地域の大会情報は取得していません（検索結果0件は「大会がない」ではなく「未対応」の可能性があります）"
  },
  "summary": {
-  "total": 107,
+  "total": 110,
   "by_source": {
    "愛知県協会": 25,
    "豊橋": 20,
@@ -375,11 +395,12 @@
    "岡崎": 9,
    "豊田": 8,
    "安城": 16,
-   "刈谷": 9
+   "刈谷": 9,
+   "名古屋": 3
   },
   "by_parse_status": {
    "success": 36,
-   "partial": 71
+   "partial": 74
   }
  },
  "tournaments": [
@@ -9205,6 +9226,265 @@
     "auto_fetch": true,
     "pdf_state": "not_attempted"
    }
+  },
+  {
+   "id": "nagoya-2026-c734912e",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋テニス協会ミックス(1月)",
+   "title": "名古屋テニス協会 ミックス（1月）",
+   "source_id": "nagoya_tennis_association",
+   "source_name": "名古屋テニス協会",
+   "source_area": "名古屋",
+   "event_area": "名古屋",
+   "date_text": "2027年 1/24(日)",
+   "periods": [
+    {
+     "raw": "2027年 1/24(日)",
+     "normalized": "2027-01-24",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式開催予定の年度と明記された開催年。大会案内は開催日時欄の明記年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ミックス"
+   ],
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "名古屋テニス協会主催の大会はアマチュアの方のみ参加できます。",
+   "eligibility_note": "協会主催大会の共通条件はアマチュア限定です。大会ごとの条件も公式案内で確認してください",
+   "official_url": "https://peraichi.com/landing_pages/view/nagoyatennis/#section-42",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "タイトル",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "eligibility",
+     "value": "その他の条件あり",
+     "matched": "名古屋テニス協会主催の大会はアマチュアの方のみ参加できます。",
+     "source": "公式ページの共通条件・大会案内",
+     "rule": "明記された参加条件のみ。予定のみの大会に別大会の条件を流用しない"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "社会人のアマチュアの男女",
+     "source": "公式ページの協会紹介",
+     "rule": "協会の対象者が社会人のアマチュアと明記。大会ごとの年齢・その他条件は要確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "開催予定日のみ公表。会場・参加費・申込開始・締切と大会ごとの詳細条件は未掲載です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "fee_text": null,
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "html_details": false
+   }
+  },
+  {
+   "id": "nagoya-2026-93517d41",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋テニス協会ミックス(3月)",
+   "title": "名古屋テニス協会 ミックス（3月）",
+   "source_id": "nagoya_tennis_association",
+   "source_name": "名古屋テニス協会",
+   "source_area": "名古屋",
+   "event_area": "名古屋",
+   "date_text": "2027年 3/14(日)",
+   "periods": [
+    {
+     "raw": "2027年 3/14(日)",
+     "normalized": "2027-03-14",
+     "year": 2027,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式開催予定の年度と明記された開催年。大会案内は開催日時欄の明記年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ミックス"
+   ],
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "名古屋テニス協会主催の大会はアマチュアの方のみ参加できます。",
+   "eligibility_note": "協会主催大会の共通条件はアマチュア限定です。大会ごとの条件も公式案内で確認してください",
+   "official_url": "https://peraichi.com/landing_pages/view/nagoyatennis/#section-42",
+   "guideline_url": null,
+   "entry_url": null,
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "タイトル",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "eligibility",
+     "value": "その他の条件あり",
+     "matched": "名古屋テニス協会主催の大会はアマチュアの方のみ参加できます。",
+     "source": "公式ページの共通条件・大会案内",
+     "rule": "明記された参加条件のみ。予定のみの大会に別大会の条件を流用しない"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "社会人のアマチュアの男女",
+     "source": "公式ページの協会紹介",
+     "rule": "協会の対象者が社会人のアマチュアと明記。大会ごとの年齢・その他条件は要確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "開催予定日のみ公表。会場・参加費・申込開始・締切と大会ごとの詳細条件は未掲載です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "fee_text": null,
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "html_details": false
+   }
+  },
+  {
+   "id": "nagoya-2026-12e7ee51",
+   "fiscal_year": 2026,
+   "event_key": "2026|名古屋テニス協会団体戦(5月)",
+   "title": "名古屋テニス協会 団体戦（5月）",
+   "source_id": "nagoya_tennis_association",
+   "source_name": "名古屋テニス協会",
+   "source_area": "名古屋",
+   "event_area": "名古屋",
+   "date_text": "令和8年5/17(日)",
+   "periods": [
+    {
+     "raw": "令和8年5/17(日)",
+     "normalized": "2026-05-17",
+     "year": 2026,
+     "weekday_check": "ok",
+     "warnings": []
+    }
+   ],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": null,
+   "year_basis": "公式開催予定の年度と明記された開催年。大会案内は開催日時欄の明記年",
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": "パロマ瑞穂コート",
+   "event_types": [
+    "ミックス",
+    "団体戦",
+    "ダブルス"
+   ],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [
+    "ミックス",
+    "ダブルス"
+   ],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "その他の条件あり",
+   "eligibility_text": "名古屋テニス協会主催の大会はアマチュアの方のみ参加できます。 ／ 6名以上(男性3女性3)で団体をつくる 6名チームの場合、当日急病やケガなどやむを得ない事情により欠員が出てしまった場合、同じ人がミックスと性別Dを兼ねる事も可能とします。 20歳以上(学生不可)",
+   "eligibility_note": "協会主催大会の共通条件はアマチュア限定です。大会ごとの条件も公式案内で確認してください",
+   "official_url": "https://peraichi.com/landing_pages/view/nagoyatennis/#section-105",
+   "guideline_url": "https://peraichi.com/landing_pages/view/nagoyatennis/#section-105",
+   "entry_url": "https://form1ssl.fc2.com/form/?id=87ac89c7cd733780",
+   "entry_text": "令和8年 3 月31日(火) 20時より 先着順にて受付",
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "公式大会案内の進行欄",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "event_type",
+     "value": "団体戦",
+     "matched": "団体戦",
+     "source": "タイトル",
+     "rule": "団体・対抗戦を示す語"
+    },
+    {
+     "field": "event_type",
+     "value": "ダブルス",
+     "matched": "男子D・女子D",
+     "source": "公式大会案内の進行欄",
+     "rule": "団体戦の構成種目に男女ダブルスが明記"
+    },
+    {
+     "field": "eligibility",
+     "value": "その他の条件あり",
+     "matched": "名古屋テニス協会主催の大会はアマチュアの方のみ参加できます。 ／ 6名以上(男性3女性3)で団体をつくる 6名チームの場合、当日急病やケガなどやむを得ない事情により欠員が出てしまった場合、同じ人がミックスと性別Dを兼ねる事も可能とします。 20歳以上(学生不可)",
+     "source": "公式ページの共通条件・大会案内",
+     "rule": "明記された参加条件のみ。予定のみの大会に別大会の条件を流用しない"
+    },
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "社会人のアマチュアの男女",
+     "source": "公式ページの協会紹介",
+     "rule": "協会の対象者が社会人のアマチュアと明記。大会ごとの年齢・その他条件は要確認"
+    }
+   ],
+   "warnings": [],
+   "notes": [
+    "公式ページ内の大会案内から取得。申込欄は受付開始の案内で、締切日は未掲載です"
+   ],
+   "source_snapshot_date": "2026-10-10",
+   "fee_text": "1チーム6,000円(最低4戦) 開催日2週間前よりキャンセル料(参加費全額)が発生しますが、 代わりの参加者の応募が有れば必要ありません。",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "html_details": true
+   }
   }
  ],
  "update": {
@@ -9260,6 +9540,12 @@
     "last_failure": null
    },
    "kariya_tennis_association": {
+    "status": "ok",
+    "data_as_of": "2026-10-10",
+    "consecutive_failures": 0,
+    "last_failure": null
+   },
+   "nagoya_tennis_association": {
     "status": "ok",
     "data_as_of": "2026-10-10",
     "consecutive_failures": 0,

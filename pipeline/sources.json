@@ -179,6 +179,19 @@
           "www.katch.ne.jp"
         ]
       }
+    },
+    {
+      "key": "nagoya",
+      "enabled": true,
+      "min_records": 1,
+      "min_ratio": 0.5,
+      "pages": [
+        {
+          "name": "nagoya_tournament.html",
+          "url": "https://peraichi.com/landing_pages/view/nagoyatennis/",
+          "required": true
+        }
+      ]
     }
   ],
   "excluded": [

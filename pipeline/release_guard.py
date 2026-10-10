@@ -12,6 +12,7 @@ EXPECTED_SOURCES = {
     "toyota": "toyota_tennis_association",
     "anjo": "anjo_tennis_association",
     "kariya": "kariya_tennis_association",
+    "nagoya": "nagoya_tennis_association",
 }
 IMPORTANT = ("venue", "deadline_text", "deadline_date", "eligibility_text",
              "entry_url", "guideline_url", "fee_text", "contact_text")
