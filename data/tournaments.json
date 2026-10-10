@@ -114,13 +114,17 @@
    "coverage": "partial",
    "coverage_label": "部分対応",
    "coverage_note": "「大会情報」ページの大会要項・仮ドローの表（5件）。要項PDFの読み取りができた大会は、申込締切・参加資格・参加費を取得（3件）。年間の事業予定（画像・PDF）・ジュニア大会・終了済みの大会結果（表67件）は取り込んでいません",
-   "snapshot_date": "2026-10-08",
-   "snapshot_note": "公式ページ・要項PDFを、通常のHTTP取得で自動取得（取得日: 2026-10-08。ページ内に更新日の記載なし）。要項PDF 4件: 取得・解析成功 3件／取得成功・解析未取得 1件／取得失敗 0件。前回成功値を保持している大会: 0件",
+   "snapshot_date": "2026-10-10",
+   "snapshot_note": "公式ページ・要項PDFを、通常のHTTP取得で自動取得（取得日: 2026-10-10。ページ内に更新日の記載なし）。要項PDF 4件: 取得・解析成功 3件／費用・種目別締切を補足 1件／取得成功・解析未取得 0件／取得失敗 0件。前回成功値を保持している大会: 0件",
    "record_count": 5,
    "files": [
     {
      "file": "hamamatsu_97864815961c_fetch.json",
-     "sha256": "a1f769aff61f8a5fe58ff5185a0bcff882e252a18e133cdeb555b8c979935b3d"
+     "sha256": "d51f0b5ba45c8b436efd4c1666987ac3111134263be0843188df74fd1818ffe8"
+    },
+    {
+     "file": "hamamatsu_97864815961c_layout.txt",
+     "sha256": "0d98d26d3250212a47e40377273b80715c6c5b37f6cbd2a2573a4ae5a98b9f5b"
     },
     {
      "file": "hamamatsu_97864815961c_youkou.txt",
@@ -152,11 +156,11 @@
     },
     {
      "file": "hamamatsu_tournament.html",
-     "sha256": "44d2c3ea202742faa16a6cdbae2a97ba58ad0be21561e90944933c53f93b5aae"
+     "sha256": "5ea2a570bba530499ad4217b7c64eb72627bd073e7b8d3d3c88c230434c64935"
     }
    ],
    "parser": "TTA-MOBILE-021（新規）",
-   "pdf_confirmed_on": "2026-10-08",
+   "pdf_confirmed_on": "2026-10-10",
    "acquisition": "automatic_http"
   },
   {
@@ -166,17 +170,41 @@
    "event_area": "岡崎",
    "coverage": "partial",
    "coverage_label": "部分対応",
-   "coverage_note": "令和8年度の大会一覧カード（9件）。開催日・種目・参加資格・会場・一覧記載の締切を取得。要項PDF本文・申込先は未解析",
-   "snapshot_date": "2026-10-09",
+   "coverage_note": "令和8年度の大会一覧カード（9件）。開催日・種目・参加資格・会場・一覧記載の締切を取得。要項PDFの参加費・方法別締切を確認した大会は3件。申込先ページは未解析",
+   "snapshot_date": "2026-10-10",
    "snapshot_note": "保存HTMLの受領日（ページ内に更新日の記載なし）",
    "record_count": 9,
    "files": [
     {
+     "file": "okazaki_a9a0f1e445d2_fetch.json",
+     "sha256": "27a47f03f0923b1384aa361024efaba4c5ae16f0ed11d7254be6d6685badb7a4"
+    },
+    {
+     "file": "okazaki_a9a0f1e445d2_youkou.txt",
+     "sha256": "5d36f767b751562f9102b4908879fbe6673f13471c70d35ffb96659cbb5424ae"
+    },
+    {
+     "file": "okazaki_b5fcf3c8b978_fetch.json",
+     "sha256": "0a2c6b7dd3214baa924b7e508bd063b6e1a12665d66b1c393d5c2ba6f9f8479f"
+    },
+    {
+     "file": "okazaki_b5fcf3c8b978_youkou.txt",
+     "sha256": "5b29718380b7355c7f9d671e80d639e147fc1a84884eb3828aec937bbb1b8804"
+    },
+    {
+     "file": "okazaki_d16196e7df48_fetch.json",
+     "sha256": "a4a0f5a711c692fd237e51bd933876f026aadfcc2ef326ef38f5111334f1f385"
+    },
+    {
+     "file": "okazaki_d16196e7df48_youkou.txt",
+     "sha256": "9b2d7b171fd2f6875e5cbb14ed0d7294fff241324c023281fbc27ac5a0903dfe"
+    },
+    {
      "file": "okazaki_tournament.html",
-     "sha256": "708311c93e44e01c89fa6d9e1b1c725b8703400a2dab7f2a252bcfbeab9b0b4f"
+     "sha256": "a3b62ffa293daa4b64b2a83361ac459acf50aedf0f524e4d7197f7534ed3ead5"
     }
    ],
-   "parser": "岡崎大会カード parser v0.1（候補。公式PDF本文は未解析）"
+   "parser": "岡崎大会カード・要項の費用／方法別締切 parser v0.2"
   }
  ],
  "other_areas": {
@@ -4698,7 +4726,7 @@
    "official_url": "https://www.h-ta.jp/tournament.html",
    "guideline_url": "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_info.pdf",
    "entry_url": "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_entry_kojin.pdf",
-   "entry_text": null,
+   "entry_text": "申込先: 〒430-0932 浜松市中央区肴町316-2 アオヤマスポーツ内 ／ 浜松市テニス協会 浜松市スポーツ祭 係 TEL053-454-9148 ／ 〒432-8065 浜松中央区高塚町2315-32 マインドサン内 ／ 浜松市テニス協会 浜松市スポーツ祭 係 TEL053-448-7061 ／ 〒433-8116 浜松市中央区西丘町724 花川運動公園内 ／ 浜松市テニス協会 浜松市スポーツ祭 係",
    "parse_status": "partial",
    "classification_basis": [
     {
@@ -4731,15 +4759,18 @@
     }
    ],
    "warnings": [
-    "申込締切・参加資格・参加費は、要項PDFから取得できていません（未取得・要確認）"
+    "参加資格の詳細と、複数種目に共通する単一の申込締切は未確定です。種目別の締切と公式要項を確認してください"
    ],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-08）。要項PDF: 取得成功・解析未取得",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・費用と種目別締切を補足",
     "開催予定日の表記（原文: 2025/9/20(日)）: 原文の曜日と日付が一致しません（日付の数字は原文どおり保持）",
-    "開催予定日の表記（原文: 2025/9/20(日)）: 2026-09-20 ならば曜日が一致します。年の表記ミスの可能性があります（原文は直していません。要項で確認してください）"
+    "開催予定日の表記（原文: 2025/9/20(日)）: 2026-09-20 ならば曜日が一致します。年の表記ミスの可能性があります（原文は直していません。要項で確認してください）",
+    "要項PDFの一般ダブルス申込締切: 2026-08-28 18:00必着（複数種目の締切は別々に表示）",
+    "要項PDFの混合ダブルス申込締切: 2026-09-18 18:00必着（複数種目の締切は別々に表示）",
+    "要項PDFの確認日: 2026-10-10（表の列配置を保持して読み取り。参加資格の分類と原文の日付は変更していません）"
    ],
-   "source_snapshot_date": "2026-10-08",
-   "fee_text": null,
+   "source_snapshot_date": "2026-10-10",
+   "fee_text": "一般・混合ダブルス 3,500円",
    "related_links": [
     {
      "label": "仮ドロー",
@@ -4761,9 +4792,9 @@
      "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_doubles_predraw.pdf",
      "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_mix_predraw.pdf"
     ],
-    "pdf_state": "fetched_unparsed",
-    "pdf_state_jp": "取得成功・解析未取得",
-    "pdf_extractor": "pypdf 6.14.2"
+    "pdf_state": "partial_details",
+    "pdf_state_jp": "取得成功・費用と種目別締切を補足",
+    "pdf_extractor": "pdftotext -layout"
    }
   },
   {
@@ -4844,12 +4875,12 @@
    ],
    "warnings": [],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-08）。要項PDF: 取得成功・解析成功",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析成功",
     "申込締切 2026-10-02 18:00（年は要項の開催日の年から決定。曜日で検算一致）",
     "要項PDFの会場の表記: 浜松新電力テニスコート（表の開催場所: 浜松新電力(花川運動公園)テニスコート）",
-    "要項PDFの確認日: 2026-10-08（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
+    "要項PDFの確認日: 2026-10-10（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
    ],
-   "source_snapshot_date": "2026-10-08",
+   "source_snapshot_date": "2026-10-10",
    "fee_text": "3,500円 ※お釣りのないようにご準備お願いします",
    "related_links": [],
    "acquisition": {
@@ -4944,12 +4975,12 @@
    ],
    "warnings": [],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-08）。要項PDF: 取得成功・解析成功",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析成功",
     "申込締切 2026-10-23 18:00（年は要項の開催日の年から決定。曜日で検算一致）",
     "要項PDFの会場の表記: 浜松新電力テニスコート（表の開催場所: 浜松新電力(花川運動公園)テニスコート）",
-    "要項PDFの確認日: 2026-10-08（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
+    "要項PDFの確認日: 2026-10-10（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
    ],
-   "source_snapshot_date": "2026-10-08",
+   "source_snapshot_date": "2026-10-10",
    "fee_text": "4,500円 ※お釣りのないようにご準備お願いします",
    "related_links": [],
    "acquisition": {
@@ -5044,12 +5075,12 @@
    ],
    "warnings": [],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-08）。要項PDF: 取得成功・解析成功",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析成功",
     "申込締切 2026-10-30 18:00（年は要項の開催日の年から決定。曜日で検算一致）",
     "要項PDFの会場の表記: 浜松新電力テニスコート（表の開催場所: 浜松新電力(花川運動公園)テニスコート）",
-    "要項PDFの確認日: 2026-10-08（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
+    "要項PDFの確認日: 2026-10-10（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
    ],
-   "source_snapshot_date": "2026-10-08",
+   "source_snapshot_date": "2026-10-10",
    "fee_text": "3,500円 ※お釣りのないようにご準備お願いします",
    "related_links": [],
    "acquisition": {
@@ -5142,12 +5173,12 @@
     "申込締切・参加資格・参加費は、要項PDFから取得できていません（未取得・要確認）"
    ],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-08）。要項PDF: 取得成功・解析未取得",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析未取得",
     "開催予定日の表記（原文: 2025/9/13(日)）: 原文の曜日と日付が一致しません（日付の数字は原文どおり保持）",
     "開催予定日の表記（原文: 2025/9/13(日)）: 2026-09-13 ならば曜日が一致します。年の表記ミスの可能性があります（原文は直していません。要項で確認してください）",
     "要項は掲載されていません。紐づけたPDFは、同じ年・同じ公式フォルダにある要項PDFです（この大会の要項かは、PDFで確認してください）"
    ],
-   "source_snapshot_date": "2026-10-08",
+   "source_snapshot_date": "2026-10-10",
    "fee_text": null,
    "related_links": [
     {
@@ -5250,7 +5281,13 @@
     "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
     "今回未取得のため前回値を保持: reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted",
+    "pdf_extractor": null
+   }
   },
   {
    "id": "okazaki-2026-710da17d",
@@ -5384,7 +5421,13 @@
     "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
     "今回未取得のため前回値を保持: reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted",
+    "pdf_extractor": null
+   }
   },
   {
    "id": "okazaki-2026-61e06ea4",
@@ -5467,7 +5510,13 @@
     "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
     "今回未取得のため前回値を保持: reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted",
+    "pdf_extractor": null
+   }
   },
   {
    "id": "okazaki-2026-fea4bb59",
@@ -5514,7 +5563,7 @@
    ],
    "date_hint": null,
    "year_basis": "大会ページURLの令和8年度表記（4月始まり。1〜3月は年度の翌年）",
-   "deadline_text": "9月28日",
+   "deadline_text": "令和 8年 9月 28日(月) (※当日消印可)",
    "deadline_date": "2026-09-28",
    "deadline_time": null,
    "venue": "岡崎中央総合公園",
@@ -5570,10 +5619,19 @@
    ],
    "warnings": [],
    "notes": [
-    "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
+    "公式大会一覧から取得。要項PDFの参加費・方法別締切を確認しました。申込先ページは未解析です",
+    "要項PDFの共通申込締切: 令和 8年 9月 28日(月) (※当日消印可)",
+    "要項PDFの確認日: 2026-10-10（大会名・開催日・曜日を一覧と照合）",
     "今回未取得のため前回値を保持: reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "fee_text": "シングルス 岡崎テニス協会 加盟員 1 人 3,100 円 ／ 岡崎テニス協会 非加盟員 1 人 3,600 円 ／ ダブルス 岡崎テニス協会 加盟員 1 人 1,550 円 ／ 岡崎テニス協会 非加盟員 1 人 1,800 円 ／ ※参加申込書に加盟・非加盟を必ず記入してください。",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "parsed_details",
+    "pdf_extractor": "pypdf 6.14.2"
+   }
   },
   {
    "id": "okazaki-2026-0eccec25",
@@ -5640,7 +5698,13 @@
    "notes": [
     "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted",
+    "pdf_extractor": null
+   }
   },
   {
    "id": "okazaki-2026-32d0e8b6",
@@ -5673,7 +5737,7 @@
    ],
    "date_hint": null,
    "year_basis": "大会ページURLの令和8年度表記（4月始まり。1〜3月は年度の翌年）",
-   "deadline_text": "10月26日",
+   "deadline_text": "令和 8 年10月26日(月) (※当日消印可)",
    "deadline_date": "2026-10-26",
    "deadline_time": null,
    "venue": "岡崎中央総合公園",
@@ -5720,10 +5784,19 @@
    ],
    "warnings": [],
    "notes": [
-    "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
+    "公式大会一覧から取得。要項PDFの参加費・方法別締切を確認しました。申込先ページは未解析です",
+    "要項PDFの共通申込締切: 令和 8 年10月26日(月) (※当日消印可)",
+    "要項PDFの確認日: 2026-10-10（大会名・開催日・曜日を一覧と照合）",
     "今回未取得のため前回値を保持: entry_text, entry_url, reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "fee_text": "岡崎テニス協会加盟員(岡崎テニス協会に団体もしくは個人加盟し、 ／ 岡崎市スポーツ協会に登録している選手) 1 人 2,900 円 ／ 岡崎テニス協会非加盟員 1 人 3,100 円",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "parsed_details",
+    "pdf_extractor": "pypdf 6.14.2"
+   }
   },
   {
    "id": "okazaki-2026-7766c0d2",
@@ -5756,7 +5829,7 @@
    ],
    "date_hint": null,
    "year_basis": "大会ページURLの令和8年度表記（4月始まり。1〜3月は年度の翌年）",
-   "deadline_text": "11月1日（日）",
+   "deadline_text": "インターネット申込 令和 8年 11月 1日(日)",
    "deadline_date": "2026-11-01",
    "deadline_time": null,
    "venue": "岡崎中央総合公園",
@@ -5803,11 +5876,20 @@
    ],
    "warnings": [],
    "notes": [
-    "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
-    "前回確認事項（今回未確認）: 公式要項の郵送締切は10月30日（金）。上記の申込締切はインターネット申込の締切です。",
-    "今回未取得のため前回値を保持: entry_text, entry_url, reserve_text, reserve_periods, notes.previous_deadline_note"
+    "公式大会一覧から取得。要項PDFの参加費・方法別締切を確認しました。申込先ページは未解析です",
+    "要項PDFのインターネット申込締切: インターネット申込 令和 8年 11月 1日(日)",
+    "要項PDFの郵送申込締切: 郵送申込 令和 8年 10月 30日(金)(※当日消印可)",
+    "要項PDFの確認日: 2026-10-10（大会名・開催日・曜日を一覧と照合）",
+    "今回未取得のため前回値を保持: entry_text, entry_url, reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "fee_text": "1チーム 8,500円",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "parsed_details",
+    "pdf_extractor": "pypdf 6.14.2"
+   }
   },
   {
    "id": "okazaki-2026-4796a2aa",
@@ -5890,7 +5972,13 @@
     "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
     "今回未取得のため前回値を保持: reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted",
+    "pdf_extractor": null
+   }
   },
   {
    "id": "okazaki-2026-382d711e",
@@ -6024,7 +6112,13 @@
     "公式大会一覧のカードから取得。要項PDF本文・申込先ページは未解析です",
     "今回未取得のため前回値を保持: reserve_text, reserve_periods"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-10",
+   "acquisition": {
+    "method": "http",
+    "auto_fetch": true,
+    "pdf_state": "not_attempted",
+    "pdf_extractor": null
+   }
   }
  ],
  "update": {
@@ -6057,13 +6151,13 @@
    },
    "hamamatsu_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-08",
+    "data_as_of": "2026-10-10",
     "consecutive_failures": 0,
     "last_failure": null
    },
    "okazaki_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-09",
+    "data_as_of": "2026-10-10",
     "consecutive_failures": 0,
     "last_failure": null
    }

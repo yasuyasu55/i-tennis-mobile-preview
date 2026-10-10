@@ -27,6 +27,24 @@
    "summary": "大会情報が更新されました（9件 → 9件）",
    "records_before": 9,
    "records_after": 9
+  },
+  {
+   "at": "2026-10-10T11:19:03+09:00",
+   "source": "hamamatsu_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（5件 → 5件）",
+   "records_before": 5,
+   "records_after": 5
+  },
+  {
+   "at": "2026-10-10T11:19:03+09:00",
+   "source": "okazaki_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（9件 → 9件）",
+   "records_before": 9,
+   "records_after": 9
   }
  ]
 }

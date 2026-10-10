@@ -190,7 +190,8 @@ def preserve_unread_optional_fields(previous, candidate):
     # 岡崎の一覧は要項・申込ページをまだ解析していない。前回の郵送締切等の
     # 手確認メモを消さず、今回再確認していない注記として残す。
     if (candidate.get("source_id") == "okazaki_tennis_association"
-            and candidate.get("parse_status") == "partial"):
+            and candidate.get("parse_status") == "partial"
+            and (candidate.get("acquisition") or {}).get("pdf_state") != "parsed_details"):
         old_notes = [n for n in previous.get("notes", [])
                      if "郵送締切" in n or "申込締切" in n]
         if old_notes:
