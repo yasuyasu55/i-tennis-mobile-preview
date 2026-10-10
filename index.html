@@ -106,6 +106,8 @@ main{padding:12px;max-width:720px;margin:auto}
 .t-chk{display:inline-flex;align-items:center;gap:5px;font-size:0.8125rem;border:1px solid #cde4d4;border-radius:999px;padding:6px 11px;background:#f7fbf8;color:#24332B}
 .t-chk input{margin:0}
 .t-chk.on{background:#dff3e6;border-color:#08763d;font-weight:700}
+.t-area-outside{margin-top:10px}
+.t-area-outside>summary{cursor:pointer;color:#07522d;font-size:0.8125rem;padding:8px 0}
 .t-row2{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .t-select,.t-date,.t-text{font-size:1rem;border:1px solid #cde4d4;border-radius:10px;padding:8px 10px;background:white;color:#24332B;box-sizing:border-box;max-width:100%}
 .t-text{width:100%}
@@ -200,7 +202,7 @@ main{padding:12px;max-width:720px;margin:auto}
 
 <header>
   <h1>🎾 I-Tennis Mobile</h1>
-  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.8</p>
+  <p style="margin:2px 0 0;font-size:0.6875rem;color:#a9d3b8">Ver.0.8.9</p>
   <p id="updated">読み込み中...</p>
 </header>
 
@@ -1171,17 +1173,61 @@ function tAreaValues(data){
   }
   return out;
 }
+// 表示上の地域をまとめる。データと保存条件は従来のevent_areaを保持する。
+var T_AREA_LAYOUT = [
+  { label: '浜松', values: ['浜松'], outside: false },
+  { label: '豊橋・豊川・蒲郡', values: ['豊橋', '豊川', '蒲郡'], outside: false },
+  { label: '東三河その他', values: ['新城', '新城市', '田原', '田原市'], outside: false },
+  { label: '岡崎・安城・刈谷・西尾', values: ['岡崎', '安城', '刈谷', '西尾'], outside: false },
+  { label: '豊田', values: ['豊田'], outside: false },
+  { label: '名古屋', values: ['名古屋'], outside: false },
+  { label: '愛知県協会掲載', values: ['愛知県協会掲載'], outside: false }
+];
+function tAreaGroups(data){
+  var available = tAreaValues(data), groups = [], used = [];
+  T_AREA_LAYOUT.forEach(function(def){
+    var values = def.values.filter(function(v){ return available.indexOf(v) !== -1; });
+    if (values.length) { groups.push({ label: def.label, values: values, outside: def.outside }); used = used.concat(values); }
+  });
+  var outside = {};
+  available.forEach(function(v){
+    if (used.indexOf(v) !== -1) { return; }
+    var label = /^岐阜/.test(v) ? '岐阜' : (/^三重/.test(v) ? '三重' : (/^(静岡|沼津|富士|焼津|藤枝)/.test(v) ? '静岡中東部' : 'その他'));
+    if (!outside[label]) { outside[label] = []; }
+    outside[label].push(v);
+  });
+  ['岐阜', '三重', '静岡中東部', 'その他'].forEach(function(label){
+    if (outside[label]) { groups.push({ label: label, values: outside[label], outside: true }); }
+  });
+  return groups;
+}
+function tAreaChecks(groups){
+  var html = '<div class="t-checks">';
+  groups.forEach(function(group){
+    html += '<label class="t-chk"><input type="checkbox" class="tChk" data-kind="area" data-areas="' + esc(JSON.stringify(group.values)) + '" value="' + esc(group.label) + '"> ' + esc(group.label) + '</label>';
+  });
+  return html + '</div>';
+}
+function tAreaPanelHtml(data){
+  var groups = tAreaGroups(data), inside = groups.filter(function(g){ return !g.outside; }), outside = groups.filter(function(g){ return g.outside; });
+  var html = '<div class="t-fgroup"><div class="t-flabel">地域（未選択＝すべて）</div><div class="t-fnote">活動圏内</div>' + tAreaChecks(inside);
+  if (outside.length) {
+    var selected = outside.some(function(g){ return g.values.some(function(v){ return !!tState.areas[v]; }); });
+    html += '<details class="t-area-outside" id="tAreaOutside"' + (selected ? ' open' : '') + '><summary>活動圏外を表示</summary>' + tAreaChecks(outside) + '</details>';
+  }
+  return html + '</div>';
+}
 function tPanelHtml(data){
   // 狭い画面（スマホ）では検索条件を閉じておき、結果を先に見せる。広い画面では開いておく
   var html = '<details class="t-filters" id="tFilters"' + (window.innerWidth >= 700 ? ' open' : '') + '><summary>🔎 検索条件を変更する（タップで開閉）</summary><div class="t-filters-body">';
+  html += '<div class="t-fgroup"><div class="t-flabel">キーワード（Enterでも検索できます）</div><input type="search" id="tKeyword" class="t-text" placeholder="大会名・会場など" autocomplete="off" enterkeyhint="search"></div>';
+  html += tAreaPanelHtml(data);
   html += '<div class="t-fgroup"><div class="t-flabel">期間（初期は全期間）</div><div class="t-row2">';
   html += '<select id="tPeriod" class="t-select"><option value="all">全期間</option><option value="from_today">本日以降</option><option value="30">今日から30日</option><option value="90">今日から90日</option><option value="180">今日から180日</option><option value="custom">期間を指定</option></select></div>';
   html += '<div class="t-row2" style="margin-top:6px"><input type="date" id="tStart" class="t-date" aria-label="開始日"><span>〜</span><input type="date" id="tEnd" class="t-date" aria-label="終了日"></div>';
   html += '<div class="t-fnote">全期間・期間を指定（日付が空欄）は、期間で絞り込みません。期間を指定すると、日付未取得の大会は期間判定ができないため除かれます（その件数を表示します）。</div></div>';
-  html += '<div class="t-fgroup"><div class="t-flabel">検索区分（情報元・未選択＝すべて）</div>' + tChecks('area', tAreaValues(data)) + '</div>';
   html += '<div class="t-fgroup"><div class="t-flabel">対象者（未選択＝すべて。ジュニア・学生系も含む）</div>' + tChecks('group', T_GROUPS) + '</div>';
   html += '<div class="t-fgroup"><div class="t-flabel">種目（未選択＝すべて。種目不明も含む）</div>' + tChecks('type', T_TYPES) + '</div>';
-  html += '<div class="t-fgroup"><div class="t-flabel">キーワード（Enterでも検索できます）</div><input type="search" id="tKeyword" class="t-text" placeholder="大会名・会場など" autocomplete="off" enterkeyhint="search"></div>';
   html += '<div class="t-fgroup"><div class="t-flabel">除外する条件（ONにしたものだけ除外。初回はすべてOFF）</div><div class="t-checks"><label class="t-chk"><input type="checkbox" id="tExclJunior"> ジュニア・学生系を除外</label><label class="t-chk"><input type="checkbox" id="tExclSenior"> シニア系を除外</label><label class="t-chk"><input type="checkbox" id="tExclFinished"> 終了済みを除外</label><label class="t-chk"><input type="checkbox" id="tExclUndated"> 日付未取得を除外</label></div><div class="t-fnote">「シニア系」は分類でシニアと明記された大会のみです。ベテラン・壮年は除外しません。</div></div>';
   html += '<div class="t-footer"><div class="t-conflict" id="tConflict" role="alert" hidden>対象者でジュニア・学生系が選択されています。「ジュニア・学生系を除外」を解除してください。</div>';
   html += '<div class="t-dirty" id="tDirty" role="status" hidden>条件を変更しました。下の「この条件で検索」を押すと、検索結果に反映されます。</div>';
@@ -1240,8 +1286,15 @@ function tSyncBoxes(isOn){
   var boxes = document.getElementById('tFilters').querySelectorAll('input.tChk');
   for (var i = 0; i < boxes.length; i++) {
     var b = boxes[i], on = isOn ? isOn(b.getAttribute('data-kind'), b.value) : b.checked;
+    if (isOn && b.getAttribute('data-kind') === 'area' && b.getAttribute('data-areas')) {
+      var values = JSON.parse(b.getAttribute('data-areas'));
+      b._selectedAreas = values.filter(function(v){ return isOn('area', v); });
+      on = b._selectedAreas.length === values.length;
+      b.indeterminate = b._selectedAreas.length > 0 && !on;
+      b.title = b.indeterminate ? '保存済みの条件：' + b._selectedAreas.join('・') + '。変更すると、この地域グループ全体を選択します。' : '';
+    }
     b.checked = on;
-    b.parentNode.className = 't-chk' + (on ? ' on' : '');
+    b.parentNode.className = 't-chk' + (on || b.indeterminate ? ' on' : '');
   }
 }
 function tApplyPreset(p){
@@ -1265,7 +1318,11 @@ function tReadPanel(){
   var boxes = document.getElementById('tFilters').querySelectorAll('input.tChk');
   for (var i = 0; i < boxes.length; i++) {
     var b = boxes[i], kind = b.getAttribute('data-kind');
-    if (kind === 'area') { st.areas[b.value] = b.checked; }
+    if (kind === 'area') {
+      var values = b.getAttribute('data-areas') ? JSON.parse(b.getAttribute('data-areas')) : [b.value];
+      var selected = b.indeterminate ? (b._selectedAreas || []) : (b.checked ? values : []);
+      values.forEach(function(v){ st.areas[v] = selected.indexOf(v) !== -1; });
+    }
     else if (kind === 'group') { st.groups[b.value] = b.checked; }
     else { st.types[b.value] = b.checked; }
   }
@@ -1564,7 +1621,7 @@ function showTournamentLoading(){
 
 // 大会データのURLには、アプリの版を付ける（画面と大会データの版を一致させる）。
 // 旧版のService Workerは、保存済みの旧データを返すことがあるため、新しいService Workerが有効になった時に、1回だけ静かに再取得する（再読み込みはしない）
-var APP_DATA_VERSION = '0.8.8';
+var APP_DATA_VERSION = '0.8.9';
 var tDataRefreshed = false;
 function loadTournamentData(silent){
   if (!silent) { showTournamentLoading(); }

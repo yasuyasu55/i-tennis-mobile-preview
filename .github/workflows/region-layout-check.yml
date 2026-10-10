@@ -1,0 +1,23 @@
+name: region-layout-check
+on:
+  push:
+    branches: [region-layout-preview]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.56.0
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/region-layout.cjs
+      - uses: actions/upload-artifact@v6
+        if: success()
+        with:
+          name: region-layout-screenshot
+          path: region-layout-390.png
