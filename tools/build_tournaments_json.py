@@ -43,6 +43,7 @@ from parsers import toyokawa_tennis as tk       # noqa: E402  新規(013-A1)
 from parsers import hamamatsu_tennis as hm      # noqa: E402  新規(021)
 from parsers import okazaki_tennis as ok        # noqa: E402  岡崎（読み取り・候補生成）
 from parsers import okazaki_pdf as op           # noqa: E402  要項の費用・方法別締切
+from parsers import toyota_tennis as ty
 from parsers import hamamatsu_pdf_table as ht   # noqa: E402  複数種目を含む表形式の補足
 import stable_ids                               # noqa: E402  安定ID（TTA-MOBILE-014-R1）
 import tournament_classify as tc                # noqa: E402
@@ -727,7 +728,29 @@ def build_okazaki():
 
 
 
-SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu", "okazaki"]
+def build_toyota():
+    try:
+        page = ty.parse_page(read("toyota_tournament.html"))
+    except ValueError as ex:
+        raise BuildError("豊田: " + str(ex)) from ex
+    recs = []
+    for ev in page["events"]:
+        rec = make_record(title=ev["title"], source_id=ty.SOURCE_ID, source_name=ty.SOURCE_NAME,
+                          source_area="豊田", event_area="豊田", date_text=ev["date_text"], periods=ev["periods"],
+                          year_basis="公式大会一覧の%d年度見出し。1〜3月は翌年。明記された開催年を優先" % page["fiscal_year"],
+                          deadline_text=ev["entry_period"], deadline_date=ev["deadline_date"],
+                          official_url=ty.PAGE_URL, guideline_url=ev["guideline_url"], entry_url=ev["entry_url"],
+                          entry_text=("申込期間（公式一覧）: " + ev["entry_period"]) if ev["entry_period"] else None,
+                          source_snapshot_date=SNAPSHOT_DATE["toyota"],
+                          notes=["公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"],
+                          acquisition={"method": "http", "auto_fetch": True, "pdf_state": "not_attempted"})
+        apply_common_classification(rec)
+        recs.append(rec)
+    stable_ids.assign_ids("toyota", recs, [page["fiscal_year"]] * len(recs))
+    return recs, {"fiscal_year": page["fiscal_year"], "event_count": len(recs)}
+
+
+SOURCE_ORDER = ["aichi", "toyohashi", "gamagori", "toyokawa", "hamamatsu", "okazaki", "toyota"]
 
 
 def source_meta(key, sid, name, area, event_area, coverage, label, note, records, files, parser):
@@ -750,6 +773,9 @@ def _heading_year(raw):
 
 
 SOURCE_DEFS = {
+    "toyota": dict(builder=build_toyota, id=ty.SOURCE_ID, name="豊田", area="豊田", event_area="豊田", coverage="partial", label="部分対応",
+                   note=lambda recs, raw: "%d年度の番号付き大会一覧%d件。開催日・申込期間・要項と申込の実リンクを取得。練習会・通年チーム戦・ジュニア別ページは対象外。要項PDF本文は未解析" % (raw["fiscal_year"], len(recs)),
+                   parser="豊田年度別大会一覧 parser v0.1"),
     "aichi": dict(builder=build_aichi, id=at.SOURCE_ID, name="愛知県協会", area="愛知県", event_area="愛知県協会掲載", coverage="supported", label="対応済み",
                   note=lambda recs, raw: "%d年度競技日程の表（%d件）。要項PDFの本文は解析していません" % (recs[0]["fiscal_year"], len(recs)), parser="TTA-MOBILE-006-R1（承認済み・無改変）"),
     "toyohashi": dict(builder=build_toyohashi, id=tt.SOURCE_ID, name="豊橋", area="豊橋", event_area="豊橋", coverage="partial", label="部分対応",
@@ -884,3 +910,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

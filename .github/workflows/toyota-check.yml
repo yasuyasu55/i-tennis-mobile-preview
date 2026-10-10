@@ -1,0 +1,42 @@
+name: toyota-check
+on:
+  push:
+    branches: [toyota-source-preview]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-pipeline.txt
+      - run: python -m unittest discover -s tests/pipeline
+      - name: Fetch Toyota with existing production data preserved
+        run: |
+          python pipeline/run_update.py --dry-run --only toyota --out-dir pipeline/out-toyota
+          python pipeline/validate.py pipeline/out-toyota/proposed/tournaments.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path('data/tournaments.json').read_text())
+          new=json.loads(Path('pipeline/out-toyota/proposed/tournaments.json').read_text())
+          summary=json.loads(Path('pipeline/out-toyota/run-summary.json').read_text())
+          assert summary['results']['toyota']['status']=='ok', summary
+          byid={r['id']:r for r in new['tournaments']}
+          assert all(byid[r['id']]==r for r in old['tournaments'])
+          print('Existing records preserved:',len(old['tournaments']))
+          print('Toyota records:',sum(r['source_id']=='toyota_tennis_association' for r in new['tournaments']))
+          PY
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: toyota-check-report
+          path: |
+            pipeline/out-toyota/summary.md
+            pipeline/out-toyota/run-summary.json
+            pipeline/out-toyota/proposed/*.json
+          retention-days: 14

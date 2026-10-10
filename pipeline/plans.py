@@ -215,4 +215,5 @@ def plan_okazaki(cfg, cfgroot, fetcher, today, pdf_to_text):
     return res
 
 
-PLANS = {"aichi": plan_generic, "toyohashi": plan_toyohashi, "gamagori": plan_generic, "toyokawa": plan_toyokawa, "hamamatsu": plan_hamamatsu, "okazaki": plan_okazaki}
+PLANS = {"aichi": plan_generic, "toyohashi": plan_toyohashi, "gamagori": plan_generic, "toyokawa": plan_toyokawa, "hamamatsu": plan_hamamatsu, "okazaki": plan_okazaki, "toyota": plan_generic}
+

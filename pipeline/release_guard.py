@@ -9,6 +9,7 @@ EXPECTED_SOURCES = {
     "toyokawa": "toyokawa_tennis_association",
     "hamamatsu": "hamamatsu_tennis_association",
     "okazaki": "okazaki_tennis_association",
+    "toyota": "toyota_tennis_association",
 }
 IMPORTANT = ("venue", "deadline_text", "deadline_date", "eligibility_text",
              "entry_url", "guideline_url", "fee_text", "contact_text")
@@ -20,7 +21,7 @@ def check_release(previous, proposed, summary):
     if summary.get("fatal_error") or summary.get("validation_errors"):
         errors.append("取得・検証エラーがあるため公開不可")
     if set(results) != set(EXPECTED_SOURCES):
-        errors.append("6情報源すべての結果が必要")
+        errors.append("7情報源すべての結果が必要")
     if not any(r.get("status") == "ok" for r in results.values()):
         errors.append("正常取得した情報源がない")
     old_rows = previous.get("tournaments", [])
@@ -71,8 +72,9 @@ def main():
     errors = check_release(*docs)
     if errors:
         raise SystemExit("公開を停止しました:\n" + "\n".join(errors))
-    print("公開前ガード合格: 6情報源・失敗時保持・重複・消失を確認")
+    print("公開前ガード合格: 7情報源・失敗時保持・重複・消失を確認")
 
 
 if __name__ == "__main__":
     main()
+
