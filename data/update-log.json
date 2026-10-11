@@ -108,6 +108,69 @@
    "summary": "大会情報が更新されました（0件 → 3件）",
    "records_before": 0,
    "records_after": 3
+  },
+  {
+   "at": "2026-10-12T06:57:17+09:00",
+   "source": "toyohashi_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（20件 → 22件）",
+   "records_before": 20,
+   "records_after": 22
+  },
+  {
+   "at": "2026-10-12T06:57:17+09:00",
+   "source": "gamagori_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（7件 → 7件）",
+   "records_before": 7,
+   "records_after": 7
+  },
+  {
+   "at": "2026-10-12T06:57:17+09:00",
+   "source": "toyokawa_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（8件 → 8件）",
+   "records_before": 8,
+   "records_after": 8
+  },
+  {
+   "at": "2026-10-12T06:57:17+09:00",
+   "source": "hamamatsu_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（5件 → 5件）",
+   "records_before": 5,
+   "records_after": 5
+  },
+  {
+   "at": "2026-10-12T06:57:17+09:00",
+   "source": "toyota_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（8件 → 8件）",
+   "records_before": 8,
+   "records_after": 8
+  },
+  {
+   "at": "2026-10-12T06:57:17+09:00",
+   "source": "anjo_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（16件 → 16件）",
+   "records_before": 16,
+   "records_after": 16
+  },
+  {
+   "at": "2026-10-12T06:57:17+09:00",
+   "source": "kariya_tennis_association",
+   "event": "data_changed",
+   "stage": null,
+   "summary": "大会情報が更新されました（9件 → 9件）",
+   "records_before": 9,
+   "records_after": 9
   }
  ]
 }

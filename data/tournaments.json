@@ -27,30 +27,30 @@
    "event_area": "豊橋",
    "coverage": "partial",
    "coverage_label": "部分対応",
-   "coverage_note": "大会要項の一覧（全7ページのうち2ページ・20件）。開催日・会場・申込締切は一覧に無く未取得（日付未取得として表示）。要項PDFの本文は解析していません",
-   "snapshot_date": "2026-10-09",
+   "coverage_note": "大会要項の一覧（全8ページのうち2ページ・20件）。開催日・会場・申込締切は一覧に無く未取得（日付未取得として表示）。要項PDFの本文は解析していません",
+   "snapshot_date": "2026-10-12",
    "snapshot_note": "保存HTMLの受領日（ページ内に更新日の記載なし）",
-   "record_count": 20,
+   "record_count": 22,
    "files": [
     {
-     "file": "toyohashi_guideline_4385.html",
-     "sha256": "40c17456ee8e362bb1eafd79cd379cdce9fbef97fd46bae1bcc8e3c6aebb63fd"
-    },
-    {
-     "file": "toyohashi_guideline_4394.html",
-     "sha256": "d3dc5958031fbb1c418ddc9cc42223820f45f8e5840e114b78855462d157a136"
-    },
-    {
      "file": "toyohashi_guideline_4396.html",
-     "sha256": "c27da0836484ac004ad81779ec8877ec0d3005e63a26269c5525fe8c97a51000"
+     "sha256": "86839fd2881ea7b82bd922c87540163ee9e650ee5fad87b08c932a930e286ad0"
+    },
+    {
+     "file": "toyohashi_guideline_4444.html",
+     "sha256": "cc2fa07b2d192900a5545e5f55bc82d9dffe00c41d7a01332d9d570ba2433578"
+    },
+    {
+     "file": "toyohashi_guideline_4446.html",
+     "sha256": "a57124aa2d0546be5c1edff37209349a8f4b74bd098a1b08e446339a4ced575d"
     },
     {
      "file": "toyohashi_guidelines_list.html",
-     "sha256": "c4559dd63a22aae72e012646078aed9858516034621300bd6b73f87bdd30ddec"
+     "sha256": "935a60e42ebdc247e17f6da9a898d399fde6b36bfc9294965e385754bc067e3b"
     },
     {
      "file": "toyohashi_guidelines_list_page2.html",
-     "sha256": "347cacc585396e18f975ce99a1a7c8ac9bf79c4a67b6a2310d1938f5c06874c1"
+     "sha256": "438aec18753044162dc634f59c5640908befd676fe9e1a755106e3dd82d3b218"
     }
    ],
    "parser": "TTA-MOBILE-007（承認済み・無改変）"
@@ -63,17 +63,17 @@
    "coverage": "supported",
    "coverage_label": "対応済み",
    "coverage_note": "令和8年度の大会一覧表（7件。開催日・参加資格・種目・会場を取得）。要項PDFの本文は解析していません",
-   "snapshot_date": "2026-10-05",
+   "snapshot_date": "2026-10-12",
    "snapshot_note": "保存HTMLの受領日（ページ内に更新日の記載なし）",
    "record_count": 7,
    "files": [
     {
-     "file": "gamagori_tournament.html",
-     "sha256": "ed547a19dc0d6ae7190fcc6423a54fe2e04543dc6bf5fb79d5c3d9954b2ad0c7"
+     "file": "gamagori_entry.html",
+     "sha256": "e79e6941e57ad8d656fe90ee6b6fbf9dd63ee4a4fd62c28a15bd3ed312a7e90a"
     },
     {
-     "file": "gamagori_entry.html",
-     "sha256": "3b86773475d8eaf330e7e9a1f1effd52cec1bc3359060fe7b5cd2a129118a2f9"
+     "file": "gamagori_tournament.html",
+     "sha256": "b8ec8a37bc27ee2f67b5656377d4297ebe1e8c03e2c43e66d5e736af192b2bf2"
     }
    ],
    "parser": "TTA-MOBILE-012（新規）"
@@ -86,8 +86,8 @@
    "coverage": "supported",
    "coverage_label": "対応済み",
    "coverage_note": "2026年度の大会8件（トップページの一覧）。要項PDFの本文は、日程が先の0件だけ確認（他の8件は未確認）。「対応済み」は取り込み済みという意味で、公式サイトの最新状態を常時取得しているわけではありません",
-   "snapshot_date": "2026-10-09",
-   "snapshot_note": "保存HTMLの受領日（要項PDFの確認日: 2026-10-09）",
+   "snapshot_date": "2026-10-12",
+   "snapshot_note": "保存HTMLの受領日（要項PDFの確認日: 2026-10-12）",
    "record_count": 8,
    "files": [
     {
@@ -100,11 +100,11 @@
     },
     {
      "file": "toyokawa_top.html",
-     "sha256": "1e7ca781a89f6426b2c31f3ab501973d048b4cd21e66facb062142d3f73d4070"
+     "sha256": "2eede6c58777067f6885021da8b11efc16f2d206dbbf439a609444fe7c000757"
     }
    ],
    "parser": "TTA-MOBILE-013-A1（新規）",
-   "pdf_confirmed_on": "2026-10-09"
+   "pdf_confirmed_on": "2026-10-12"
   },
   {
    "id": "hamamatsu_tennis_association",
@@ -114,22 +114,10 @@
    "coverage": "partial",
    "coverage_label": "部分対応",
    "coverage_note": "「大会情報」ページの大会要項・仮ドローの表（5件）。要項PDFの読み取りができた大会は、申込締切・参加資格・参加費を取得（3件）。年間の事業予定（画像・PDF）・ジュニア大会・終了済みの大会結果（表67件）は取り込んでいません",
-   "snapshot_date": "2026-10-10",
-   "snapshot_note": "公式ページ・要項PDFを、通常のHTTP取得で自動取得（取得日: 2026-10-10。ページ内に更新日の記載なし）。要項PDF 4件: 取得・解析成功 3件／費用・種目別締切を補足 1件／取得成功・解析未取得 0件／取得失敗 0件。前回成功値を保持している大会: 0件",
+   "snapshot_date": "2026-10-12",
+   "snapshot_note": "公式ページ・要項PDFを、通常のHTTP取得で自動取得（取得日: 2026-10-12。ページ内に更新日の記載なし）。要項PDF 4件: 取得・解析成功 3件／費用・種目別締切を補足 0件／取得成功・解析未取得 0件／取得失敗 0件。前回成功値を保持している大会: 0件",
    "record_count": 5,
    "files": [
-    {
-     "file": "hamamatsu_97864815961c_fetch.json",
-     "sha256": "d51f0b5ba45c8b436efd4c1666987ac3111134263be0843188df74fd1818ffe8"
-    },
-    {
-     "file": "hamamatsu_97864815961c_layout.txt",
-     "sha256": "0d98d26d3250212a47e40377273b80715c6c5b37f6cbd2a2573a4ae5a98b9f5b"
-    },
-    {
-     "file": "hamamatsu_97864815961c_youkou.txt",
-     "sha256": "a8163748d14a259205d7c82f77806016b8ce7215a4da7ef8933dfc3db44a685c"
-    },
     {
      "file": "hamamatsu_b5b28931ef0e_fetch.json",
      "sha256": "12d80bfe5e43a477ba6ca8f732ded872b2a25a228aec3e4a8e9d445e00b00075"
@@ -160,7 +148,7 @@
     }
    ],
    "parser": "TTA-MOBILE-021（新規）",
-   "pdf_confirmed_on": "2026-10-10",
+   "pdf_confirmed_on": "2026-10-12",
    "acquisition": "automatic_http"
   },
   {
@@ -214,8 +202,8 @@
    "coverage": "partial",
    "coverage_label": "部分対応",
    "coverage_note": "2026年度の番号付き大会一覧8件。開催日・申込期間・要項と申込の実リンクを取得。公開済みの今後の要項から会場・費用・資格条件を補足。練習会・通年チーム戦・ジュニア別ページは対象外",
-   "snapshot_date": "2026-10-10",
-   "snapshot_note": "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（2件）。矛盾する日時は要確認として表示",
+   "snapshot_date": "2026-10-12",
+   "snapshot_note": "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（1件）。矛盾する日時は要確認として表示",
    "record_count": 8,
    "files": [
     {
@@ -227,21 +215,13 @@
      "sha256": "46e7ee10cf8e00a3ec5efe98ec7c26cb659e3674e41148540877a9b6f7bcd038"
     },
     {
-     "file": "toyota_b4ce573c030a_fetch.json",
-     "sha256": "9af4c78cbfde4ae0568f86855f88bc7e926fc8e7bbfdf83e9d45b66d3ab3db0e"
-    },
-    {
-     "file": "toyota_b4ce573c030a_youkou.txt",
-     "sha256": "2cf2789e0ebde44112c117dba1d67a6a887957c97ff0e419b1cdeecff5eba728"
-    },
-    {
      "file": "toyota_tournament.html",
-     "sha256": "f7c8d292cfd11bf6932529d08e4d9c5aab15c5646ee55f8abb9b97b265ed9f13"
+     "sha256": "dcc6316e30183cfce1f7e62be302be645fd5e63ded29eb6401f6613f5fbd36ea"
     }
    ],
    "parser": "豊田年度別大会一覧 parser v0.1",
    "acquisition": "automatic_http",
-   "pdf_confirmed_on": "2026-10-10"
+   "pdf_confirmed_on": "2026-10-12"
   },
   {
    "id": "anjo_tennis_association",
@@ -251,7 +231,7 @@
    "coverage": "partial",
    "coverage_label": "部分対応",
    "coverage_note": "2026年度の公式大会表16件。開催日・予備日・種目・一覧の参加資格・実際の要項リンクを取得。公開済みの今後の要項から会場・費用・締切・資格条件を補足。西三河マスターズは対象外",
-   "snapshot_date": "2026-10-10",
+   "snapshot_date": "2026-10-12",
    "snapshot_note": "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（8件）。矛盾する日時は要確認として表示",
    "record_count": 16,
    "files": [
@@ -326,7 +306,7 @@
    ],
    "parser": "安城年度別大会表 parser v0.1",
    "acquisition": "automatic_http",
-   "pdf_confirmed_on": "2026-10-10"
+   "pdf_confirmed_on": "2026-10-12"
   },
   {
    "id": "kariya_tennis_association",
@@ -336,7 +316,7 @@
    "coverage": "partial",
    "coverage_label": "部分対応",
    "coverage_note": "2026年度の公式年間予定9件。開催日・予備日・概要を取得。公開済みの今後の募集要項から会場・締切・費用・資格条件を補足",
-   "snapshot_date": "2026-10-10",
+   "snapshot_date": "2026-10-12",
    "snapshot_note": "公式の年度別大会一覧を自動取得。公開済みの今後の要項PDFから会場・費用・資格条件・締切を補足（1件）。矛盾する日時は要確認として表示",
    "record_count": 9,
    "files": [
@@ -355,7 +335,7 @@
    ],
    "parser": "刈谷年度別大会予定 parser v0.1",
    "acquisition": "automatic_http",
-   "pdf_confirmed_on": "2026-10-10"
+   "pdf_confirmed_on": "2026-10-12"
   },
   {
    "id": "nagoya_tennis_association",
@@ -385,10 +365,10 @@
   "coverage_note": "この版では、上記以外の地域の大会情報は取得していません（検索結果0件は「大会がない」ではなく「未対応」の可能性があります）"
  },
  "summary": {
-  "total": 110,
+  "total": 112,
   "by_source": {
    "愛知県協会": 25,
-   "豊橋": 20,
+   "豊橋": 22,
    "蒲郡": 7,
    "豊川": 8,
    "浜松": 5,
@@ -400,7 +380,7 @@
   },
   "by_parse_status": {
    "success": 36,
-   "partial": 74
+   "partial": 76
   }
  },
  "tournaments": [
@@ -2109,6 +2089,138 @@
    "component_match_types": []
   },
   {
+   "id": "toyohashi-4446",
+   "fiscal_year": null,
+   "event_key": "post:4446",
+   "title": "2026_豊橋ダブルストーナメント（ミックス_壮年）大会要項",
+   "source_id": "toyohashi_tennis_association",
+   "source_name": "豊橋テニス協会",
+   "source_area": "豊橋",
+   "event_area": "豊橋",
+   "date_text": null,
+   "periods": [],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": "タイトルの年表記: 2026年（開催日ではありません）",
+   "year_basis": null,
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ミックス"
+   ],
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "ベテラン"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "（タイトルの語から）年齢条件がある可能性（要項で確認）",
+   "official_url": "https://www.toyohashi-tennis.net/taikai/guidelines/4446/",
+   "guideline_url": "https://www.toyohashi-tennis.net/wp-content/uploads/2026/10/2026_豊橋ミックスダブルストーナメント（壮年）_開催要項.pdf",
+   "entry_url": "https://forms.gle/tHadZci3ESDeiSBD7",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "ベテラン",
+     "matched": "壮年",
+     "source": "タイトル",
+     "rule": "ベテラン区分を示す語（ベテラン／壮年／シニア等）。年齢の下限は要項で確認"
+    },
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "タイトル",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [
+    "開催日・会場・申込締切は一覧ページに記載がなく未取得（要項PDFの本文は解析していません）。投稿の表示日は開催日として使っていません"
+   ],
+   "notes": [],
+   "source_snapshot_date": "2026-10-12"
+  },
+  {
+   "id": "toyohashi-4444",
+   "fiscal_year": null,
+   "event_key": "post:4444",
+   "title": "2026_豊橋ダブルストーナメント（ミックス_一般）大会要項",
+   "source_id": "toyohashi_tennis_association",
+   "source_name": "豊橋テニス協会",
+   "source_area": "豊橋",
+   "event_area": "豊橋",
+   "date_text": null,
+   "periods": [],
+   "reserve_text": null,
+   "reserve_periods": [],
+   "date_hint": "タイトルの年表記: 2026年（開催日ではありません）",
+   "year_basis": null,
+   "deadline_text": null,
+   "deadline_date": null,
+   "deadline_time": null,
+   "venue": null,
+   "event_types": [
+    "ミックス"
+   ],
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": [],
+   "audience_types": [
+    "一般"
+   ],
+   "eligibility_status": "参加資格要確認",
+   "eligibility_text": null,
+   "eligibility_note": "参加資格を確認できる情報が取得できていません（要項で確認）",
+   "official_url": "https://www.toyohashi-tennis.net/taikai/guidelines/4444/",
+   "guideline_url": "https://www.toyohashi-tennis.net/wp-content/uploads/2026/10/2026_豊橋ミックスダブルストーナメント（一般）_開催要項.pdf",
+   "entry_url": "https://forms.gle/U5GCwquVehGS2dyQA",
+   "entry_text": null,
+   "parse_status": "partial",
+   "classification_basis": [
+    {
+     "field": "audience",
+     "value": "一般",
+     "matched": "一般",
+     "source": "タイトル",
+     "rule": "一般区分を示す語（一般／成年）"
+    },
+    {
+     "field": "event_type",
+     "value": "ミックス",
+     "matched": "ミックス",
+     "source": "タイトル",
+     "rule": "「ミックス」の語（ミックスはダブルス形式のため「ダブルス」は付けない）"
+    },
+    {
+     "field": "eligibility",
+     "value": "参加資格要確認",
+     "matched": null,
+     "source": "—",
+     "rule": "要項の本文を解析していないため、参加資格は確定しない"
+    }
+   ],
+   "warnings": [
+    "開催日・会場・申込締切は一覧ページに記載がなく未取得（要項PDFの本文は解析していません）。投稿の表示日は開催日として使っていません"
+   ],
+   "notes": [],
+   "source_snapshot_date": "2026-10-12"
+  },
+  {
    "id": "toyohashi-4396",
    "fiscal_year": null,
    "event_key": "post:4396",
@@ -2172,7 +2284,7 @@
     "開催日・会場・申込締切は一覧ページに記載がなく未取得（要項PDFの本文は解析していません）。投稿の表示日は開催日として使っていません"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4394",
@@ -2237,8 +2349,11 @@
    "warnings": [
     "開催日・会場・申込締切は一覧ページに記載がなく未取得（要項PDFの本文は解析していません）。投稿の表示日は開催日として使っていません"
    ],
-   "notes": [],
-   "source_snapshot_date": "2026-10-09"
+   "notes": [
+    "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）",
+    "今回未取得のため前回値を保持: entry_url, guideline_url"
+   ],
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4385",
@@ -2303,8 +2418,11 @@
    "warnings": [
     "開催日・会場・申込締切は一覧ページに記載がなく未取得（要項PDFの本文は解析していません）。投稿の表示日は開催日として使っていません"
    ],
-   "notes": [],
-   "source_snapshot_date": "2026-10-09"
+   "notes": [
+    "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）",
+    "今回未取得のため前回値を保持: entry_url, guideline_url"
+   ],
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4383",
@@ -2372,7 +2490,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4327",
@@ -2440,7 +2558,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4299",
@@ -2516,7 +2634,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4228",
@@ -2584,7 +2702,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4201",
@@ -2652,7 +2770,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4175",
@@ -2720,7 +2838,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4108",
@@ -2788,7 +2906,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4080",
@@ -2856,7 +2974,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4065",
@@ -2924,7 +3042,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-3999",
@@ -2992,7 +3110,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-3995",
@@ -3060,7 +3178,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-3903",
@@ -3128,7 +3246,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-3875",
@@ -3196,7 +3314,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-4072",
@@ -3264,7 +3382,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-3869",
@@ -3332,7 +3450,7 @@
    "notes": [
     "この大会の要項PDF・申込フォームのURLは、投稿ページ（公式情報URL）で確認してください（投稿ページの本文は今回取得していません）"
    ],
-   "source_snapshot_date": "2026-10-09"
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyohashi-3807",
@@ -3508,6 +3626,10 @@
    "event_types": [
     "ダブルス"
    ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
    "audience_types": [
     "一般"
    ],
@@ -3544,11 +3666,7 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05",
-   "primary_event_types": [
-    "ダブルス"
-   ],
-   "component_match_types": []
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "gamagori-2026-4d16d778",
@@ -3588,6 +3706,10 @@
    "event_types": [
     "ダブルス"
    ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
    "audience_types": [
     "一般"
    ],
@@ -3624,11 +3746,7 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05",
-   "primary_event_types": [
-    "ダブルス"
-   ],
-   "component_match_types": []
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "gamagori-2026-02360546",
@@ -3668,6 +3786,10 @@
    "event_types": [
     "ダブルス"
    ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
    "audience_types": [
     "一般"
    ],
@@ -3704,11 +3826,7 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05",
-   "primary_event_types": [
-    "ダブルス"
-   ],
-   "component_match_types": []
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "gamagori-2026-883839a9",
@@ -3748,6 +3866,10 @@
    "event_types": [
     "ダブルス"
    ],
+   "primary_event_types": [
+    "ダブルス"
+   ],
+   "component_match_types": [],
    "audience_types": [
     "一般"
    ],
@@ -3784,11 +3906,7 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05",
-   "primary_event_types": [
-    "ダブルス"
-   ],
-   "component_match_types": []
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "gamagori-2026-7090ef84",
@@ -3828,6 +3946,10 @@
    "event_types": [
     "シングルス"
    ],
+   "primary_event_types": [
+    "シングルス"
+   ],
+   "component_match_types": [],
    "audience_types": [
     "一般"
    ],
@@ -3864,11 +3986,7 @@
    ],
    "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05",
-   "primary_event_types": [
-    "シングルス"
-   ],
-   "component_match_types": []
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "gamagori-2026-9da3fc88",
@@ -3901,13 +4019,17 @@
    ],
    "date_hint": null,
    "year_basis": "「令和8年度 テニス大会のご案内・結果」見出しから導出（4〜12月=2026年、1〜3月=2027年）。曜日で検算",
-   "deadline_text": null,
-   "deadline_date": null,
-   "deadline_time": null,
+   "deadline_text": "11月9日(月) 17:00",
+   "deadline_date": "2026-11-09",
+   "deadline_time": "17:00",
    "venue": "浜町テニスコート",
    "event_types": [
     "ミックス"
    ],
+   "primary_event_types": [
+    "ミックス"
+   ],
+   "component_match_types": [],
    "audience_types": [
     "一般"
    ],
@@ -3915,10 +4037,10 @@
    "eligibility_text": "協会員ペア",
    "eligibility_note": "協会員（協会登録が必要）。詳細は要項・協会登録のページで確認してください。",
    "official_url": "https://gamagori-tennis.com/tournament/",
-   "guideline_url": null,
-   "entry_url": null,
+   "guideline_url": "https://gamagori-tennis.com/tournament/youkou/r08_mix.pdf",
+   "entry_url": "https://gamagori-tennis.com/entry/",
    "entry_text": null,
-   "parse_status": "partial",
+   "parse_status": "success",
    "classification_basis": [
     {
      "field": "audience",
@@ -3942,15 +4064,9 @@
      "rule": "公式の一覧表に明記"
     }
    ],
-   "warnings": [
-    "開催要項は未公開（一覧表に「―」）"
-   ],
+   "warnings": [],
    "notes": [],
-   "source_snapshot_date": "2026-10-05",
-   "primary_event_types": [
-    "ミックス"
-   ],
-   "component_match_types": []
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "gamagori-2026-5490a862",
@@ -3990,6 +4106,12 @@
    "event_types": [
     "ミックス",
     "団体戦"
+   ],
+   "primary_event_types": [
+    "団体戦"
+   ],
+   "component_match_types": [
+    "ミックス"
    ],
    "audience_types": [
     "団体限定"
@@ -4036,13 +4158,7 @@
     "開催要項は未公開（一覧表に「―」）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-05",
-   "primary_event_types": [
-    "団体戦"
-   ],
-   "component_match_types": [
-    "ミックス"
-   ]
+   "source_snapshot_date": "2026-10-12"
   },
   {
    "id": "toyokawa-2026-d3dc4d5c",
@@ -4136,9 +4252,9 @@
     "サイトの見出しに、リンクの無い表示があります: 《ドロー》",
     "前回確認値（今回未確認）: 要項PDFの確認日: 2026-10-06（提供された要項PDFの文字情報を読み取り。大会名・開催日が保存HTMLの見出しと一致）",
     "前回確認値（今回未確認）: 申込期間: 2026-10-04〜2026-10-25 17:00（年は要項の開催日の年。曜日で検算一致）",
-    "今回未取得のため前回値を保持: deadline_text, deadline_date, deadline_time, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, fee_text, entry_text, venue, event_types, primary_event_types, classification_basis.event_type, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, year_basis.申込期間"
+    "今回未取得のため前回値を保持: deadline_text, deadline_date, deadline_time, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, venue, fee_text, entry_text, venue, event_types, primary_event_types, classification_basis.event_type, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, year_basis.申込期間"
    ],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": "非会員 ¥4000/組 ／ 会員 ¥3500/組",
    "related_links": []
   },
@@ -4234,9 +4350,9 @@
     "サイトの見出しに、リンクの無い表示があります: 《ドロー》",
     "前回確認値（今回未確認）: 要項PDFの確認日: 2026-10-06（提供された要項PDFの文字情報を読み取り。大会名・開催日が保存HTMLの見出しと一致）",
     "前回確認値（今回未確認）: 申込期間: 2026-10-04〜2026-10-25 17:00（年は要項の開催日の年。曜日で検算一致）",
-    "今回未取得のため前回値を保持: deadline_text, deadline_date, deadline_time, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, fee_text, entry_text, venue, event_types, primary_event_types, classification_basis.event_type, audience_types, classification_basis.audience, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, year_basis.申込期間"
+    "今回未取得のため前回値を保持: deadline_text, deadline_date, deadline_time, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, venue, fee_text, entry_text, venue, event_types, primary_event_types, classification_basis.event_type, audience_types, classification_basis.audience, eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, year_basis.申込期間"
    ],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": "非会員 ¥4000/組 ／ 会員 ¥3500/組 ／ 高校生以下 ¥3000/組",
    "related_links": []
   },
@@ -4327,7 +4443,7 @@
     "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": null,
    "related_links": [
     {
@@ -4435,7 +4551,7 @@
     "サイトの見出しに「大会中止」の表記があります",
     "サイトの見出しに、リンクの無い表示があります: 《ドロー》"
    ],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": null,
    "related_links": []
   },
@@ -4526,7 +4642,7 @@
     "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": null,
    "related_links": [
     {
@@ -4622,7 +4738,7 @@
     "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": null,
    "related_links": [
     {
@@ -4746,7 +4862,7 @@
     "サイトの見出しに「大会中止」の表記があります",
     "サイトの見出しに、リンクの無い表示があります: 《大会中止》"
    ],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": null,
    "related_links": []
   },
@@ -4837,7 +4953,7 @@
     "会場・参加資格・申込締切・参加費は一覧に無く未取得（要項PDFは未確認）"
    ],
    "notes": [],
-   "source_snapshot_date": "2026-10-09",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": null,
    "related_links": [
     {
@@ -4934,17 +5050,15 @@
     }
    ],
    "warnings": [
-    "参加資格の詳細と、複数種目に共通する単一の申込締切は未確定です。種目別の締切と公式要項を確認してください"
+    "申込締切・参加資格・参加費は、要項PDFから取得できていません（未取得・要確認）"
    ],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・費用と種目別締切を補足",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-12）。要項PDF: 今回は取得していない",
     "開催予定日の表記（原文: 2025/9/20(日)）: 原文の曜日と日付が一致しません（日付の数字は原文どおり保持）",
     "開催予定日の表記（原文: 2025/9/20(日)）: 2026-09-20 ならば曜日が一致します。年の表記ミスの可能性があります（原文は直していません。要項で確認してください）",
-    "要項PDFの一般ダブルス申込締切: 2026-08-28 18:00必着（複数種目の締切は別々に表示）",
-    "要項PDFの混合ダブルス申込締切: 2026-09-18 18:00必着（複数種目の締切は別々に表示）",
-    "要項PDFの確認日: 2026-10-10（表の列配置を保持して読み取り。参加資格の分類と原文の日付は変更していません）"
+    "今回未取得のため前回値を保持: fee_text, entry_text"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": "一般・混合ダブルス 3,500円",
    "related_links": [
     {
@@ -4967,9 +5081,9 @@
      "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_doubles_predraw.pdf",
      "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_mix_predraw.pdf"
     ],
-    "pdf_state": "partial_details",
-    "pdf_state_jp": "取得成功・費用と種目別締切を補足",
-    "pdf_extractor": "pdftotext -layout"
+    "pdf_state": "not_attempted",
+    "pdf_state_jp": "今回は取得していない",
+    "pdf_extractor": null
    }
   },
   {
@@ -5050,12 +5164,12 @@
    ],
    "warnings": [],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析成功",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-12）。要項PDF: 取得成功・解析成功",
     "申込締切 2026-10-02 18:00（年は要項の開催日の年から決定。曜日で検算一致）",
     "要項PDFの会場の表記: 浜松新電力テニスコート（表の開催場所: 浜松新電力(花川運動公園)テニスコート）",
-    "要項PDFの確認日: 2026-10-10（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
+    "要項PDFの確認日: 2026-10-12（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": "3,500円 ※お釣りのないようにご準備お願いします",
    "related_links": [],
    "acquisition": {
@@ -5150,12 +5264,12 @@
    ],
    "warnings": [],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析成功",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-12）。要項PDF: 取得成功・解析成功",
     "申込締切 2026-10-23 18:00（年は要項の開催日の年から決定。曜日で検算一致）",
     "要項PDFの会場の表記: 浜松新電力テニスコート（表の開催場所: 浜松新電力(花川運動公園)テニスコート）",
-    "要項PDFの確認日: 2026-10-10（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
+    "要項PDFの確認日: 2026-10-12（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": "4,500円 ※お釣りのないようにご準備お願いします",
    "related_links": [],
    "acquisition": {
@@ -5250,12 +5364,12 @@
    ],
    "warnings": [],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析成功",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-12）。要項PDF: 取得成功・解析成功",
     "申込締切 2026-10-30 18:00（年は要項の開催日の年から決定。曜日で検算一致）",
     "要項PDFの会場の表記: 浜松新電力テニスコート（表の開催場所: 浜松新電力(花川運動公園)テニスコート）",
-    "要項PDFの確認日: 2026-10-10（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
+    "要項PDFの確認日: 2026-10-12（要項PDFの文字情報を読み取り。大会の開催日が表の開催予定日と一致）"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": "3,500円 ※お釣りのないようにご準備お願いします",
    "related_links": [],
    "acquisition": {
@@ -5348,12 +5462,12 @@
     "申込締切・参加資格・参加費は、要項PDFから取得できていません（未取得・要確認）"
    ],
    "notes": [
-    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-10）。要項PDF: 取得成功・解析未取得",
+    "自動取得（通常のHTTP取得）: このツールが公式ページ（https://www.h-ta.jp/tournament.html）を取得して解析しました（取得日: 2026-10-12）。要項PDF: 今回は取得していない",
     "開催予定日の表記（原文: 2025/9/13(日)）: 原文の曜日と日付が一致しません（日付の数字は原文どおり保持）",
     "開催予定日の表記（原文: 2025/9/13(日)）: 2026-09-13 ならば曜日が一致します。年の表記ミスの可能性があります（原文は直していません。要項で確認してください）",
     "要項は掲載されていません。紐づけたPDFは、同じ年・同じ公式フォルダにある要項PDFです（この大会の要項かは、PDFで確認してください）"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "fee_text": null,
    "related_links": [
     {
@@ -5370,9 +5484,9 @@
      "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_info.pdf",
      "https://www.h-ta.jp/tournament/2026/2026_shispo/2026_shispo_dantai_predraw.pdf"
     ],
-    "pdf_state": "fetched_unparsed",
-    "pdf_state_jp": "取得成功・解析未取得",
-    "pdf_extractor": "pypdf 6.14.2"
+    "pdf_state": "not_attempted",
+    "pdf_state_jp": "今回は取得していない",
+    "pdf_extractor": null
    }
   },
   {
@@ -6374,7 +6488,7 @@
    "notes": [
     "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -6460,7 +6574,7 @@
    "notes": [
     "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -6539,7 +6653,7 @@
    "notes": [
     "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -6618,7 +6732,7 @@
    "notes": [
     "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -6697,7 +6811,7 @@
    "notes": [
     "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -6734,7 +6848,7 @@
    "reserve_periods": [],
    "date_hint": null,
    "year_basis": "公式大会一覧の2026年度見出し。1〜3月は翌年。明記された開催年を優先",
-   "deadline_text": "8月21日(金)~ 8月30日(日)",
+   "deadline_text": "8/21-8/30",
    "deadline_date": "2026-08-30",
    "deadline_time": null,
    "venue": "豊田市内コート (全会場、砂入り人工芝コート)",
@@ -6756,7 +6870,7 @@
    "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_D_k.pdf",
    "entry_url": null,
    "entry_text": "申込期間（公式一覧）: 8/21-8/30",
-   "parse_status": "success",
+   "parse_status": "partial",
    "classification_basis": [
     {
      "field": "event_type",
@@ -6789,16 +6903,15 @@
    ],
    "warnings": [],
    "notes": [
-    "要項PDFの確認日: 2026-10-10"
+    "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です",
+    "今回未取得のため前回値を保持: eligibility_text, eligibility_status, eligibility_note, classification_basis.eligibility, venue, fee_text, eligibility_text, eligibility_status, eligibility_note, audience_types"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
-    "pdf_state": "parsed_details",
-    "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_D_k.pdf",
-    "pdf_sha256": "7e1ebc25900d4de45202ee1bd6a5368c27cf8021b807d52a1260ef64fe0d9cab",
-    "confirmed_on": "2026-10-10"
+    "pdf_state": "not_attempted",
+    "previous_pdf_confirmed_on": "2026-10-10"
    },
    "fee_text": "協会員ペア : 3,000円 協会員・非協会員ペア : 4,500円 非協会員ペア : 6,000円"
   },
@@ -6894,16 +7007,16 @@
    ],
    "warnings": [],
    "notes": [
-    "要項PDFの確認日: 2026-10-10"
+    "要項PDFの確認日: 2026-10-12"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "https://www.toyota-ta.jp/wp-content/files/kyougi/taikai/kaisai/2026_shimin_S_k.pdf",
     "pdf_sha256": "c83c5cb2fc70807761b3e2930e665c6c9b02fbbf5a74a87590732c5334c6af94",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "豊田市テニス協会員 : 2,000円 非協会員: 4,000円"
   },
@@ -6979,7 +7092,7 @@
    "notes": [
     "公式の年度別大会一覧を自動取得。申込締切は申込期間の最終日（時刻未取得）。要項PDF本文・会場・参加資格・参加費は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7059,7 +7172,7 @@
     "公式大会表の種目: 男女一般S",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7147,7 +7260,7 @@
     "公式大会表の種目: 女子D(C・D)",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7235,7 +7348,7 @@
     "公式大会表の種目: 女子D(A・B・C)",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7315,7 +7428,7 @@
     "公式大会表の種目: 男女チャレンジャーS",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7395,7 +7508,7 @@
     "公式大会表の種目: 男女一般D,男女チャレンジャーD",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7483,7 +7596,7 @@
     "公式大会表の種目: 男子ベテランD(100・120歳以上)女子ベテランD(90・110歳以上)",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7571,7 +7684,7 @@
     "公式大会表の種目: ミックスD(一般・50歳以上)",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -7657,16 +7770,16 @@
    "warnings": [],
    "notes": [
     "公式大会表の種目: 女子D(C・D)",
-    "要項PDFの確認日: 2026-10-10"
+    "要項PDFの確認日: 2026-10-12"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%911023%E7%A7%8B%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3CD%E7%B4%9A2.pdf",
     "pdf_sha256": "daf3115837ec0abce00044af85b94dbfa8e68fdefa0cff4997bae21b6a3614cb",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "協会員ペア2,000円 協会員・非協会員ペア3,000円 非協会員ペア4,000円"
   },
@@ -7749,16 +7862,16 @@
    "warnings": [],
    "notes": [
     "公式大会表の種目: 男女一般D,男女チャレンジャーD",
-    "要項PDFの確認日: 2026-10-10"
+    "要項PDFの確認日: 2026-10-12"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261024%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E5%A4%A7%E4%BC%9A%E4%B8%80%E8%88%AC%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC2.pdf",
     "pdf_sha256": "4608583c476abf0c74a1bcdcf016624f85d2847f217b21997136dea508b363ff",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "協会員2,000円 協会員・非協会員ペア3,000円 非協会員ペア4,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
@@ -7833,16 +7946,16 @@
    "warnings": [],
    "notes": [
     "公式大会表の種目: 男女ベテランD(45・55・65歳以上",
-    "要項PDFの確認日: 2026-10-10"
+    "要項PDFの確認日: 2026-10-12"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261031%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3%E5%A4%A7%E4%BC%9A.pdf",
     "pdf_sha256": "d071193621f29661d3cf831cabf4ef8bdc34e9d06e5b3e9500ef0f175a438595",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "協会員ペア2000円、協会員・非協会員ペア3000円、非協会員ペア4000円 / コンソレーションが開催できなかった場合は、半額とさせていただきます"
   },
@@ -7927,17 +8040,17 @@
    ],
    "notes": [
     "公式大会表の種目: 女子D(A・B・C)",
-    "要項PDFの確認日: 2026-10-10",
+    "要項PDFの確認日: 2026-10-12",
     "要確認: 要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261112%E7%A7%8B%E5%AD%A3%E5%A5%B3%E5%AD%90%E3%82%A6%E3%82%A3%E3%83%BC%E3%82%AF%E3%83%87%E3%82%A3%E3%83%80%E3%83%96%E3%83%AB%E3%82%B9.pdf",
     "pdf_sha256": "31d7fa7014b94099408492e25b2aeb045d5f58d4d7b55af020070c074016531c",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "協会員ペア2,000円 協会員と非協会員ペア3,000円 非協会員ペア4,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
@@ -8022,17 +8135,17 @@
    ],
    "notes": [
     "公式大会表の種目: 男女S",
-    "要項PDFの確認日: 2026-10-10",
+    "要項PDFの確認日: 2026-10-12",
     "要確認: 要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/08/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%912026%E5%AE%89%E5%9F%8E%E9%81%B8%E6%89%8B%E6%A8%A9.pdf",
     "pdf_sha256": "3e9de0986fccb4a08f5d8b9c410a8c47e253831005f9851b48396746309e2eff",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "無料"
   },
@@ -8109,17 +8222,17 @@
    ],
    "notes": [
     "公式大会表の種目: 男女ベテランS(40・50・60歳以上)",
-    "要項PDFの確認日: 2026-10-10",
+    "要項PDFの確認日: 2026-10-12",
     "要確認: 要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%91261121%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%99%E3%83%86%E3%83%A9%E3%83%B3.pdf",
     "pdf_sha256": "5a52ad020f4cff4fe1fc7f05300a5a4f8f68943875b4c95375e525f7e5601e13",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "協会員2,000円 非協会員3,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
@@ -8196,17 +8309,17 @@
    ],
    "notes": [
     "公式大会表の種目: 男女一般S",
-    "要項PDFの確認日: 2026-10-10",
+    "要項PDFの確認日: 2026-10-12",
     "要確認: 要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261205%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E4%B8%80%E8%88%AC.pdf",
     "pdf_sha256": "e9fcb5471a28c1e3dc971ddcb72eb3f213856ffcdd4bebffb78e8df4872684d1",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "協会員2,000円 非協会員3,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
@@ -8284,18 +8397,18 @@
    ],
    "notes": [
     "公式大会表の種目: 男女チャレンジャーS",
-    "要項PDFの確認日: 2026-10-10",
+    "要項PDFの確認日: 2026-10-12",
     "要確認: 要項本文の開催年が公式一覧と不一致。開催日は一覧を採用し、要項の訂正を要確認",
     "要確認: 要項の申込締切は日付・曜日の整合を確認できません。締切は公式へ要確認"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "http://anjo-tennis.net/wp/wp-content/uploads/2026/09/%E3%80%90%E8%A6%81%E9%A0%85%E3%80%9120261212%E5%AE%89%E5%9F%8E%E5%B8%82%E6%B0%91%E3%82%B7%E3%83%B3%E3%82%B0%E3%83%AB%E3%82%B9%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC.pdf",
     "pdf_sha256": "4f2f0177cdd8d3d986a54fb5afe636e6a090766bdee4523a7704a3645a902bd4",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "協会員2,000円 非協会員3,000円 / ※コンソレーションが開催できなかった場合は、上記金額を半額とさせていただきます"
   },
@@ -8372,7 +8485,7 @@
     "公式大会表の種目: 男女ベテランS(45・55・65歳以上)",
     "会場・参加費・申込締切は未取得。要項PDF本文は未解析です"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -8460,7 +8573,7 @@
     "公式年間予定の概要: 一般男子ダブルス、一般女子ダブルス",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -8575,7 +8688,7 @@
     "公式年間予定の概要: 一般女子ダブルス+一般男子ダブルス +一般ミックスダブルス",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -8681,7 +8794,7 @@
     "公式年間予定の概要: 一般女子ダブルス",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -8758,7 +8871,7 @@
     "公式年間予定の概要: ペア合計年齢100歳・120歳以上(本年12月末時点の年齢) 女性は+10歳ハンディ有",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -8846,7 +8959,7 @@
     "公式年間予定の概要: Cクラスの一般男子ダブルス、一般女子ダブルス (出場制限有り、詳細は募集要項参照ください)",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -8932,16 +9045,16 @@
    "warnings": [],
    "notes": [
     "公式年間予定の概要: 一般男子ダブルス、一般女子ダブルス ↑ A,Bクラス別の一般男子ダブルス、一般女子ダブルス (Aクラス:オープン、Bクラス:クローズド)",
-    "要項PDFの確認日: 2026-10-10"
+    "要項PDFの確認日: 2026-10-12"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
     "pdf_state": "parsed_details",
     "guideline_url": "https://www.katch.ne.jp/~fmhmksy/20261101_entry.pdf",
     "pdf_sha256": "90e7866c6f501876b1ee323232f1ed9c88cb4fc4557150d4239af4dd471a158b",
-    "confirmed_on": "2026-10-10"
+    "confirmed_on": "2026-10-12"
    },
    "fee_text": "3,000円/組。 試合当日受付時に納入。(不参加者には別途事務局から請求)"
   },
@@ -9044,7 +9157,7 @@
     "公式年間予定の概要: 60歳以上を1名以上含む4〜6名でのダブルス団体戦 (12月末時点で60歳以上)",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -9132,7 +9245,7 @@
     "公式年間予定の概要: 一般女子ダブルス",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -9220,7 +9333,7 @@
     "公式年間予定の概要: 一般ミックスダブルス",
     "年間予定を自動取得。会場・申込締切・参加費・募集要項本文は未取得。参加条件の詳細は公式の募集要項を確認してください"
    ],
-   "source_snapshot_date": "2026-10-10",
+   "source_snapshot_date": "2026-10-12",
    "acquisition": {
     "method": "http",
     "auto_fetch": true,
@@ -9499,25 +9612,25 @@
    },
    "toyohashi_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-09",
+    "data_as_of": "2026-10-12",
     "consecutive_failures": 0,
     "last_failure": null
    },
    "gamagori_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-05",
+    "data_as_of": "2026-10-12",
     "consecutive_failures": 0,
     "last_failure": null
    },
    "toyokawa_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-09",
+    "data_as_of": "2026-10-12",
     "consecutive_failures": 0,
     "last_failure": null
    },
    "hamamatsu_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-10",
+    "data_as_of": "2026-10-12",
     "consecutive_failures": 0,
     "last_failure": null
    },
@@ -9529,19 +9642,19 @@
    },
    "toyota_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-10",
+    "data_as_of": "2026-10-12",
     "consecutive_failures": 0,
     "last_failure": null
    },
    "anjo_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-10",
+    "data_as_of": "2026-10-12",
     "consecutive_failures": 0,
     "last_failure": null
    },
    "kariya_tennis_association": {
     "status": "ok",
-    "data_as_of": "2026-10-10",
+    "data_as_of": "2026-10-12",
     "consecutive_failures": 0,
     "last_failure": null
    },
